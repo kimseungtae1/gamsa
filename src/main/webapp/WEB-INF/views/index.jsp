@@ -7,7 +7,7 @@
 <title>갬사_Gamsa</title>
 </head>
 <body>
-	<main id="main">
+	<main id="main" class="content-container">
 		<section>
 			<h1>메인 섹션 1</h1>
 		</section>

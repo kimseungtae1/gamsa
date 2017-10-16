@@ -3,7 +3,7 @@
 
 	<header id="header">
 	
-		<div class="content-container">
+		<div class="content-container header-menu font">
 			<div class="logo">
 				로고
 			</div>
@@ -14,19 +14,23 @@
 			
 			<div class="menu-list">
 				<ul>
-					<li>사진첩
-						<ul>
-							<li>갬사사진</li>
-							<li>인기사진100</li>
-						</ul>
-					</li>
+					<li>사진첩</li>
 					<li>커뮤니티</li>
-						<ul>
-							<li>공지사항</li>
-							<li>문의사항</li>
-						</ul>
 					<li>태그</li>
 				</ul>
+				<!-- <div>
+					<ul>
+						<li>갬사사진</li>
+						<li>인기사진100</li>
+					</ul>
+				</div>
+				<div>
+					<ul>
+						<li>공지사항</li>
+						<li>문의사항</li>
+					</ul>
+				</div> -->
+				
 			</div>
 			
 			<div class="search-btn">

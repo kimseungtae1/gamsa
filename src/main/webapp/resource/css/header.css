@@ -1,5 +1,25 @@
 @charset "UTF-8";
 
-.cocontent-container{
-	width:1280px;
+#header{
+	background-color: #373737;
+}
+
+.header-menu{
+	display: inline-block;
+}
+
+.logo{
+	float:left;
+}
+
+.gnb{
+	float:right;
+}
+
+.menu-list > ul, .gnb > ul{
+	list-style-type: none;
+}
+
+.menu-list > ul li, .gnb > ul li{
+	display: inline;
 }

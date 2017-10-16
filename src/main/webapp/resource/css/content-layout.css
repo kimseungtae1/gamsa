@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+*{
+	margin:0;
+	padding:0;
+}
+
+.content-container{
+	width:1600px;
+	margin: 0 auto;
+}
+
+.font{
+	font-size: 15px;
+	color: #fff;
+}
