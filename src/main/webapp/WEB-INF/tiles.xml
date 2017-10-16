@@ -4,12 +4,12 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
   <definition name="home.*" template="/WEB-INF/views/inc/root-layout.jsp">
-    <put-attribute name="title" value="Tiles tutorial homepage" />
+    <put-attribute name="title" value="갬사 메인화면" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
     <put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
    	<put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition>
-
+<!-- 
   <definition name="customer.*.*" template="/WEB-INF/views/inc/sub-layout.jsp">
     <put-attribute name="title" value="Tiles tutorial homepage" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
@@ -35,4 +35,5 @@
     <put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition>
+   -->
 </tiles-definitions>

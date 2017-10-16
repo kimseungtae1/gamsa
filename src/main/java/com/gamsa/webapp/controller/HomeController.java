@@ -12,8 +12,8 @@ public class HomeController {
 	@RequestMapping("index")
 	public String index() {
 		
-		//return "index";
-		return "/WEB-INF/views/index.jsp";
+		return "home.index";
+		//return "/WEB-INF/views/index.jsp";
 	}
 	
 }

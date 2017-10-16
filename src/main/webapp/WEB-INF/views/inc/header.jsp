@@ -5,20 +5,13 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <header id="header">
-	<div>
-		<img class="hamburger-button"
-			src="${ctx}/resource/images/ic_menu_black_24dp_1x.png" />
-	</div>
+
 	<div class="content-container">
 		<!-- ---------------------------<header>--------------------------------------- -->
 
 		<h1 id="logo">
 			<a href="${ctx}/index"> 
-				<img src="${ctx}/resource/images/logo.png" alt="뉴렉처 온라인" />
-				<%-- <picture>
-					<source media="(min-width: 960px)" srcset="${ctx}/resource/images/logo.png">
-					<img src="${ctx}/resource/images/logo-sm.png" alt="뉴렉처 온라인" /> 
-				</picture> --%>
+				로고
 			</a>
 		</h1>
 
