@@ -1,0 +1,145 @@
+
+@charset "UTF-8";
+.view_img > .view_con .view_wrap {
+    background: #fff;
+}
+/*윗부분*/
+.profile {
+    height: auto;
+    padding: 43px 0 42px;
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+}
+
+.view_wrap {
+    max-width: 1000px;
+    min-height: 500px;
+    margin: 250px auto;
+    padding: 0 2.6%;
+    overflow: hidden;
+    border: 1px solid;/*  */
+} 
+.profile .right {
+    float: right;
+    overflow: hidden;
+}
+.profile section {
+	
+	height: 90px;
+    width: 498px;
+    display: inline-block;
+    border: 1px solid;
+}
+/*화살표*/
+ .arrow.prev {
+    left: 100px;
+}
+
+ .arrow.next {
+    right: 100px;
+}
+
+ .arrow img{
+    position: fixed;
+    top: 50%;
+    z-index: 30;
+    width: 40px;
+    height: 40px;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: auto;
+    text-decoration: underline;
+}
+/*  */
+
+.view_img .arrow {
+    position: fixed;
+    top: 50%;
+    z-index: 30;
+}
+
+
+
+
+/*이미지*/
+.view_big_img > img {
+    max-width: 100%;
+    min-width:1000px; 
+    min-height:562px ;
+    
+    border: 1px solid;/*  */
+}
+
+img {
+    border: 0;
+    vertical-align: top;
+}
+
+.view_img .small_img {
+    overflow: hidden;
+    padding: 0 0 65px;
+    margin: 0 -4px;
+}
+
+ .small_img a{
+
+    border: 1px solid;
+	
+}
+/*
+.view_img .small_img > a, .view_img .small_img > .small_no {
+    display: block;
+    float: left;
+    width: 10%;
+} */
+.view_img .small_img {
+    overflow: hidden;
+    padding: 0 0 65px;
+    margin: 0 -4px;
+}
+
+.view_img .small_img > a img, .view_img .small_img > .small_no > img {
+    display: block;
+    width: 90px;
+    height:90px;
+    margin: 8px auto 0;
+}
+
+.view_img .small_img > a, .view_img .small_img > .small_no {
+    display: block;
+    float: left;
+    width: 10%;
+    width: 10%;
+}
+
+img {
+    border: 0;
+    vertical-align: top;
+}
+/*하단 설명부분*/
+.view_detail {
+    position: relative;
+    z-index: 1;
+    background: #f5f5f5;
+    border-top: 1px solid #eeeef1;
+    border-bottom: 1px solid #e8e8e7;
+}
+
+.view_detail .wrap {
+    height: auto;
+    padding: 45px 0;
+    overflow: hidden;
+}
+
+.wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.view_detail section {
+    width: 50%;
+    float: left;
+}
