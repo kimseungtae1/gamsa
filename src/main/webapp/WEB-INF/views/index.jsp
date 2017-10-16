@@ -4,24 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>갬사_Gamsa</title>
 </head>
 <body>
-	<!-- header부분 -->
-	<header>
+	<!-- 헤더부분 -->
+	<header id="header">
 		<h1>헤더부분</h1>
 	</header>
-
-	<div id="visual" align="center">	
-		
-	</div>
 	
+	<!-- 메인부분 -->
 	<main id="main">
-		
+		<section><h1>메인 섹션1</h1></section>
+		<section><h1>메인 섹션2</h1></section>
+		<section><h1>메인 섹션3</h1></section>
+		<section><h1>메인 섹션4</h1></section>
+		<section><h1>메인 섹션5</h1></section>
 	</main>
 	
-	<!-- footer부분 -->
-	<footer>
+	<!-- 푸터부분 -->
+	<footer id="footer">
+		<h1>푸터부분</h1>
 	</footer>
 </body>
 </html>
