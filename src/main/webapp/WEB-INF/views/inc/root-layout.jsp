@@ -10,10 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path}/resource/css/content-layout.css">
 <link rel="stylesheet" href="${path}/resource/css/header.css">
+<link rel="stylesheet" href="${path}/resource/css/visual.css">
 <title>갬사 메인페이지</title>
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
+	
+	<tiles:insertAttribute name="visual"/>
 	
 	<tiles:insertAttribute name="main"/>
 	

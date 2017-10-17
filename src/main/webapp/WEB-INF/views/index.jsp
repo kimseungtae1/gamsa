@@ -8,21 +8,7 @@
 </head>
 <body>
 	<main id="main" class="content-container">
-		<section>
-			<h1>메인 섹션 1</h1>
-		</section>
-		<section>
-			<h1>메인 섹션 2</h1>
-		</section>
-		<section>
-			<h1>메인 섹션 3</h1>
-		</section>
-		<section>
-			<h1>메인 섹션 4</h1>
-		</section>
-		<section>
-			<h1>메인 섹션 5</h1>
-		</section>
+		
 	</main>
 </body>
 </html>
