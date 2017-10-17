@@ -10,15 +10,9 @@
 		<h1>당신의 사진</h1>
 		<h1>그리고 감성</h1>
 		<form action="">
-		<fieldset>
 			<input class="key-img-search" type="text" name="" value="" 
 				placeholder="Image search button" />
-			<a><img alt="찾기버튼" src="${path}/resource/images/search-btn" /></a>
-		</fieldset>
+			<button type="button" class="key-img-search-btn"></button>
 		</form>
 	</div>
-
 </div>
-	
-		
-	

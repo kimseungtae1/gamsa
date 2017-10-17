@@ -1,10 +1,6 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 
-fieldset{
-	width:350px;
-	border:0;
-}
 
 .visual{
 	width:100%;
@@ -19,7 +15,7 @@ fieldset{
 }
 
 .key-img-search{
-	width:100%;
+	width:300px;
 	height:50px;
 	border-radius: 15px;
 	font-size: 20px;
@@ -39,4 +35,12 @@ h1{
 	font-weight: lighter;
 }
 
+/* 버튼 */
+.key-img-search-btn{
+	width:50px;
+	height:50px;
+	background:url("../images/search-btn.png") no-repeat center; 
+	/* border: 0px; */
+	float: right;
+}
 
