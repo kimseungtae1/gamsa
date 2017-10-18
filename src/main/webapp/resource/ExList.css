@@ -1,0 +1,99 @@
+@charset "EUC-KR";
+
+/*자유게시판 헤더 글귀*/
+.board.list h3.boardTitle {
+    font-size: 2em;
+    padding-bottom: 30px;
+}
+
+
+/*상단 바*/
+.board.list .basicList .boardList .basicList_cont {
+    border-top: 2px solid #60abd9;
+    border-bottom: 1px solid #60abd9;
+}
+
+/*중간 라인*/
+.board.list .basicList .boardList .basicList_cont > dl {
+    border-bottom: 1px solid #d0d0d0;
+}
+/*간격*/
+.board.list .basicList .boardList .basicList_cont > dl > dt {
+    display: table;
+    width: 100%;
+    line-height: 80px;
+    cursor: pointer;
+}
+
+.board.list .basicList .boardList .basicList_cont > dl > dt > p.no {
+    width: 80px;
+    text-align: center;
+}
+.board.list .basicList .boardList .basicList_cont > dl > dt > p, .board.list .basicList .boardList .basicList_cont > dl > dt > h4 {
+    display: table-cell;
+}
+
+p{
+    text-align: right;
+    padding-right: 30px;
+}
+	
+/*숫자 간격*/
+.board.list .paging {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*숫자 */
+.board.list .paging span.active {
+    border: 1px solid #018fc2;
+    color: #FFFFFF;
+    background-color: #0da2d7;
+}
+
+.board.list .paging span > a {
+    display: block;
+}
+
+.board.list .paging span {
+    display: inline-block;
+    color: #353e44;
+    font-size: 14px;
+    font-weight: bold;
+    width: 36px;
+    /* height: 35px; */
+    line-height: 37px;
+    vertical-align: middle;
+    margin-right: 2px;
+    border: 1px solid #c8c8c8;
+}
+/*등록 버튼*/
+html.board .conWrap .btnWrap {
+    text-align: right;
+    margin-top: 30px;
+}
+
+html.board .conWrap .btnWrap > * {
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #fff;
+    background: #00ace6;
+    text-align: center;
+}
+html.board .conWrap .btnWrap > a {
+    vertical-align: middle;
+}
+/*하단 간격*/
+.pB100 {
+    padding-bottom: 100px !important;
+}
+.conWrap {
+    width: 1600px;
+    margin: 0 auto;
+}
