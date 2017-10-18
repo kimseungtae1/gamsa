@@ -16,22 +16,25 @@
 			
 			<div class="menu-list iblock">
 				<ul>
-					<li>사진첩</li>
-					<li>커뮤니티</li>
+					<li>
+						사진첩
+						<ul>
+							<li>갬사사진</li>
+							<li>인기사진100</li>
+						</ul>
+					</li>
+					<li>
+						커뮤니티
+						<ul>
+							<li>공지사항</li>
+							<li>문의사항</li>
+						</ul>
+					</li>
 					<li>태그</li>
 				</ul>
-				<!-- <div>
-					<ul>
-						<li>갬사사진</li>
-						<li>인기사진100</li>
-					</ul>
-				</div>
-				<div>
-					<ul>
-						<li>공지사항</li>
-						<li>문의사항</li>
-					</ul>
-				</div> -->
+
+
+
 				
 			</div>
 			<div class="gnb iblock">

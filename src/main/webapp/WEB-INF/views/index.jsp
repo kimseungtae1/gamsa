@@ -8,7 +8,11 @@
 </head>
 <body>
 	<main id="main" class="content-container">
-		
+		<div class="content-wrap">
+			<div class="">
+				첫번째 콘텐츠
+			</div>
+		</div>
 	</main>
 </body>
 </html>
