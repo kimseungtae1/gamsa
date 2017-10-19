@@ -1,9 +1,11 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 .header{
 	background-color: #373737;
 	text-align: center;
 	height: 100px;
+	font-family: 'Nanum Gothic', serif;
 }
 
 .header-menu {
@@ -25,13 +27,14 @@
 }
 
 .categories{
-	
+	float:left;
+	margin-left:100px;
 }
 
 .categories img{
 	width:25px;
 	height:20px;
-	margin-top: 10px;
+	/* margin-top: 10px; */
 	padding-right:10px;
 }
 
@@ -79,6 +82,9 @@
 	cursor: pointer;
 }
 
+.menu-list ul ul li:hover{
+	color:#FEB727;
+}
 
 
 
