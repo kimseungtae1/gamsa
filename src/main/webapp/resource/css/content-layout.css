@@ -5,6 +5,10 @@
 	padding:0;
 }
 
+.cursor{
+	cursor: pointer;
+}
+
 .content-container{
 	width:1600px;
 	margin: 0 auto;
@@ -12,5 +16,17 @@
 
 .font{
 	font-size: 15px;
+	color: #fff;
+}
+
+.font-explain{
+	font-family:'Nanum Myeongjo', serif;
+	font-size: 25px;
+	color: #000;
+	font-weight: lighter;
+}
+
+.font20{
+	font-size: 20px;
 	color: #fff;
 }
