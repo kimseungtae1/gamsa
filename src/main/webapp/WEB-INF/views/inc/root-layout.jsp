@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${path}/resource/css/content-layout.css">
 <link rel="stylesheet" href="${path}/resource/css/header.css">
 <link rel="stylesheet" href="${path}/resource/css/visual.css">
+<link rel="stylesheet" href="${path}/resource/css/main.css">
 <title>갬사 메인페이지</title>
 </head>
 <body>

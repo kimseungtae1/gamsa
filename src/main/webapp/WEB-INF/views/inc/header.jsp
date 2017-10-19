@@ -7,45 +7,46 @@
 	
 		<div class="content-container header-menu font">
 			<div class="logo iblock">
-				<img alt="로고" src="">
+				<a class="cursor"><img alt="로고" src=""></a>
 			</div>
 			
 			<div class="categories iblock">
-				<img src="${path}/resource/images/hamberger-menu.png" alt="카테고리"/>
+				<a class="cursor">
+					<img src="${path}/resource/images/hamberger-menu.png" 
+					alt="카테고리"/>
+				</a>
 			</div>
 			
 			<div class="menu-list iblock">
 				<ul>
 					<li>
-						사진첩
+						<a class="cursor">사진첩</a>
 						<ul>
-							<li>갬사사진</li>
-							<li>인기사진100</li>
+							<li><a class="cursor">인기사진100</a></li>
+							<li><a class="cursor">갬사사진</a></li>
 						</ul>
 					</li>
 					<li>
-						커뮤니티
+						<a class="cursor">커뮤니티</a>
 						<ul>
-							<li>공지사항</li>
-							<li>문의사항</li>
+							<li><a class="cursor">공지사항</a></li>
+							<li><a class="cursor">문의사항</a></li>
 						</ul>
 					</li>
-					<li>태그</li>
+					<li><a class="cursor">태그</a></li>
 				</ul>
-
-
-
-				
 			</div>
+			
+			
 			<div class="gnb iblock">
 				<ul>
-					<li>회원정보</li>
-					<li>사진올리기</li>
+					<li><a class="cursor">회원정보</a></li>
+					<li><a class="cursor">사진올리기</a></li>
 				</ul>
 			</div>
 			
 			<div class="search-btn iblock">
-				<img src="" alt="태그검색">
+				<a class="cursor"><img src="" alt="태그검색"></a>
 			</div>
 		</div>
 		
