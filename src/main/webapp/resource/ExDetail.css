@@ -6,6 +6,7 @@
 	top: 50%;
 	width: 40px;
 	height: 40px;
+	z-index: 100;
 }
 
 .arrow.prev img {
@@ -27,36 +28,55 @@ a:-webkit-any-link {
 .view_img>.view_con .view_wrap {
 	background: #fff;
 }
-/*윗부분*/
+/*사진과 사용자 명*/
 .profile {
 	height: auto;
 	padding: 43px 0 42px;
-	font-size: 0;
-	line-height: 0;
 	margin: 0;
+	
 }
+
 
 .view_wrap {
-	max-width: 1000px;
-	min-height: 500px;
-	margin: 250px auto;
-	padding: 0 2.6%;
-	overflow: hidden;
-	border: 1px solid; /*  */
+    position: relative;
+    max-width: 1000px;
+    min-height: 500px;
+    margin: 250px auto;
+    padding: 0 2.6%;
+    overflow: hidden;
+    /* border: 1px solid; */
 }
 
-.profile .right {
-	float: right;
-	overflow: hidden;
+
+
+.right h2{
+	text-align: right;
+	margin-left: 20px;
+}
+.left h2{
+	text-align: left;
+	margin-left: 20px;
 }
 
-.profile section {
-	height: 90px;
-	width: 498px;
-	display: inline-block;
+.profile div {
+    height: 90px;
+    width: 49%;
+    display: inline-block;
+    border: none;
+    text-align: center;
+}
+#view_top{
+	
+	
 	border: 1px solid;
 }
 
+.profile h2 {
+    font-size: 30px;
+    color: rgb(254, 183, 39);
+    font-weight: 900;
+    line-height: 40px;
+}
 /*  */
 .view_img .arrow {
 	position: fixed;
@@ -72,10 +92,7 @@ a:-webkit-any-link {
 	border: 1px solid; /*  */
 }
 
-img {
-	border: 0;
-	vertical-align: top;
-}
+
 
 .view_img .small_img {
 	overflow: hidden;
@@ -83,8 +100,13 @@ img {
 	margin: 0 -4px;
 }
 
-.small_img a {
-	border: 1px solid;
+.small_img img {
+    border: 1px solid;
+    max-width: 50px;
+    max-width: 174px;
+    float: left;
+    margin: 43px 10px;
+    border: none;
 }
 /*
 .view_img .small_img > a, .view_img .small_img > .small_no {
@@ -111,10 +133,19 @@ img {
 	width: 10%;
 	width: 10%;
 }
-
-img {
-	border: 0;
-	vertical-align: top;
+/*사진 설명*/
+.detail{
+    font-size: 20px;
+    color: rgb(254, 183, 39);
+    font-weight: 900;
+    line-height: 10px;
+    border-top: 20px;
+    margin: 15px;
+}
+/*더보기*/
+.more_btn{
+    position: relative;
+    bottom: -315px;
 }
 /*하단 설명부분*/
 .view_detail {
