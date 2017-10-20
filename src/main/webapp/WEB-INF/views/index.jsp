@@ -56,6 +56,11 @@
 		</div>
 		
 		
+		<div class="img-list">
+			<div class="more-btn-div">
+				<button class="more-btn" type="button">사진 더보기</button>
+			</div>
+		</div>
 		
 	</main>
 </body>
