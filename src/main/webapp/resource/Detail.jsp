@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상세페이지</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
-
-
 <body>
 
 
 
 
-	<link type="text/css" rel="stylesheet" href="ExDetail.css">
+	<link type="text/css" rel="stylesheet" href="Detail.css">
 	<link type="text/css" rel="stylesheet" href="reset.css">
 
 
@@ -43,7 +43,7 @@
 			<div class="view_big_img">
 				<img
 					src="http://mblogthumb4.phinf.naver.net/20160927_255/happy_day555_1474946998707Gp84L_JPEG/eaed2ca9aeaf949ef94e70f36ce74fcd.jpeg?type=w2">
-
+				
 				<div class="view_img_btn">
 					<ul>
 						<li></li>
@@ -92,10 +92,7 @@
 
 			</div>
 
-			<div class="btnWrap">
-				<button type="button" class="more_btn">
-					더 보기
-				</button>
+			<button class="more_btn"><h2>더보기</h2></button>
 			</div>
 
 		</div>
