@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*기타*/
 
 /*화살표*/
 .arrow img {
@@ -44,9 +45,15 @@ a:-webkit-any-link {
     margin: 250px auto;
     padding: 0 2.6%;
     overflow: hidden;
-    /* border: 1px solid; */
+    border: 1px solid blanchedalmond;
 }
 
+/* .profile */ h2 {
+    font-size: 30px;
+    color: rgb(254, 183, 39);
+    font-weight: 900;
+    line-height: 40px;
+}
 
 
 .right h2{
@@ -65,18 +72,11 @@ a:-webkit-any-link {
     border: none;
     text-align: center;
 }
-#view_top{
-	
-	
-	border: 1px solid;
-}
+/* #view_top {
+    border: 1px solid;
+    position: relative;
+} */
 
-.profile h2 {
-    font-size: 30px;
-    color: rgb(254, 183, 39);
-    font-weight: 900;
-    line-height: 40px;
-}
 /*  */
 .view_img .arrow {
 	position: fixed;
@@ -85,12 +85,20 @@ a:-webkit-any-link {
 }
 
 /*이미지*/
-.view_big_img>img {
-	max-width: 100%;
-	min-width: 1000px;
-	min-height: 562px;
-	border: 1px solid; /*  */
+.view_big_img{
+    position: relative;	
+    display: inline;
 }
+.view_big_img li{
+	display: inline-block;
+}
+.view_big_img>img {
+    max-width: 100%;
+    min-width: 1000px;
+    min-height: 562px;
+    /* border: 1px solid; */
+}
+
 
 
 
@@ -134,18 +142,30 @@ a:-webkit-any-link {
 	width: 10%;
 }
 /*사진 설명*/
-.detail{
+.detail {
     font-size: 20px;
-    color: rgb(254, 183, 39);
+    color: rgb(233, 156, 82);
     font-weight: 900;
     line-height: 10px;
-    border-top: 20px;
-    margin: 15px;
+    border: 1px solid rgb(254, 183, 39);
+    line-height: 36px;
+    margin: 15px 0px;
 }
 /*더보기*/
-.more_btn{
-    position: relative;
-    bottom: -315px;
+.more_btn {
+    position: absolute;
+    bottom: 0px;
+    width: -webkit-fill-available;
+    left: 0px;
+    border: none;
+    background: content-box;
+    cursor: pointer;
+}
+
+/*더보기 위치지정*/
+.small_img{
+    /* border: 1px solid; */
+    height: 410px;
 }
 /*하단 설명부분*/
 .view_detail {
@@ -171,25 +191,33 @@ a:-webkit-any-link {
 	width: 50%;
 	float: left;
 }
-/*버튼*/
+
+/*이미지 내부 버튼*/
 .view_img_btn {
     position: absolute;
-    right: 5%;
-    bottom: 50px;
+    right: 1%;
+    bottom: 1%;
     z-index: 10;
 }
 
+
+ul{
+	
+}
+
 li button{
-    background: #36a4d4;
-    border-radius: 3px;
+    background: #feb727;
+    border-radius: 10px;
     padding: 0 15px;
     line-height: 38px;
     height: 37px;
-    color: #fff;
+    color: #a18474;
     font-size: 18px;
     font-weight: 700;
     text-align: center;
     overflow: hidden;
+    cursor: pointer;
+    outline: 0px;
 }
 
 .view_con .view_big_img .view_img_btn {
@@ -198,6 +226,7 @@ li button{
     bottom: 50px;
     z-index: 10;
 }
+
 /*덧글*/
 .talk{
 	min-height: 500px;
