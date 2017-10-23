@@ -62,6 +62,11 @@
 			</div>
 		</div>
 		
+		<div class="tag-section">
+			<div class="tag-section-child"></div>
+			<div class="tag-section-child"></div>
+			<div class="tag-section-child"></div>
+		</div>
 	</main>
 </body>
 </html>
