@@ -63,9 +63,9 @@
 		</div>
 		
 		<div class="tag-section">
-			<div class="tag-section-child"></div>
-			<div class="tag-section-child"></div>
-			<div class="tag-section-child"></div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
 		</div>
 	</main>
 </body>

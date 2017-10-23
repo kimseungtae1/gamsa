@@ -12,7 +12,7 @@
 		<property name="password" value="cclass"/>
 	</bean>
 	 
-	 <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 <!-- <bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	 	<property name="dataSource" ref="dataSource"/>
 	 	<property name="mapperLocations" value="classpath:com/gamsa/webapp/dao/mybatis/mapper/*.xml"/>
 	 </bean>
@@ -20,7 +20,7 @@
 	 <bean class="org.mybatis.spring.SqlSessionTemplate">
 	 	<constructor-arg index="0" ref="sqlSessionFactory"/>
 	 </bean>
-	 
+	  -->
 	<!-- DAO 객체들 -->
 	
 	
