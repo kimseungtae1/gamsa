@@ -20,7 +20,7 @@
 			<div class="menu-list iblock">
 				<ul>
 					<li>
-						<a class="cursor font20">사진첩</a>
+						<a class="cursor">사진첩</a>
 						<ul>
 							<li><a class="cursor">인기사진100</a></li>
 							<li><a class="cursor">감성사진</a></li>
@@ -28,13 +28,13 @@
 						</ul>
 					</li>
 					<li>
-						<a class="cursor font20">커뮤니티</a>
+						<a class="cursor">커뮤니티</a>
 						<ul>
 							<li><a class="cursor">공지사항</a></li>
 							<li><a class="cursor">문의사항</a></li>
 						</ul>
 					</li>
-					<li><a class="cursor font20">태그</a></li>
+					<li><a class="cursor">태그</a></li>
 				</ul>
 			</div>
 			

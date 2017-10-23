@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${path}/resource/css/visual.css">
 <link rel="stylesheet" href="${path}/resource/css/main.css">
 <link rel="stylesheet" href="${path}/resource/css/footer.css">
+<%-- <script src="${path}/resource/js/slideShow.js" type="text/javascript" ></script> --%>
 <title>갬사 메인페이지</title>
 </head>
 <body>
