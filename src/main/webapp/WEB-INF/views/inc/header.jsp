@@ -7,7 +7,7 @@
 	
 		<div class="content-container header-menu font">
 			<div class="logo iblock">
-				<a class="cursor"><img alt="로고" src=""></a>
+				<a href="${path}/index" class="cursor"><img alt="로고" src=""></a>
 			</div>
 			
 			<div class="categories iblock">
@@ -41,8 +41,10 @@
 			
 			<div class="gnb iblock">
 				<ul>
-					<li><a class="cursor">회원정보</a></li>
-					<li><a class="cursor">사진올리기</a></li>
+					<li><a class="cursor" href="${path}/member/login">로그인</a></li>
+					<li><a class="cursor" href="${path}/member/join">회원가입</a></li>
+					<!-- <li><a class="cursor">회원정보</a></li>
+					<li><a class="cursor">사진올리기</a></li> -->
 				</ul>
 			</div>
 			

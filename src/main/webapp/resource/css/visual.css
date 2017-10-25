@@ -6,13 +6,13 @@
 	width:100%;
     /* background: url("../images/key1.JPG") no-repeat center; 
     background-size: cover; */
-    height:700px;
+    height:800px;
 }
 
 /* 슬라이드쇼 */
 	#slides{
 		position: relative;
-		height: 700px;
+		height: 800px;
 		padding: 0px;
 		margin: 0px;
 		list-style-type: none;
@@ -43,16 +43,20 @@
 		background-size: cover;
 	}
 	.slide:nth-of-type(2){
-		background: orange;
+		background: url("../images/key2.JPG") no-repeat center; 
+		background-size: cover;
 	}
 	.slide:nth-of-type(3){
-		background: green;
+		background: url("../images/key3.JPG") no-repeat center; 
+		background-size: cover;
 	}
 	.slide:nth-of-type(4){
-		background: blue;
+		background: url("../images/key4.JPG") no-repeat center; 
+		background-size: cover;
 	}
 	.slide:nth-of-type(5){
-		background: purple;
+		background: url("../images/key5.JPG") no-repeat center; 
+		background-size: cover;
 	}
 
 
