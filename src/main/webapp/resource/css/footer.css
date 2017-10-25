@@ -1,0 +1,32 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.company-info{
+	background-color: #F1F1F1;
+	padding-top:100px;
+	padding-bottom:150px;
+	font-family: 'Nanum Gothic', serif;
+	font-size: 18px;
+	line-height: 30px;
+}
+
+.dd-line{
+	padding-top:10px;
+	padding-bottom: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
