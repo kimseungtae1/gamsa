@@ -32,6 +32,10 @@
 		
 		<div class="img-list">
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key4.JPG"/>

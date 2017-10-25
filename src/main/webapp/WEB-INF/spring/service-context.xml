@@ -7,9 +7,9 @@
 
 	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://211.238.142.247/newlecture?autoReconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
-		<property name="username" value="sist"/>
-		<property name="password" value="cclass"/>
+		<property name="url" value="jdbc:mysql://211.238.142.247/gamsadb?autoReconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+		<property name="username" value="gamsa"/>
+		<property name="password" value="1q2w3e4r!"/>
 	</bean>
 	 
 	 <!-- template을 이용하기 위한 설정 -->
@@ -25,6 +25,7 @@
 	 
 	<!-- DAO 객체들 -->
 	<bean class="com.gamsa.webapp.dao.spring.SpringNoticeDao"/>
+	<bean class="com.gamsa.webapp.dao.spring.SpringMemberDao"/>
 	
 	<context:annotation-config />
 </beans>

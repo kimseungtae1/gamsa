@@ -11,7 +11,7 @@
 		<div class="login-wrap">
 			<div class="disp-table">
 				<div class="disp-table-cell">
-					<form>
+					<form method="post">
 						<div class="view-wrap">
 							<h1>로그인.</h1>
 							<p class="ep-text">간단한 로그인으로 더 많은 사진을 이용하세요!</p>

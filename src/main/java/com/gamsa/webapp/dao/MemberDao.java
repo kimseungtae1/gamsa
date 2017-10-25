@@ -4,7 +4,7 @@ import com.gamsa.webapp.entity.Member;
 
 public interface MemberDao {
 
-	int insert(String id, String pwd, String name, String phone, String email);
+	int insert(String id, String pwd, int role);
 
 	int insert(Member member);
 
