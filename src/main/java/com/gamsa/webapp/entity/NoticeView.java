@@ -1,7 +1,7 @@
 package com.gamsa.webapp.entity;
 import java.util.Date;
 
-public class Notice {
+public class NoticeView {
    private String id;
    private String title;
    private String content;
@@ -9,13 +9,13 @@ public class Notice {
    private String writerId;
    private int hit;
 
-   public Notice() {
+   public NoticeView() {
 	   // TODO Auto-generated constructor stub
    }
 
    
 
-	public Notice(String id, String title, String content, Date regDate, String writerId, int hit) {
+	public NoticeView(String id, String title, String content, Date regDate, String writerId, int hit) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -24,15 +24,6 @@ public class Notice {
 		this.writerId = writerId;
 		this.hit = hit;
 	}
-
-
-	public Notice(String title, String content, String writerId) {
-		super();
-		this.title = title;
-		this.content = content;
-		this.writerId = writerId;
-	}
-
 
 
 	public String getId() {

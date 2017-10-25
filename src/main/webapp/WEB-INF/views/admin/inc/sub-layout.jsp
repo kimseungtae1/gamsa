@@ -9,11 +9,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${ctx}/resource/css/content-layout.css">
+<link rel="stylesheet" href="${ctx}/resource/css/header.css">
+<link rel="stylesheet" href="${ctx}/resource/css/visual.css">
+<link rel="stylesheet" href="${ctx}/resource/css/notice/list.css">
+<link rel="stylesheet" href="${ctx}/resource/css/notice/reg.css">
+<link rel="stylesheet" href="${ctx}/resource/css/footer.css">
 <title></title>
-<%-- <c:set var="path" value="" />
-<link href="${ctx}/resource/css/<tiles:getAsString name="path" />/layout.css" type="text/css" rel="stylesheet" />
-<link href="${ctx}/resource/js/lib/notepubs/web-editor/editor.css" type="text/css" rel="stylesheet" /> --%>
 </head>
 <body>
 	<!-- header 부분 -->

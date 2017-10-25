@@ -1,12 +1,24 @@
 package com.gamsa.webapp.dao.spring;
 
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.gamsa.webapp.dao.NoticeDao;
 import com.gamsa.webapp.entity.Notice;
@@ -35,7 +47,7 @@ public class SpringNoticeDao implements NoticeDao {
 	@Override
 	public List<Notice> getList(int page, String field, String query) {
 
-		String sql = "select * from NoticeView where " + field + " like ? order by regDate desc limit ?,10";
+		String sql = "select * from Notice where " + field + " like ? order by regDate desc limit ?,10";
 		
 		List<Notice> list = template.query(
 				sql,
@@ -128,7 +140,7 @@ public class SpringNoticeDao implements NoticeDao {
 	@Override
 	public Notice getPrev(String id) {
 
-		String sql = "select * from NoticeView where id < CAST(? AS UNSIGNED) order by regDate desc limit 1";
+		String sql = "select * from Notice where id < CAST(? AS UNSIGNED) order by regDate desc limit 1";
 		
 		Notice notice = template.queryForObject(
 				sql, 
@@ -142,7 +154,7 @@ public class SpringNoticeDao implements NoticeDao {
 	@Override
 	public Notice getNext(String id) {
 
-		String sql = "select * from NoticeView where id > CAST(? AS UNSIGNED) order by regDate asc limit 1";
+		String sql = "select * from Notice where id > CAST(? AS UNSIGNED) order by regDate asc limit 1";
 		
 		Notice notice = template.queryForObject(
 				sql, 
@@ -153,36 +165,83 @@ public class SpringNoticeDao implements NoticeDao {
 
 	}
 
-	@Override
-	public int insert(String title, String content, String writerId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
-	@Override
+	//Transaction처리방법3과  4번(@transactional)
+	//AOP를 사용하는 방법
+	
+
+	//Transaction처리방법2
+	//TransactionTemplate 사용하는 방법
+	/*@Override
 	public int insert(Notice notice) {
 
 		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
 		
 		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
+		String sql1 = "update Member set point=point+1 where id=?";
 		
 		int result = 0;
+		
+		result = (int) transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+			
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
+
+				template.update(sql
+						, getNextId()		//서브쿼리를 이용하기 위한 메서드
+						, notice.getTitle()
+						, notice.getContent()
+						, notice.getWriterId());
+				
+				
+				template.update(sql1
+						, notice.getWriterId());
+				
+			}
+		});
+
+			return result;
 	
-		result =template.update(sql
+	}*/
+	
+	//Transaction처리방법1
+	//TransactionManager를 직접 사용하는 방법
+	/*@Override
+	public int insert(Notice notice) {
+
+		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
+		
+		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
+		String sql1 = "update Member set point=point+1 where id=?";
+		
+		
+		//수작업으로 해준 트랜잭션 처리(spring의 기능 사용 안한상태)
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		TransactionStatus state = transactionManager.getTransaction(def);
+		
+		try {
+			int result = template.update(sql
 					, getNextId()		//서브쿼리를 이용하기 위한 메서드
 					, notice.getTitle()
 					, notice.getContent()
 					, notice.getWriterId());
 			
-
-		return result;
-	
-	}
-	
-
-
-
+			
+			result += template.update(sql1
+					, notice.getWriterId());
+			
+			transactionManager.commit(state);
+			
+			return result;
+		}
+		catch (Exception e) {
+			transactionManager.rollback(state);
+			
+			throw e;
+		}
+		
+	}*/
 
 	@Override
 	public String getNextId() {
@@ -196,5 +255,69 @@ public class SpringNoticeDao implements NoticeDao {
 		return result;
 	}
 
+	@Override
+	public Notice delete(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+
+	//Transaction처리방법3과  4번(@transactional)
+	//AOP를 사용하는 방법
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public int insert(Notice notice) {
+
+		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
+		
+		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
+		/*String sql1 = "update Member set point=point+1 where id=?";*/
+		
+		int result = 0;
+	
+		result =template.update(sql
+					, getNextId()		//서브쿼리를 이용하기 위한 메서드
+					, notice.getTitle()
+					, notice.getContent()
+					, notice.getWriterId());
+			
+			
+/*		result += template.update(sql1
+					, notice.getWriterId());*/
+			
+
+		return result;
+	
+	}
+
+	@Override
+	public int insert(String title, String content, String writerId) {
+
+		Notice notice = new Notice(title,content,writerId);
+		
+		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
+		
+		
+		
+		int result = 0;
+	
+		result =template.update(sql
+					, getNextId()		//서브쿼리를 이용하기 위한 메서드
+					, notice.getTitle()
+					, notice.getContent()
+					, notice.getWriterId());
+			
+		
+			
+
+		return result;
+		
+
+		
+			}
 
 }
