@@ -1,29 +1,79 @@
 package com.gamsa.webapp.entity;
-
 import java.util.Date;
 
-public class NoticeView extends Notice{
-	private String writerName;
-	private int countCmt;
-	public NoticeView() {
+public class NoticeView {
+   private String id;
+   private String title;
+   private String content;
+   private Date regDate;
+   private String writerId;
+   private int hit;
+
+   public NoticeView() {
+	   // TODO Auto-generated constructor stub
+   }
+
+   
+
+	public NoticeView(String id, String title, String content, Date regDate, String writerId, int hit) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.writerId = writerId;
+		this.hit = hit;
 	}
-	public NoticeView(String id, String title, String content, String writerId, Date regDate, int hit) {
-		super(id, title, content, writerId, regDate, hit);
-		// TODO Auto-generated constructor stub
-	}
-	public String getWriterName() {
-		return writerName;
-	}
-	public void setWriterName(String writerName) {
-		this.writerName = writerName;
-	}
-	public int getCountCmt() {
-		return countCmt;
-	}
-	public void setCountCmt(int countCmt) {
-		this.countCmt = countCmt;
+
+
+	public String getId() {
+		return id;
 	}
 	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getContent() {
+		return content;
+	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	public Date getRegDate() {
+		return regDate;
+	}
+	
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	
+	public String getWriterId() {
+		return writerId;
+	}
+	
+	public void setWriterId(String writerId) {
+		this.writerId = writerId;
+	}
+	
+	public int getHit() {
+		return hit;
+	}
+	
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	   
+	   
+   
 }

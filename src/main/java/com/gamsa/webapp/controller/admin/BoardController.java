@@ -2,7 +2,21 @@ package com.gamsa.webapp.controller.admin;
 
 
 
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gamsa.webapp.dao.NoticeDao;
 import com.gamsa.webapp.entity.Notice;
@@ -19,9 +34,10 @@ import com.gamsa.webapp.entity.Notice;
 @RequestMapping("/admin/board/*")
 public class BoardController {
 
-	//객체는 ioc컨테이너에 있지!
 	@Autowired
 	private NoticeDao noticeDao;
+	
+	
 	
 	@RequestMapping("notice")
 	public String notice(
@@ -29,7 +45,6 @@ public class BoardController {
 			@RequestParam(value="f", defaultValue="title") String field, //title을 기본값으로 검색하겠다
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) {
-		
 		model.addAttribute("list", noticeDao.getList(page, field, query));
 		
 		return "admin.board.notice.list";
@@ -39,8 +54,8 @@ public class BoardController {
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
 		model.addAttribute("n", noticeDao.get(id));
-		model.addAttribute("prev", noticeDao.getPrev(id));
-		model.addAttribute("next", noticeDao.getNext(id));
+/*		model.addAttribute("prev", noticeDao.getPrev(id));
+		model.addAttribute("next", noticeDao.getNext(id));*/
 		
 		//return "customer/notice-detail";
 		return "admin.board.notice.detail";
@@ -51,22 +66,54 @@ public class BoardController {
 		
 		return "admin.board.notice.reg";
 	}
-	
+	/*
 	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
 	public String noticeReg(
-			String title, 
+			String title,
 			String content) throws UnsupportedEncodingException {
+	public String noticeReg(
+			Notice notice,
+			MultipartFile file, //name="file"인 녀석이 2개 이상이 될 경우... []을 이용한다.
+			HttpServletRequest request,
+			Principal principal) throws IOException { //principal : 현재 사용자의 정보를 가져다준다.
 		
-		//한글 깨질때
-		//title = new String(title.getBytes("ISO-8859-1"),"UTF-8");
-		
-		System.out.println(title);
-		
-		String writerId = "newlec";
-		
-		//noticeDao.insert(title, content, writerId);
-		int row = noticeDao.insert(new Notice(title, content, writerId));
 		
 		return "redirect:../notice";
 	}
+	*/
+
+	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
+	public String noticeReg(
+			String title,
+			String content,
+			Model model) throws UnsupportedEncodingException {
+		model.addAttribute("list", noticeDao.insert(title, content, "1"));
+		
+		return "redirect:../notice";
+	}
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

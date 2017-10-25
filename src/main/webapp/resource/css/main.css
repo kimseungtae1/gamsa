@@ -11,11 +11,31 @@
 .main-content-boxes{
 	display: inline-block;
 	padding:40px 0 40px 0;
+	
 }
 
-.boxes{
+/* .boxes{
 	float:left;
-	width:33%;
+	width:33.333%;
+	min-width: 330px;
+	vertical-align: middle;
+	text-align: center;
+} */
+
+.main-content-boxes ul li a{
+	display:inline-block;
+	font-size: 35px;
+	font-family:'Nanum Myeongjo', serif;
+	color: #FEB727;
+	font-weight: lighter;
+	text-align: center;
+	
+}
+.main-content-boxes > ul li{
+	list-style-type: none;
+	float:left;
+	text-align: center;
+	padding-right:55px;
 }
 
 .ex-section{
@@ -59,3 +79,125 @@
 	font-size: 21px;
 	font-family: 'Nanum Gothic', serif;
 }
+
+
+
+.tag-section{
+	width:100%;
+	height:200px;
+}
+
+.tag-section-child{
+	display: inline-block;
+	width:33.333%;
+	height:200px;
+	float: left;
+}
+
+.tag-section-child:nth-of-type(1){
+	background: url("../images/key1.JPG") no-repeat center; 
+	background-size: cover;
+}
+
+.tag-section-child:nth-of-type(2){
+	background: url("../images/key1.JPG") no-repeat center; 
+	background-size: cover;
+}
+
+.tag-section-child:nth-of-type(3){
+	background: url("../images/key1.JPG") no-repeat center; 
+	background-size: cover;
+}
+
+
+
+/* 로그인, 회원가입 페이지 관련 */
+.login-wrap{
+	height:800px;	
+}
+.disp-table{
+	display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.disp-table-cell{
+	display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.view-wrap{
+	max-width: 424px;
+    margin: 0 auto;
+}
+
+.ep-text{
+	padding:10px 0;
+}
+
+.login-box{
+	width:424px;
+	
+}
+
+.login-box input[type='text']{
+	width:400px;
+	height:30px;
+	padding:5px 10px;
+	margin:5px 0 5px 0;
+}
+
+.login-box input[type='submit']{
+	margin:10px 0 10px 0;
+	width:424px;
+	height:30px;
+	background-color:#FDB727;
+	border: 0px;
+	cursor: pointer;
+}
+
+.login-box div label, 
+.login-box div label input[type='checkbox']{
+	cursor: pointer;
+}
+
+.atag-btn{
+	text-decoration: none;
+	color: #000;
+	float:right;
+}
+
+.atag-btn:nth-of-type(2){padding-right:20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

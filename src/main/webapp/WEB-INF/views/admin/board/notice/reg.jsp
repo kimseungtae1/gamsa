@@ -1,47 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>등록 페이지</h1>
-	<form method="post">
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+	<main>
+<form action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		<fieldset>
-			<legend>공지사항 수정정보 필드</legend>
-			<table border="1">
-				<tbody>
-					<tr>
-						<td>제목</td>
-						<td><input type="text" name="title" /></td>
-					</tr>					
-					<tr>
-						<td>첨부파일</td>
-						<td><input type="file" name="file" /></td>
-					</tr>
-					<tr>
-						<td>첨부파일</td>
-						<td><input type="file" name="file" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><textarea name="content" rows="20" cols="60">${n.content}</textarea>
+	<div class="view_wrap">
+		<table class="board">
+			<tr>
+				<th>번호</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<th>제목</td>
+				<td><input type="text" name="title" /></td>
+			</tr>
+			<tr>
+				<th>게시일</td>
+				<td>2017-10-18</td>
+			</tr>
+		</table>
+		<div class="page_num">
+		<textarea name="content" rows="20" cols="60">${n.content}</textarea>
+		<input type="submit" class="reg-button" value="등록" />
+		</div>
+		<div class="reg-button">
+					<a href="../notice">취소</a>
+		</div>
 
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div>
-				<input type="submit" value="등록" />
-				<a href="notice">취소</a>				
-			</div>
-		</fieldset>
-	</form>
-</body>
-</html>
+	</div>
 
 
 
-
-
+</fieldset>
+</form>
+</main>

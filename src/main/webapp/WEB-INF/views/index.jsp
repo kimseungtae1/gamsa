@@ -12,15 +12,11 @@
 	<main id="main">
 		<div class="content-container content-wrap">
 			<div class="main-content-boxes">
-				<div class="boxes">
-					<h1>인기사진 바로보기</h1>
-				</div>
-				<div class="boxes">
-					<h1>새로 올라온 사진들</h1>
-				</div>
-				<div class="boxes">
-					<h1>사진 올리기</h1>
-				</div>
+				<ul>
+					<li><a href="">인기사진 바로보기</a></li>
+					<li><a href="">새로 올라온 사진들</a></li>
+					<li><a href="">사진 올리기</a></li>
+				</ul>
 			</div>
 		</div>
 		
@@ -40,19 +36,23 @@
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key4.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key5.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key4.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key5.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key4.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key5.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
 		</div>
 		
 		
@@ -62,6 +62,11 @@
 			</div>
 		</div>
 		
+		<div class="tag-section">
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+		</div>
 	</main>
 </body>
 </html>
