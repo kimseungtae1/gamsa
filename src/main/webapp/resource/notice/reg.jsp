@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-		<fieldset>
+	<link type="text/css" rel="stylesheet" href="reg.css">
+<form method="post">
 	<div class="view_wrap">
 		<table class="board">
 			<tr>
@@ -26,10 +26,12 @@
 		</table>
 		<div class="page_num">
 		<textarea name="content" rows="20" cols="60">${n.content}</textarea>
-		<input type="submit" class="reg-button" value="등록" />
+
+		<div class="reg-button">
+					<a  href="">등록</a>
 		</div>
 		<div class="reg-button">
-					<a href="../notice">취소</a>
+					<a  href="../">취소</a>
 		</div>
 
 	</div>
