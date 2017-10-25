@@ -48,12 +48,12 @@ a:-webkit-any-link {
     border: 1px solid blanchedalmond;
 }
 
-/* .profile */ h2, .left input,textarea{
+/* .profile */ h2, .left input,textarea,img{
     font-size: 30px;
     color: rgb(254, 183, 39);
     font-weight: 900;
     line-height: 40px;
-    border: 1px solid blanchedalmond;
+/*     border: 1px solid blanchedalmond; */
 }
 
 
@@ -86,6 +86,11 @@ a:-webkit-any-link {
 }
 
 /*이미지*/
+.view_big_img img {
+    text-align: center;
+    line-height: 19;
+}
+
 .view_big_img{
     position: relative;	
     display: inline;
@@ -94,12 +99,12 @@ li{
 	display: inline-block;
 }
 .view_big_img>img {
-    /* max-width: 100%; */
-    min-width: 1000px;
+    max-width: 100%;
+    min-width: -webkit-fill-available;
     min-height: 562px;
-     border: 1px solid; 
+    max-height: 562px;
+    border: 1px solid;
 }
-
 
 
 
@@ -145,7 +150,8 @@ li{
 /*사진 설명*/
 .detail textarea {
     width: -webkit-fill-available;
-    height: 662px;
+    height: 625px;
+    margin-bottom: 10px;
 }
 /*더보기*/
 .more_btn {

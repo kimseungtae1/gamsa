@@ -24,7 +24,7 @@
 					<div class="profile">
 
 						<div class="left">
-							<h2>
+							<h2>제목:
 								<input type="text" name="title" value="${n.title}" />
 							</h2>
 						</div>
@@ -40,6 +40,7 @@
 
 
 					<div class="view_big_img">
+					사진
 						<img src="">
 						<button>사진 업로드</button>
 
