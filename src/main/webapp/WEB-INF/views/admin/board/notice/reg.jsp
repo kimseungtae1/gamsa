@@ -10,20 +10,12 @@
 	<div class="view_wrap">
 		<table class="board">
 			<tr>
-				<th>번호</td>
-				<td>1</td>
-			</tr>
-			<tr>
 				<th>제목</td>
 				<td><input type="text" name="title" /></td>
 			</tr>
-			<tr>
-				<th>게시일</td>
-				<td>2017-10-18</td>
-			</tr>
 		</table>
 		<div class="page_num">
-		<textarea name="content" rows="20" cols="60">${n.content}</textarea>
+		<textarea name="content" rows="20" cols="60"></textarea>
 		<input type="submit" class="reg-button" value="등록" />
 		</div>
 		<div class="reg-button">
