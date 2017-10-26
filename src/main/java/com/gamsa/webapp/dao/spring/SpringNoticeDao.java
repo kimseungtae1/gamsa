@@ -28,20 +28,7 @@ public class SpringNoticeDao implements NoticeDao {
 	@Autowired
 	private JdbcTemplate template;
 	
-	/*@Autowired
-	public void setTemplate(JdbcTemplate template) {
-		this.template = template;
-	}*/
-	
-	
-	//Transaction처리방법1
-	//TransactionManager를 직접 사용하는 방법
-	/*@Autowired
-	private PlatformTransactionManager transactionManager;*/
-	
-	//Transaction처리방법2
-/*	@Autowired
-	private TransactionTemplate transactionTemplate;*/
+
 	
 	
 	@Override
@@ -57,17 +44,7 @@ public class SpringNoticeDao implements NoticeDao {
 		return list;
 	}
 
-	@Override
-	public int getCount() {
 
-		String sql = "select count(id) `count` from Notice";
-		
-		int count = template.queryForObject(
-				sql,
-				Integer.class);
-		
-		return count;
-	}
 
 	@Override
 	public Notice get(String id) {
@@ -262,42 +239,10 @@ public class SpringNoticeDao implements NoticeDao {
 	}
 
 
-
-
-
-
-	//Transaction처리방법3과  4번(@transactional)
-	//AOP를 사용하는 방법
-	@Override
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public int insert(Notice notice) {
-
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
-		
-		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
-		/*String sql1 = "update Member set point=point+1 where id=?";*/
-		
-		int result = 0;
-	
-		result =template.update(sql
-					, getNextId()		//서브쿼리를 이용하기 위한 메서드
-					, notice.getTitle()
-					, notice.getContent()
-					, notice.getWriterId());
-			
-			
-/*		result += template.update(sql1
-					, notice.getWriterId());*/
-			
-
-		return result;
-	
-	}
-
-	@Override
+/*	@Override
 	public int insert(String title, String content, String writerId) {
 
-		Notice notice = new Notice(title,content,writerId);
+		
 		
 		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
 		
@@ -307,9 +252,9 @@ public class SpringNoticeDao implements NoticeDao {
 	
 		result =template.update(sql
 					, getNextId()		//서브쿼리를 이용하기 위한 메서드
-					, notice.getTitle()
-					, notice.getContent()
-					, notice.getWriterId());
+					, title
+					, content
+					, "1");
 			
 		
 			
@@ -318,6 +263,31 @@ public class SpringNoticeDao implements NoticeDao {
 		
 
 		
-			}
+			}*/
+	   public int insert(String title, String content, String writerId) {
+
+		      return insert(new Notice(title, content, writerId));
+		   }
+		   
+		   
+		   
+		   //트랜잭션 처리방법 3번과 4번!
+		   //AOP를 사용하는 방법
+		   @Override
+		   @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
+		   public int insert(Notice notice) {
+
+		      String sql = "insert into Notice(id, title, content, writerId) values(?,?,?,?)";
+		      
+		      
+		      int result=template.update(sql, getNextId(), notice.getTitle(), notice.getContent(), "1");
+		      
+		      
+		      
+
+		      
+
+		      return result;
+		   }
 
 }
