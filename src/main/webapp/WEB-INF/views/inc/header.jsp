@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 	<header id="header" class="header">
@@ -41,10 +42,15 @@
 			
 			<div class="gnb iblock">
 				<ul>
+				<security:authorize access="!hasRole('ROLE_USER')">
 					<li><a class="cursor" href="${path}/member/login">로그인</a></li>
 					<li><a class="cursor" href="${path}/member/join">회원가입</a></li>
-					<!-- <li><a class="cursor">회원정보</a></li>
-					<li><a class="cursor">사진올리기</a></li> -->
+				</security:authorize>
+				<security:authorize access="hasRole('ROLE_USER')">
+					<li><a class="cursor">회원정보</a></li>
+					<li><a class="cursor">사진올리기</a></li>
+					<li><a class="cursor">로그아웃</a></li>
+				</security:authorize>
 				</ul>
 			</div>
 			

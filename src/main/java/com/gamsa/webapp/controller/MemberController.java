@@ -1,6 +1,5 @@
 package com.gamsa.webapp.controller;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,16 @@ public class MemberController {
 	public String login() {
 		return "member.login";
 	}
-
+	/*
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public String login(
+			String id,
+			String pwd) {
+		
+		memberDao.get(id);
+		
+		return "redirect:../index";
+	}*/
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
 	public String join() {
@@ -30,12 +38,11 @@ public class MemberController {
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String join(
-			Member member,
-			HttpServletRequest request) {
+			Member member) {
 		
-		int result = memberDao.insert(member);
+		memberDao.insert(member);
 		
-		return "index";
+		return "redirect:login";
 	}
 	
 	
