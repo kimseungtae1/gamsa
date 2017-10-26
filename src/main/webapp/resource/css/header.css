@@ -53,6 +53,20 @@ a{
 	float:right;
 }
 
+.user-info-btn{
+	padding-right: 10px;
+}
+
+.logout-btn{
+	background: transparent;
+	border: 0px;
+	cursor: pointer;
+	/* vertical-align: middle; */
+	text-align: center;
+	color:#fff;
+	font-size:14px; 
+	outline: none;
+}
 
 /* 메뉴 드롭다운 관련 css */
 
@@ -67,7 +81,10 @@ a{
 .gnb > ul li:nth-of-type(1){
 	padding-right:15px;
 }
-
+/* .gnb > ul li:nth-of-type(2){
+	padding-right:15px;
+}
+ */
 .menu-list ul li{
 	padding:5px 15px 1px 15px;
 }

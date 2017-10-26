@@ -35,7 +35,7 @@
 							<li><a class="cursor">문의사항</a></li>
 						</ul>
 					</li>
-					<li><a class="cursor">태그</a></li>
+					<li><a class="cursor">사진올리기</a></li>
 				</ul>
 			</div>
 			
@@ -47,9 +47,12 @@
 					<li><a class="cursor" href="${path}/member/join">회원가입</a></li>
 				</security:authorize>
 				<security:authorize access="hasRole('ROLE_USER')">
-					<li><a class="cursor">회원정보</a></li>
-					<li><a class="cursor">사진올리기</a></li>
-					<li><a class="cursor">로그아웃</a></li>
+					<form action="${path}/logout" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<a class="cursor user-info-btn">회원정보</a>
+						<!-- <li><a class="cursor">사진올리기</a></li> -->
+						<input class="logout-btn" type="submit" value="로그아웃"/>
+					</form>
 				</security:authorize>
 				</ul>
 			</div>

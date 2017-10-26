@@ -20,8 +20,8 @@
 							<h1>로그인.</h1>
 							<p class="ep-text">간단한 로그인으로 더 많은 사진을 이용하세요!</p>
 							<div class="login-box">
-								<input type="text" name="id" placeholder="이메일"/>
-								<input type="text" name="pwd" placeholder="비밀번호"/>
+								<input type="text" name="username" placeholder="이메일"/>
+								<input type="text" name="password" placeholder="비밀번호"/>
 								<input type="submit" value="로그인">
 								<div>
 									<label>

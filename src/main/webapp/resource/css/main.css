@@ -78,6 +78,8 @@
 	border: 0px;  
 	font-size: 21px;
 	font-family: 'Nanum Gothic', serif;
+	outline: none;
+	cursor: pointer;
 }
 
 
