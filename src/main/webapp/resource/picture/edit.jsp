@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body class="main">
 
 	<form action="notice-reg" method="post" enctype="multipart/form-data">
 		<fieldset>
