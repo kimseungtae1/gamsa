@@ -2,7 +2,7 @@
 
 
 
-table.board {
+.main table.board {
     border-collapse: collapse;
     text-align: left;
     line-height: 1.5;
@@ -13,12 +13,12 @@ table.board {
 }
 
 
-table.board td {
+.main table.board td {
 	padding: 10px;
 	vertical-align: top;
 }
 
-table.board thead:first-child{
+.main table.board thead:first-child{
 
 	padding: 10px;
 	font-weight: bold;
@@ -26,38 +26,38 @@ table.board thead:first-child{
 }
 
 
-.page_num div{
+.main .page_num div{
 	text-align: left;
 	
 }
 
-th{
+.main th{
 		width: 11%;
 	
 }
 /*제목*/
-input[type="text"] {
+.main input[type="text"] {
     width: -webkit-fill-available;
     height: 33px;
     font-size: 29px;
 }
 /*콘텐츠  */
 
-.detail-content{
+.main .detail-content{
     text-align: left;
 }
 /*글쓰기 버튼*/
-.reg-button {
+.main .reg-button {
     text-align: right;
     margin-top: 30px;
 }
 
-.reg-button > a {
+.main .reg-button > a {
     vertical-align: middle;
 }
 
 
-.reg-button > *,input[type="submit"]  {
+.main .reg-button > *,.main input[type="submit"]  {
     display: inline-block;
     width: 150px;
     height: 40px;

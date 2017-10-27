@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 
-.view_wrap {
+.main .view_wrap {
 	max-width: 1000px;
 	min-height: auto;
 	margin: 250px auto;
@@ -9,7 +9,7 @@
 	overflow: hidden;
 	border: 1px solid #e19b3e2e;
 }
-table.board {
+.main table.board {
     border-collapse: collapse;
     text-align: left;
     line-height: 1.5;
@@ -20,42 +20,42 @@ table.board {
 }
 
 
-table.board td {
+.main table.board td {
 	padding: 10px;
 	vertical-align: top;
 }
 
-table.board thead:first-child{
+.main table.board thead:first-child{
 
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
 }
-table.board td, table.board tr {
+.main table.board td, table.board tr {
 	border-bottom: 1px solid rgba(254, 183, 39, 0.24);
 	text-align: center;
 }
 
-.page_num div{
+.main .page_num div{
 	text-align: center;
 	
 }
 
-.title {
+.main .title {
     width: 65%;
 }
 /*글쓰기 버튼*/
-.reg-button {
+.main .reg-button {
     text-align: right;
     margin-top: 30px;
 }
 
-.reg-button > a {
+.main .reg-button > a {
     vertical-align: middle;
 }
 
 
-.reg-button > * {
+.main .reg-button > * {
     display: inline-block;
     width: 150px;
     height: 40px;

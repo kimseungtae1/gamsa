@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<main>
+<main class="main">
 <div class="view_wrap">
 	<table class="board">
 		<tr>
-			<th>번호</td>
+			<th>번호
+			</td>
 			<td>1</td>
 		</tr>
 		<tr>
@@ -19,7 +20,7 @@
 			</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}" /></td>
 		</tr>
-		
+
 	</table>
 	<div class="page_num">
 		<div class="content detail-content">${n.content}</div>
@@ -29,5 +30,4 @@
 		</div>
 
 	</div>
-	
 </main>
