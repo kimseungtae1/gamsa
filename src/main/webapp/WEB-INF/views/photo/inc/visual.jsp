@@ -5,13 +5,6 @@
 
 <div id="visual" class="visual">
 
-	<ul id="slides">
-		<li class="slide showing"></li>
-		<li class="slide"></li>
-		<li class="slide"></li>
-		<li class="slide"></li>
-		<li class="slide"></li>
-	</ul>
 
 	<div class="key-text content-container">
 		<h1>당신의 추억</h1>
