@@ -8,35 +8,40 @@
 </head>
 <body>
 	<link type="text/css" rel="stylesheet" href="reg.css">
-<form method="post">
-	<div class="view_wrap">
-		<table class="board">
-			<tr>
-				<th>번호</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<th>제목</td>
-				<td><input type="text" name="title" /></td>
-			</tr>
-			<tr>
-				<th>게시일</td>
-				<td>2017-10-18</td>
-			</tr>
-		</table>
-		<div class="page_num">
-		<textarea name="content" rows="20" cols="60">${n.content}</textarea>
+	<form action="?${_csrf.parameterName}=${_csrf.token}" method="post"
+		enctype="multipart/form-data">
+		<fieldset>
+		<legend>공지사항 수정정보 필드</legend>
+			<div class="view_wrap">
+				<table class="board">
+					<tr>
+						<th>번호</th>
+						<td>1</td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td><input type="text" name="title" /></td>
+					</tr>
+					<tr>
+						<th>게시일</th>
+						<td>2017-10-18</td>
+					</tr>
+				</table>
+				<div class="page_num">
+					<textarea name="content" rows="20" cols="60">${n.content}</textarea>
 
-		<div class="reg-button">
-					<a  href="">등록</a>
-		</div>
-		<div class="reg-button">
-					<a  href="../">취소</a>
-		</div>
+					<div class="reg-button">
+						<a href="">등록</a>
+					</div>
+					<div class="reg-button">
+						<a href="../">취소</a>
+					</div>
 
-	</div>
+				</div>
+			</div>
 
-
+		</fieldset>
+	</form>
 
 </body>
 </html>
