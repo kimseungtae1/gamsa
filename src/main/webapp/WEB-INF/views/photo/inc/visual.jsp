@@ -12,19 +12,6 @@
 		<li class="slide"></li>
 		<li class="slide"></li>
 	</ul>
-	
-	<script type="text/javascript">
-		var slides = document.querySelectorAll('#visual #slides .slide');
-		var currentSlide = 0;
-		var slideInterval = setInterval(nextSlide,3000);
-	
-		function nextSlide(){
-			slides[currentSlide].className = 'slide';
-			currentSlide = (currentSlide+1)%slides.length;
-			slides[currentSlide].className = 'slide showing';
-		};
-	</script>
-	
 
 	<div class="key-text content-container">
 		<h1>당신의 추억</h1>

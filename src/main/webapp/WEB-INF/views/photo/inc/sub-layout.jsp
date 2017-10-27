@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="${path}/resource/css/visual.css">
 <link rel="stylesheet" href="${path}/resource/css/main.css">
 <link rel="stylesheet" href="${path}/resource/css/footer.css">
+<link rel="stylesheet" href="${path}/resource/css/photo/Reg.css">
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
 <title></title>
 </head>

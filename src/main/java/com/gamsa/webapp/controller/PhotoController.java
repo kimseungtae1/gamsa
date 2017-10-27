@@ -41,10 +41,10 @@ public class PhotoController {
 	@RequestMapping(value="upload/reg", method=RequestMethod.GET)
 	public String photoReg() {
 		
-		return "upload.reg";
+		return "photo.upload.Reg";
 	}
 
-	@RequestMapping(value="upload/reg", method=RequestMethod.POST)
+	/*@RequestMapping(value="upload/reg", method=RequestMethod.POST)
 	public String noticeReg(
 			Photo photo, HttpServletRequest request
 			) throws UnsupportedEncodingException {
@@ -52,7 +52,7 @@ public class PhotoController {
 		
 		return "redirect:../index";
 	}
-	
+	*/
 	
 	
 	

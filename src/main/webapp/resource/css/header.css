@@ -102,6 +102,7 @@ a{
 
 .menu-list ul li:hover ul{
 	display: block;
+	z-index: 9999;
 }
 
 .menu-list ul ul li{

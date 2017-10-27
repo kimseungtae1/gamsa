@@ -19,7 +19,7 @@
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition> 
   
-  <definition name="photo.*.*" template="/WEB-INF/views/inc/sub-layout.jsp">
+  <definition name="photo.*.*" template="/WEB-INF/views/photo/inc/sub-layout.jsp">
     <put-attribute name="title" value="갬사 회원 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
     <put-attribute name="visual" value="/WEB-INF/views/photo/inc/visual.jsp" />
