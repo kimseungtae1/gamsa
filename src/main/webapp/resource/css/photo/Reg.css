@@ -48,7 +48,7 @@
     border: 1px solid blanchedalmond;
 }
 
-.main /* .profile */ h2,.main  .left input,textarea,img{
+.main /* .profile */ h2,.main .left input, .main textarea, .main img{
     font-size: 30px;
     color: rgb(254, 183, 39);
     font-weight: 900;
