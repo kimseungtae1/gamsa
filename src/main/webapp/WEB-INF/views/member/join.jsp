@@ -12,6 +12,7 @@
 			<div class="disp-table">
 				<div class="disp-table-cell">
 					<form method="post">
+					<input type="hidden" name="role" value="1"/>
 						<div class="view-wrap">
 							<h1>회원가입.</h1>
 							<p class="ep-text">간단한 회원가입으로 더 많은 사진을 이용하세요!</p>

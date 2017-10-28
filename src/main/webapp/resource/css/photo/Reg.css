@@ -48,7 +48,7 @@
     border: 1px solid blanchedalmond;
 }
 
-.main /* .profile */ h2,.main  .left input,textarea{
+.main /* .profile */ h2,.main .left input, .main textarea, .main img{
     font-size: 30px;
     color: rgb(254, 183, 39);
     font-weight: 900;
@@ -86,6 +86,11 @@
 }
 
 /*이미지*/
+.main .view_big_img img {
+    text-align: center;
+    line-height: 19;
+}
+
 .main .view_big_img{
     position: relative;	
     display: inline;
@@ -94,12 +99,12 @@
 	display: inline-block;
 }
 .main .view_big_img>img {
-    /* max-width: 100%; */
-    min-width: 1000px;
+    max-width: 100%;
+    min-width: -webkit-fill-available;
     min-height: 562px;
-     border: 1px solid; 
+    max-height: 562px;
+    border: 1px solid;
 }
-
 
 
 
@@ -129,14 +134,14 @@
 	margin: 0 -4px;
 }
 
-.main .view_img .small_img>a img, .view_img .small_img>.small_no>img {
+.main .view_img .small_img>a img,.main  .view_img .small_img>.small_no>img {
 	display: block;
 	width: 90px;
 	height: 90px;
 	margin: 8px auto 0;
 }
 
-.main .view_img .small_img>a, .view_img .small_img>.small_no {
+.main .view_img .small_img>a,.main  .view_img .small_img>.small_no {
 	display: block;
 	float: left;
 	width: 10%;
@@ -145,7 +150,8 @@
 /*사진 설명*/
 .main .detail textarea {
     width: -webkit-fill-available;
-    height: 662px;
+    height: 625px;
+    margin-bottom: 10px;
 }
 /*더보기*/
 .main .more_btn {

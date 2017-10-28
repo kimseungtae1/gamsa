@@ -1,6 +1,7 @@
 package com.gamsa.webapp.dao.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.gamsa.webapp.dao.MemberDao;
@@ -35,8 +36,14 @@ public class SpringMemberDao implements MemberDao {
 
 	@Override
 	public Member get(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from Member where id = ?";
+		
+		Member member = template.queryForObject(
+				sql, 
+				new Object[] {id},
+				BeanPropertyRowMapper.newInstance(Member.class));
+		
+		return member;
 	}
 	
 	/*@Autowired

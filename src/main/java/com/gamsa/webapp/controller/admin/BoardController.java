@@ -54,44 +54,61 @@ public class BoardController {
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
 		model.addAttribute("n", noticeDao.get(id));
-/*		model.addAttribute("prev", noticeDao.getPrev(id));
+		/*model.addAttribute("prev", noticeDao.getPrev(id));
 		model.addAttribute("next", noticeDao.getNext(id));*/
 		
 		//return "customer/notice-detail";
 		return "admin.board.notice.detail";
 	}
 	
+/*	@RequestMapping(value="notice/reg", method=RequestMethod.GET)
+	public String noticeReg() {
+		
+		return "admin.board.notice.reg";
+	}
+*/
+/*	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
+	public String noticeReg(
+			Notice notice, HttpServletRequest request
+			) throws UnsupportedEncodingException {
+		int row = noticeDao.insert(notice);
+		System.out.println(notice.getTitle());
+		return "redirect:../notice";
+	}*/
+	
 	@RequestMapping(value="notice/reg", method=RequestMethod.GET)
 	public String noticeReg() {
 		
 		return "admin.board.notice.reg";
 	}
-	/*
-	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
-	public String noticeReg(
-			String title,
-			String content) throws UnsupportedEncodingException {
-	public String noticeReg(
-			Notice notice,
-			MultipartFile file, //name="file"인 녀석이 2개 이상이 될 경우... []을 이용한다.
-			HttpServletRequest request,
-			Principal principal) throws IOException { //principal : 현재 사용자의 정보를 가져다준다.
-		
-		
-		return "redirect:../notice";
-	}
-	*/
-
-	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
-	public String noticeReg(
-			String title,
-			String content,
-			Model model) throws UnsupportedEncodingException {
-		model.addAttribute("list", noticeDao.insert(title, content, "1"));
-		
-		return "redirect:../notice";
-	}
 	
+	/*@RequestMapping(value="notice/reg", method=RequestMethod.POST)
+	public String noticeReg(
+			String title, 
+			String content) throws UnsupportedEncodingException {
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+
+		
+		System.out.println(notice.getTitle());
+		
+		String writerId = "newlec";
+		
+		//noticeDao.insert(title, content, writerId);
+		int row = noticeDao.insert(new Notice(title, content, writerId));
+		
+		return "redirect:../notice";
+	}*/
+	
+	public String noticeReg(
+			Notice notice) throws UnsupportedEncodingException {
+		System.out.println(notice.getTitle());
+		noticeDao.insert(notice);
+		return "redirect:../notice";
+		
+	}
+
 	
 	
 	
