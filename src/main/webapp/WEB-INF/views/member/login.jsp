@@ -17,7 +17,7 @@
 					<form action="${path}/login" method="post">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<div class="view-wrap">
-							<h1>로그인.</h1>
+							<h1 class="h1">로그인.</h1>
 							<p class="ep-text">간단한 로그인으로 더 많은 사진을 이용하세요!</p>
 							<div class="login-box">
 								<input type="text" name="username" placeholder="이메일"/>
@@ -27,8 +27,8 @@
 									<label>
 										<input type="checkbox" value="1"/>로그인상태유지
 									</label>
-									<a href="${path}/gamsung/member/join" class="atag-btn">회원가입</a>
-									<a href="${path}/gamsung/member/searchPw" class="atag-btn">비밀번호찾기</a>
+									<a href="${path}/member/join" class="atag-btn">회원가입</a>
+									<a href="${path}/member/searchPw" class="atag-btn">비밀번호찾기</a>
 								</div>
 							</div>
 						</div>

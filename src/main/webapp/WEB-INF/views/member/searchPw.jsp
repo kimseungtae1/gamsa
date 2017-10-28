@@ -13,7 +13,7 @@
 				<div class="disp-table-cell">
 					<form>
 						<div class="view-wrap">
-							<h1>비밀번호찾기.</h1>
+							<h1 class="h1">비밀번호찾기.</h1>
 							<p class="ep-text">가입시 등록한 이메일로 임시비밀번호를 발급해드립니다!</p>
 							<div class="login-box">
 								<input type="text" placeholder="이메일"/>
