@@ -23,7 +23,7 @@
 		
 		<div class="ex-section">
 			<div class="content-wrap">
-				<h1>누구나 끌리는 감성사진</h1>
+				<h1 class="h1">누구나 끌리는 감성사진</h1>
 				<h4 class="font-explain">갬사에서는 감성사진을 무료로 제공해드립니다.</h4>
 				<h4 class="font-explain">오로지 감성만을 자극하는 사진들로 구성되어 있으니 편하게 이용하세요!</h4>
 			</div>
