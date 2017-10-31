@@ -82,6 +82,14 @@ public class BoardController {
 		return "admin.board.notice.reg";
 	}
 	
+	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
+	public String noticeReg(
+			Notice notice, HttpServletRequest request
+			) throws UnsupportedEncodingException {
+		noticeDao.insert(notice);
+		
+		return "redirect:../notice";
+	}
 	/*@RequestMapping(value="notice/reg", method=RequestMethod.POST)
 	public String noticeReg(
 			String title, 
@@ -101,13 +109,6 @@ public class BoardController {
 		return "redirect:../notice";
 	}*/
 	
-	public String noticeReg(
-			Notice notice) throws UnsupportedEncodingException {
-		System.out.println(notice.getTitle());
-		noticeDao.insert(notice);
-		return "redirect:../notice";
-		
-	}
 
 	
 	
