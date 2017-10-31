@@ -15,7 +15,7 @@
 				<ul>
 					<li><a href="" class="atag">인기사진 바로보기</a></li>
 					<li><a href="" class="atag">새로 올라온 사진들</a></li>
-					<li><a href="" class="atag">사진 올리기</a></li>
+					<li><a href="${path}/photo/upload/reg" class="atag">사진 올리기</a></li>
 				</ul>
 			</div>
 		</div>
