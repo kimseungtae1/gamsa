@@ -20,10 +20,12 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.gamsa.webapp.dao.NoticeDao;
-import com.gamsa.webapp.entity.Notice;
 
-public class SpringNoticeDao implements NoticeDao {
+import com.gamsa.webapp.dao.QnaDao;
+import com.gamsa.webapp.entity.Notice;
+import com.gamsa.webapp.entity.Qna;
+
+public class SpringQnaDao implements QnaDao {
 	
 	@Autowired
 	private JdbcTemplate template;
@@ -32,14 +34,14 @@ public class SpringNoticeDao implements NoticeDao {
 	
 	
 	@Override
-	public List<Notice> getList(int page, String field, String query) {
+	public List<Qna> getList(int page, String field, String query) {
 
-		String sql = "select * from Notice where " + field + " like ? order by regDate desc limit ?,10";
+		String sql = "select * from Qna where " + field + " like ? order by regDate desc limit ?,10";
 		
-		List<Notice> list = template.query(
+		List<Qna> list = template.query(
 				sql,
 				new Object[] {"%"+query+"%" , (page-1)*10},  //첫번째 물음표, 두번째 물음표
-				BeanPropertyRowMapper.newInstance(Notice.class));
+				BeanPropertyRowMapper.newInstance(Qna.class));
 		
 		return list;
 	}
@@ -47,23 +49,51 @@ public class SpringNoticeDao implements NoticeDao {
 
 
 	@Override
-	public Notice get(String id) {
-		String sql = "select * from Notice where id=?"; //sql문에 정해지지않은 부분은... object배열의 인자를 넣어줌으로써 해결한다!
+	public Qna get(String id) {
+		String sql = "select * from Qna where id=?"; //sql문에 정해지지않은 부분은... object배열의 인자를 넣어줌으로써 해결한다!
 		
-
+		/*spring의 di기능을 이용하여 코드량을 줄일수있다.*/
+		/*DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://211.238.142.247/newlecture?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8");
+		dataSource.setUsername("sist");
+		dataSource.setPassword("cclass");*/
 		
-		Notice notice = template.queryForObject(
+		/*JdbcTemplate template = new JdbcTemplate();
+		template.setDataSource(dataSource);*/ //database에 연결하기 위해 알려줘야할것!
+		
+		Qna Qna = template.queryForObject(
 				sql, 
 				new Object[] {id},
-				BeanPropertyRowMapper.newInstance(Notice.class));
+				BeanPropertyRowMapper.newInstance(Qna.class));
 		
-		return notice;
+		/*QnaView Qna = template.queryForObject(
+				sql, 
+				new Object[] {id},
+				new RowMapper<QnaView>() {
+
+					@Override
+					public QnaView mapRow(ResultSet rs, int rowNum) throws SQLException {
+							
+						QnaView Qna = new QnaView();
+						Qna.setId(rs.getString("id"));
+						Qna.setTitle(rs.getString("title"));
+						Qna.setWriterId(rs.getString("writerId"));
+						Qna.setContent(rs.getString("content"));
+						Qna.setHit(0);
+						
+						return Qna;
+					}
+					
+				});*/
+		
+		return Qna;
 	}
 
 	@Override
 	public int update(String id, String title, String content) {
 	
-		String sql = "update Notice set title=?, content=? where id=?";
+		String sql = "update Qna set title=?, content=? where id=?";
 		
 		int result = template.update(sql
 				, title
@@ -87,30 +117,30 @@ public class SpringNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public Notice getPrev(String id) {
+	public Qna getPrev(String id) {
 
-		String sql = "select * from Notice where id < CAST(? AS UNSIGNED) order by regDate desc limit 1";
+		String sql = "select * from Qna where id < CAST(? AS UNSIGNED) order by regDate desc limit 1";
 		
-		Notice notice = template.queryForObject(
+		Qna Qna = template.queryForObject(
 				sql, 
 				new Object[] {id},
-				BeanPropertyRowMapper.newInstance(Notice.class));
+				BeanPropertyRowMapper.newInstance(Qna.class));
 		
-		return notice;
+		return Qna;
 
 	}
 
 	@Override
-	public Notice getNext(String id) {
+	public Qna getNext(String id) {
 
-		String sql = "select * from Notice where id > CAST(? AS UNSIGNED) order by regDate asc limit 1";
+		String sql = "select * from Qna where id > CAST(? AS UNSIGNED) order by regDate asc limit 1";
 		
-		Notice notice = template.queryForObject(
+		Qna Qna = template.queryForObject(
 				sql, 
 				new Object[] {id},
-				BeanPropertyRowMapper.newInstance(Notice.class));
+				BeanPropertyRowMapper.newInstance(Qna.class));
 		
-		return notice;
+		return Qna;
 
 	}
 
@@ -123,9 +153,9 @@ public class SpringNoticeDao implements NoticeDao {
 	//Transaction처리방법2
 	//TransactionTemplate 사용하는 방법
 	/*@Override
-	public int insert(Notice notice) {
+	public int insert(Qna Qna) {
 
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
+		String sql = "insert into Qna(id, title, content, writerId) values(?, ?, ?, ?)";
 		
 		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
 		String sql1 = "update Member set point=point+1 where id=?";
@@ -139,13 +169,13 @@ public class SpringNoticeDao implements NoticeDao {
 
 				template.update(sql
 						, getNextId()		//서브쿼리를 이용하기 위한 메서드
-						, notice.getTitle()
-						, notice.getContent()
-						, notice.getWriterId());
+						, Qna.getTitle()
+						, Qna.getContent()
+						, Qna.getWriterId());
 				
 				
 				template.update(sql1
-						, notice.getWriterId());
+						, Qna.getWriterId());
 				
 			}
 		});
@@ -157,9 +187,9 @@ public class SpringNoticeDao implements NoticeDao {
 	//Transaction처리방법1
 	//TransactionManager를 직접 사용하는 방법
 	/*@Override
-	public int insert(Notice notice) {
+	public int insert(Qna Qna) {
 
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
+		String sql = "insert into Qna(id, title, content, writerId) values(?, ?, ?, ?)";
 		
 		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
 		String sql1 = "update Member set point=point+1 where id=?";
@@ -172,13 +202,13 @@ public class SpringNoticeDao implements NoticeDao {
 		try {
 			int result = template.update(sql
 					, getNextId()		//서브쿼리를 이용하기 위한 메서드
-					, notice.getTitle()
-					, notice.getContent()
-					, notice.getWriterId());
+					, Qna.getTitle()
+					, Qna.getContent()
+					, Qna.getWriterId());
 			
 			
 			result += template.update(sql1
-					, notice.getWriterId());
+					, Qna.getWriterId());
 			
 			transactionManager.commit(state);
 			
@@ -195,7 +225,7 @@ public class SpringNoticeDao implements NoticeDao {
 	@Override
 	public String getNextId() {
 
-		String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from Notice";
+		String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from Qna";
 		
 		String result = template.queryForObject(
 				sql,
@@ -204,17 +234,7 @@ public class SpringNoticeDao implements NoticeDao {
 		return result;
 	}
 
-	@Override
-	public int delete(String id) {
-		String sql = "delete from Notice where id=?"; //sql문에 정해지지않은 부분은... object배열의 인자를 넣어줌으로써 해결한다!
-		
 
-		
-		int result = template.update(sql
-				, id);
-		
-		return result;
-	}
 
 
 /*	@Override
@@ -222,7 +242,7 @@ public class SpringNoticeDao implements NoticeDao {
 
 		
 		
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
+		String sql = "insert into Qna(id, title, content, writerId) values(?, ?, ?, ?)";
 		
 		
 		
@@ -244,7 +264,7 @@ public class SpringNoticeDao implements NoticeDao {
 			}*/
 	   public int insert(String title, String content, String writerId) {
 
-		      return insert(new Notice(title, content, writerId));
+		      return insert(new Qna(title, content, writerId));
 		   }
 		   
 		   
@@ -253,12 +273,12 @@ public class SpringNoticeDao implements NoticeDao {
 		   //AOP를 사용하는 방법
 		   @Override
 		   @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
-		   public int insert(Notice notice) {
+		   public int insert(Qna qna) {
 
-		      String sql = "insert into Notice(id, title, content, writerId) values(?,?,?,?)";
+		      String sql = "insert into Qna(id, title, content, writerId) values(?,?,?,?)";
 		      
 		      
-		      int result=template.update(sql, getNextId(), notice.getTitle(), notice.getContent(), "1");
+		      int result=template.update(sql, getNextId(), qna.getTitle(), qna.getContent(), "1");
 		      
 		      
 		      
@@ -271,18 +291,9 @@ public class SpringNoticeDao implements NoticeDao {
 
 
 		@Override
-		public int update(Notice notice) {
-		      String sql = "update Notice set title=?, content=? where id=?;";
-		      
-		      
-		      int result=template.update(sql, notice.getTitle(), notice.getContent(), notice.getId());
-		      
-		      
-		      
-
-		      
-
-		      return result;
+		public Notice delete(String id) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 }

@@ -18,6 +18,7 @@
 	vertical-align: top;
 }
 
+
 .main table.board thead:first-child{
 
 	padding: 10px;
@@ -42,7 +43,11 @@
     font-size: 29px;
 }
 /*콘텐츠  */
-
+textarea{
+	
+    width: -webkit-fill-available;
+	
+}
 .main .detail-content{
     text-align: left;
 }
@@ -71,4 +76,5 @@
     float: right;
     top: 10px;
     margin-left: 10px;
+    margin-top: 0px;
 }

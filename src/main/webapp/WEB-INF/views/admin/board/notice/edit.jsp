@@ -10,17 +10,20 @@
 	<div class="view_wrap">
 		<table class="board">
 			<tr>
-				<th>제목</td>
-				<td><input type="text" name="title" /></td>
+				<th>제목</th>
+				<td><input type="text" name="title" value="${n.title}" /></td>
 			</tr>
 		</table>
+		
 		<div class="page_num">
-		<textarea name="content" rows="20" cols="60"></textarea>
-
-		</div>
+		<textarea name="content" rows="20" cols="60">${n.content}</textarea>
 		<div class="reg-button">
-				<input type="submit" value="등록" />
-					<a href="../notice">취소</a>
+			<a href="../../notice/delete/${n.id}">삭제</a>
+
+		<input type="submit" class="reg-button" value="등록" />
+
+
+					<a href="../../notice">취소</a>
 		</div>
 
 	</div>

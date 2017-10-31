@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<main class="main">
+	<main class="main">
 <div class="view_wrap">
 	<table class="board">
 		<tr>
@@ -27,6 +27,11 @@
 
 		<div class="reg-button">
 			<a href="../notice">목록으로</a>
+		</div>
+		
+
+		<div class="reg-button"><%-- ../notice/edit/${n.id} --%>
+			<a href="../notice/edit/${n.id}">수정</a>
 		</div>
 
 	</div>
