@@ -61,20 +61,21 @@ public class BoardController {
 		return "admin.board.notice.detail";
 	}
 	
-/*	@RequestMapping(value="notice/reg", method=RequestMethod.GET)
-	public String noticeReg() {
-		
-		return "admin.board.notice.reg";
+	@RequestMapping(value="notice/edit/{id}", method=RequestMethod.GET)
+	public String noticeEdit(@PathVariable("id") String id, Model model) {
+		model.addAttribute("n", noticeDao.get(id));
+		return "admin.board.notice.edit";
 	}
-*/
-/*	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
-	public String noticeReg(
+	
+	@RequestMapping(value="notice/edit/{id}", method=RequestMethod.POST)
+	public String noticeEdit(
 			Notice notice, HttpServletRequest request
 			) throws UnsupportedEncodingException {
-		int row = noticeDao.insert(notice);
-		System.out.println(notice.getTitle());
-		return "redirect:../notice";
-	}*/
+		noticeDao.update(notice);
+
+		return "redirect:../../notice";
+	}
+	
 	
 	@RequestMapping(value="notice/reg", method=RequestMethod.GET)
 	public String noticeReg() {
@@ -82,33 +83,23 @@ public class BoardController {
 		return "admin.board.notice.reg";
 	}
 	
-	/*@RequestMapping(value="notice/reg", method=RequestMethod.POST)
-	public String noticeReg(
-			String title, 
-			String content) throws UnsupportedEncodingException {
-		Notice notice = new Notice();
-		notice.setTitle(title);
-		notice.setContent(content);
-
-		
-		System.out.println(notice.getTitle());
-		
-		String writerId = "newlec";
-		
-		//noticeDao.insert(title, content, writerId);
-		int row = noticeDao.insert(new Notice(title, content, writerId));
-		
-		return "redirect:../notice";
-	}*/
 	
+	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
 	public String noticeReg(
-			Notice notice) throws UnsupportedEncodingException {
-		System.out.println(notice.getTitle());
+			Notice notice, HttpServletRequest request
+			) throws UnsupportedEncodingException {
 		noticeDao.insert(notice);
-		return "redirect:../notice";
 		
+		return "redirect:../notice";
 	}
-
+	
+	@RequestMapping("notice/delete/{id}")
+	public String noticeDelete(@PathVariable("id") String id, Model model) {
+		
+		model.addAttribute("n", noticeDao.delete(id));
+		
+		return "redirect:../../notice";
+	}
 	
 	
 	

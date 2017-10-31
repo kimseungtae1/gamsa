@@ -35,7 +35,7 @@
 							<li><a class="cursor atag">문의사항</a></li>
 						</ul>
 					</li>
-					<li><a class="cursor atag">사진올리기</a></li>
+					<li><a href="${path}/photo/upload/reg" class="cursor atag">사진올리기</a></li>
 				</ul>
 			</div>
 			

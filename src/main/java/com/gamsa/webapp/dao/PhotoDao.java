@@ -8,6 +8,7 @@ public interface PhotoDao {
 	
 	int insert(String title, String explain, String replyId, String writerId);
 	int insert(Photo photo);
+	String getNextId();
 
 
 }

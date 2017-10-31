@@ -22,37 +22,33 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.gamsa.webapp.dao.NoticeDao;
 import com.gamsa.webapp.dao.PhotoDao;
+import com.gamsa.webapp.dao.PhotoUploadDao;
 import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Photo;
+import com.gamsa.webapp.entity.PhotoUpload;
 
-public class SpringPhotoDao implements PhotoDao {
+public class SpringPhotoUploadDao implements PhotoUploadDao {
 	
 	@Autowired
 	private JdbcTemplate template;
 
 	@Override
-	public int insert(String title, String explain, String replyId, String writerId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insert(Photo photo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getNextId() {
+	public int insert(PhotoUpload photoUpload) {
 		
-	String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from Photo";
-			
-			String result = template.queryForObject(
-					sql,
-					String.class);
-			
-			return result;
+		String sql = "insert into PhotoUpload(id, src, protoId, writerId) values(?, ?, ?, ?)";
+		
+		int result = 0;
+	
+		result =template.update(sql
+					, photoUpload.getId()
+					, photoUpload.getSrc()
+					, photoUpload.getPhotoId()
+					, photoUpload.getWriterId());
+
+		return result;
+
 	}
 
+	
 	
 }

@@ -83,6 +83,7 @@
 	-moz-appearance: none; 
 	appearance: none;
 	opacity: 0.8;
+	outline: none;
 }
 
 .h1{

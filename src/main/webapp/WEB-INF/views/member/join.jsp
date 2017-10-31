@@ -13,13 +13,14 @@
 				<div class="disp-table-cell">
 					<form method="post">
 					<input type="hidden" name="role" value="1"/>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<div class="view-wrap">
 							<h1 class="h1">회원가입.</h1>
 							<p class="ep-text">간단한 회원가입으로 더 많은 사진을 이용하세요!</p>
 							<div class="login-box">
 								<input type="text" name="id" placeholder="이메일"/>
-								<input type="text" name="pwd" placeholder="비밀번호"/>
-								<input type="text" placeholder="비밀번호확인"/>
+								<input type="password" name="pwd" placeholder="비밀번호"/>
+								<input type="password" placeholder="비밀번호확인"/>
 								<div>
 									<label>
 										<input type="checkbox" value="1"/>약관동의

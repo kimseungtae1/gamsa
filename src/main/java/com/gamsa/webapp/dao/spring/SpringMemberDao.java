@@ -46,20 +46,5 @@ public class SpringMemberDao implements MemberDao {
 		return member;
 	}
 	
-	/*@Autowired
-	public void setTemplate(JdbcTemplate template) {
-		this.template = template;
-	}*/
-	
-	
-	//Transaction贸府规过1
-	//TransactionManager甫 流立 荤侩窍绰 规过
-	/*@Autowired
-	private PlatformTransactionManager transactionManager;*/
-	
-	//Transaction贸府规过2
-/*	@Autowired
-	private TransactionTemplate transactionTemplate;*/
-	
 	
 }
