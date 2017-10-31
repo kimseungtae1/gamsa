@@ -1,11 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+
+<style>
+    .dropzone
+    {
+        border:2px dotted #3292A2;
+        width:90%;
+        height:50px;
+        color:#92AAB0;
+        text-align:center;
+        font-size:24px;
+        padding-top:12px;
+        margin-top:10px;
+    }
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
 $(function () {
-    var obj = $(".view_big_img");
+    var obj = $(".dropzone");
 
     obj.on('dragenter', function (e) {
          e.stopPropagation();
@@ -37,15 +55,15 @@ $(function () {
 
 });
 
-//íŒŒì¼ ë©€í‹° ì—…ë¡œë“œ
+//ÆÄÀÏ ¸ÖÆ¼ ¾÷·Îµå
 function F_FileMultiUpload(files, obj) {
-  if(confirm(files.length + "ê°œì˜ íŒŒì¼ì„ ì—…ë¡œë“œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?") ) {
+  if(confirm(files.length + "°³ÀÇ ÆÄÀÏÀ» ¾÷·Îµå ÇÏ½Ã°Ú½À´Ï±î?") ) {
       var data = new FormData();
       for (var i = 0; i < files.length; i++) {
          data.append('file', files[i]);
       }
 
-      var url = "../../../../upload/photo/2017";
+      var url = "<¼­¹ö ÆÄÀÏ¾÷·Îµå URL>";
       $.ajax({
          url: url,
          method: 'post',
@@ -60,7 +78,7 @@ function F_FileMultiUpload(files, obj) {
   }
 }
 
-//íŒŒì¼ ë©€í‹° ì—…ë¡œë“œ Callback
+//ÆÄÀÏ ¸ÖÆ¼ ¾÷·Îµå Callback
 function F_FileMultiUpload_Callback(files) {
   for(var i=0; i < files.length; i++)
       console.log(files[i].file_nm + " - " + files[i].file_size);
@@ -68,52 +86,9 @@ function F_FileMultiUpload_Callback(files) {
 
 
 </script>
-<main class="main">
-
-	<form action="" method="post" enctype="multipart/form-data">
-		<div>
-			<div class="view_wrap" id="view_top">
-				<div class="profile">
-
-					<div class="left">
-						<h2>ì œëª©:
-							<input type="text" name="title" value="${n.title}" />
-						</h2>
-					</div>
-
-					<div class="right">
-						<h2>ì‚¬ì§„ì‘ê°€ëª…</h2>
-					</div>
-				</div>
-
-				<div class="view_big_img">
-				
-					<img src="" alt="ì‚¬ì§„ì„ ë„£ìœ¼ì„¸ìš”!">
-					<button>ì‚¬ì§„ ì—…ë¡œë“œ</button>
-				</div>				
-				
-				<h2>ì„¤ëª…</h2>
-				<div class="detail"><textarea name="content"></textarea></div>
-				<br>
-					<div class="view_img_btn">
-						<ul>
-							<li></li>
-							<li><button type="button" class="view_down btn_down">
-									<img src="/static/common/img/view_icon_01.png" alt="ë“±ë¡"><span
-										class="view_btn_txt"></span>
-								</button></li>
-
-
-
-							<li><button type="button" class="view_sns">
-									<img src="/static/common/img/view_icon_02.png" alt="ì·¨ì†Œ">
-								</button></li>
-
-						</ul>
-					</div>
-				</div>
-		</div>
-
-	</form>
-
-</main>
+</head>
+<body>
+	
+<div class="dropzone">Drag & Drop Files Here</div>
+</body>
+</html>
