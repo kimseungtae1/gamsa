@@ -10,7 +10,7 @@
 	<div class="view_wrap">
 		<table class="board">
 			<thead>
-				<td>번호</td>
+				<th>번호</th>
 				<td class="title">제목</td>
 				<td>게시자</td>
 				<td>게시일</td>
