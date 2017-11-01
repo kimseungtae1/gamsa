@@ -69,7 +69,32 @@
 }
 
 /* 메뉴 드롭다운 관련 css */
+.categories > a img:hover{
+	display: block;
+	z-index: 9999;
+}
 
+.categories > ul li{
+	list-style-type:none; 
+	padding:5px;
+}
+
+.categories ul{
+	/* display: none; */
+	position: absolute;
+	margin-top:0px;
+	padding-top:10px;
+	margin-left:-31px;
+	background-color: #373737;
+	border-radius: 5px;
+	padding:10px 15px 10px 15px;
+	display: block;
+	z-index: 9999;
+}
+
+.categories ul li ul li{
+	float:left;
+}
 
 .menu-list > ul li, .gnb > ul li{
 	list-style-type: none;
