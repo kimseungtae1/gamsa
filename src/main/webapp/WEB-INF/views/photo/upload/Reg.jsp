@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -36,41 +38,59 @@ $(function () {
     });
 
 });
-
 //파일 멀티 업로드
 function F_FileMultiUpload(files, obj) {
-  if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
-      var data = new FormData();
-      for (var i = 0; i < files.length; i++) {
-         data.append('file', files[i]);
-      }
-
-      var url = "../../../../upload/photo/2017";
-      $.ajax({
-         url: url,
-         method: 'post',
-         data: data,
-         dataType: 'json',
-         processData: false,
-         contentType: false,
-         success: function(res) {
-             F_FileMultiUpload_Callback(res.files);
-         }
-      });
-  }
+	if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
+	     var formData = new FormData();
+	     for (var i = 0; i < files.length; i++) {
+	   	  formData.append('file', files[i]);
+	    }
+	
+	    var url = "";
+	    $.ajax({
+	       url: url,
+	       method: 'post',
+	       data: formData,
+	       dataType: 'json',
+	       processData: false,
+	       contentType: false,
+	       success: function(res) {
+	           F_FileMultiUpload_Callback(res.files);
+	       }
+	    });
+	}
 }
 
 //파일 멀티 업로드 Callback
 function F_FileMultiUpload_Callback(files) {
-  for(var i=0; i < files.length; i++)
-      console.log(files[i].file_nm + " - " + files[i].file_size);
+	for(var i=0; i < files.length; i++)
+	    console.log(files[i].file_nm + " - " + files[i].file_size);
 }
+
+/* 
+function PhotoUpload(files, obj){
+	confirm("선택한 사진을 올리시겠습니까?");
+	
+	var xhr = new XMLHttpRequest();
+	
+	var formData = new FormData();
+	
+	xhr.onload = function(e){
+		formData.append("file", file);
+		
+		
+	};
+	
+	
+};
+ */
 
 
 </script>
 <main class="main">
 
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div>
 			<div class="view_wrap" id="view_top">
 				<div class="profile">
@@ -89,7 +109,7 @@ function F_FileMultiUpload_Callback(files) {
 				<div class="view_big_img">
 				
 					<img src="" alt="사진을 넣으세요!">
-					<button>사진 업로드</button>
+					<input type="submit" value="사진 업로드"/>
 				</div>				
 				
 				<h2>설명</h2>
