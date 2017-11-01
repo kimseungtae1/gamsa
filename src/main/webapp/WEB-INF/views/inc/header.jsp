@@ -86,7 +86,7 @@
 					<li>
 						<a class="cursor atag">커뮤니티</a>
 						<ul>
-							<li><a class="cursor atag">공지사항</a></li>
+							<li><a href="${path}/admin/board/notice" class="cursor atag">공지사항</a></li>
 							<li><a class="cursor atag">문의사항</a></li>
 						</ul>
 					</li>
