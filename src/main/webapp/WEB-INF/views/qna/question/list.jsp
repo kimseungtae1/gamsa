@@ -19,7 +19,7 @@
 				<c:forEach var="n" items="${list}">					
 					<tr>
 						<td>${n.id}</td>
-						<td class="title indent"><a href="notice/${n.id}">${n.title}</a></td>
+						<td class="title indent"><a href="detail/${n.id}">${n.title}</a></td>
 						<td>${n.writerId}</td>
 						<td>
 							<fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}" />		
@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="reg-button">
-					<a  href="notice/reg">글 쓰기</a>
+					<a  href="reg">글 쓰기</a>
 		</div>
 
 	</div>

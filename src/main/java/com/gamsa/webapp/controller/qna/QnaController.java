@@ -1,4 +1,4 @@
-package com.gamsa.webapp.controller.admin;
+package com.gamsa.webapp.controller.qna;
 
 
 
@@ -28,81 +28,74 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gamsa.webapp.dao.NoticeDao;
+import com.gamsa.webapp.dao.QnaDao;
 import com.gamsa.webapp.entity.Notice;
+import com.gamsa.webapp.entity.Qna;
 
 @Controller
-@RequestMapping("/admin/board/*")
-public class BoardController {
+@RequestMapping("/qna/*")
+public class QnaController {
 
 	@Autowired
-	private NoticeDao noticeDao;
+	private QnaDao qnaDao;
 	
 	
-	
-	@RequestMapping("notice")
-	public String notice(
+/*	@RequestMapping(value="list")
+	public String photoReg() {
+		
+		return "qna.question.list";
+	}*/
+	@RequestMapping("list")
+	public String questionReg(
 			@RequestParam(value="p", defaultValue="1") Integer page,
 			@RequestParam(value="f", defaultValue="title") String field, //title을 기본값으로 검색하겠다
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) {
-		model.addAttribute("list", noticeDao.getList(page, field, query));
-		
-		return "admin.board.notice.list";
+		model.addAttribute("list", qnaDao.getList(page, field, query));
+		return "qna.question.list";
 	}
-	
-	@RequestMapping("notice/{id}")
+
+	@RequestMapping("detail/{id}")
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
-		model.addAttribute("n", noticeDao.get(id));
+		model.addAttribute("n", qnaDao.get(id));
 		/*model.addAttribute("prev", noticeDao.getPrev(id));
 		model.addAttribute("next", noticeDao.getNext(id));*/
 		
 		//return "customer/notice-detail";
-		return "admin.board.notice.detail";
+		return "qna.question.detail";
 	}
 	
-	
-	
-	@RequestMapping(value="notice/reg", method=RequestMethod.GET)
+	@RequestMapping(value="reg", method=RequestMethod.GET)
 	public String noticeReg() {
 		
-		return "admin.board.notice.reg";
+		return "qna.question.reg";
 	}
 	
 	
-	@RequestMapping(value="notice/reg", method=RequestMethod.POST)
+	@RequestMapping(value="reg", method=RequestMethod.POST)
 	public String noticeReg(
-			Notice notice, HttpServletRequest request
+			Qna qna, HttpServletRequest request
 			) throws UnsupportedEncodingException {
-		noticeDao.insert(notice);
+		qnaDao.insert(qna);
 		
-		return "redirect:../notice";
+		return "redirect:../qna/list";
 	}
 	
-	@RequestMapping(value="notice/edit/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="edit/{id}", method=RequestMethod.GET)
 	public String noticeEdit(@PathVariable("id") String id, Model model) {
-		model.addAttribute("n", noticeDao.get(id));
-		return "admin.board.notice.edit";
+		model.addAttribute("n", qnaDao.get(id));
+		return "qna.question.edit";
 	}
 	
-	@RequestMapping(value="notice/edit/{id}", method=RequestMethod.POST)
+	@RequestMapping(value="edit/{id}", method=RequestMethod.POST)
 	public String noticeEdit(
-			Notice notice, HttpServletRequest request
+			Qna qna, HttpServletRequest request
 			) throws UnsupportedEncodingException {
-		noticeDao.update(notice);
+		qnaDao.update(qna);
 		
-		return "redirect:../../notice";
+		return "redirect:../list";
 	}
-	@RequestMapping("notice/delete/{id}")
-	public String noticeDelete(@PathVariable("id") String id, Model model) {
-		
-		model.addAttribute("n", noticeDao.delete(id));
-		
-		return "redirect:../../notice";
-	}
-	
-	
-	
 }
 
 

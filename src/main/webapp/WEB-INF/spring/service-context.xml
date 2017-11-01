@@ -28,6 +28,7 @@
 	<bean class="com.gamsa.webapp.dao.spring.SpringNoticeDao"/>
 	<bean class="com.gamsa.webapp.dao.spring.SpringMemberDao"/>
 	<bean class="com.gamsa.webapp.dao.spring.SpringPhotoDao"/>
+	<bean class="com.gamsa.webapp.dao.spring.SpringQnaDao"/>
 	<bean class="com.gamsa.webapp.dao.spring.SpringPhotoUploadDao"/>
 	
 	<context:annotation-config />

@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+
+
+.main table.board {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid rgb(254, 183, 39);
+    border-bottom: 1px solid #ccc;
+    margin: 20px 10px;
+    width: -webkit-fill-available;
+}
+
+
+.main table.board td {
+	padding: 10px;
+	vertical-align: top;
+}
+
+
+.main table.board thead:first-child{
+
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+
+.main .page_num div{
+	text-align: left;
+	
+}
+
+.main th{
+		width: 11%;
+	
+}
+/*제목*/
+.main input[type="text"] {
+    width: -webkit-fill-available;
+    height: 33px;
+    font-size: 29px;
+}
+/*콘텐츠  */
+textarea{
+	
+    width: -webkit-fill-available;
+	
+}
+.main .detail-content{
+    text-align: left;
+}
+/*글쓰기 버튼*/
+.main .reg-button {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.main .reg-button > a {
+    vertical-align: middle;
+}
+
+
+.main .reg-button > *,.main input[type="submit"]  {
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #fff;
+    background: rgb(254, 183, 39);
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    top: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+}
