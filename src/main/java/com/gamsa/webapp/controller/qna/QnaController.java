@@ -58,7 +58,7 @@ public class QnaController {
 	@RequestMapping("detail/{id}")
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
-		model.addAttribute("n", qnaDao.get(id));
+		model.addAttribute("qna", qnaDao.get(id));
 		/*model.addAttribute("prev", noticeDao.getPrev(id));
 		model.addAttribute("next", noticeDao.getNext(id));*/
 		
@@ -84,7 +84,7 @@ public class QnaController {
 	
 	@RequestMapping(value="edit/{id}", method=RequestMethod.GET)
 	public String noticeEdit(@PathVariable("id") String id, Model model) {
-		model.addAttribute("n", qnaDao.get(id));
+		model.addAttribute("qna", qnaDao.get(id));
 		return "qna.question.edit";
 	}
 	

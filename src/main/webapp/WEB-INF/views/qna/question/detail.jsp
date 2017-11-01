@@ -12,29 +12,30 @@
 		<tr>
 			<th>제목
 			</th>
-			<td>${n.title}</td>
+			<td>${qna.title}</td>
 		</tr>
 		<tr>
 			<th>게시일
 			</th>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}" /></td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${qna.regDate}" /></td>
 		</tr>
 
 	</table>
 	<div class="page_num">
-		<div class="content detail-content">${n.content}</div>
+		<div class="content detail-content">${qna.content}</div>
 
 		<div class="reg-button">
 			<a href="../list">목록으로</a>
 		</div>
 		
 
-		<div class="reg-button"><%-- ../notice/edit/${n.id} --%>
-			<a href="../edit/${n.id}">수정</a>
+		<div class="reg-button"><%-- ../notice/edit/${qna.id} --%>
+			<a href="../edit/${qna.id}">수정</a>
 		</div>
-		<div>
-		${sessionScope.name}
-		</div>
+	</div>
+		
+
 
 	</div>
+	
 </main>
