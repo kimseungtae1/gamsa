@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -45,6 +46,15 @@ public class PhotoController {
 	@Autowired
 	private PhotoUploadDao photoUploadDao;
 	
+	@RequestMapping("list")
+	public String photoList(
+			Model model
+			) {
+		//model.addAttribute("list", photoDao.getList());
+		
+		return "photo.list";
+		
+	}
 	
 	@RequestMapping(value="upload/reg", method=RequestMethod.GET)
 	public String photoReg() {
@@ -55,7 +65,7 @@ public class PhotoController {
 	@RequestMapping(value="upload/reg", method=RequestMethod.POST)
 	public String photoReg(
 			//MultipartHttpServletRequest multipartRequest,
-			Photo photo,
+			PhotoUpload photoUpload,
 			MultipartFile file,
 			HttpServletRequest request
 			) throws IOException {
@@ -95,8 +105,8 @@ public class PhotoController {
 		String fileName = file.getOriginalFilename(); //db연동하기전에 파일이 넘어오는지 확인해야한다.
 		System.out.println(fileName);
 		
-		int row = photoDao.insert(photo);
-		//photoUploadDao.insert(new PhotoUpload(null, fileName, photoId, writerId)); //id, src, photoId, writerId
+		photoUploadDao.insert(new PhotoUpload());
+		//photoUploadDao.insert(new PhotoUpload(row, fileName, null, null)); //id, src, photoId, writerId
 		
 		
 		

@@ -22,7 +22,6 @@
   <definition name="photo.*.*" template="/WEB-INF/views/photo/inc/sub-layout.jsp">
     <put-attribute name="title" value="갬사 회원 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
-    <!-- <put-attribute name="photoUpload" value="/WEB-INF/views/photo/inc/visual.jsp" /> -->
     <put-attribute name="main" value="/WEB-INF/views/photo/{1}/{2}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition> 
