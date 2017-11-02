@@ -41,16 +41,17 @@ $(function () {
 //파일 멀티 업로드
 function F_FileMultiUpload(files, obj) {
 	if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
-	     var formData = new FormData();
+	     var formData = new FormData($("#form"));
 	     for (var i = 0; i < files.length; i++) {
 	   	  formData.append('file', files[i]);
 	    }
 	
-	    var url = "";
+	    var url = "../../../photo/upload/reg";
 	    $.ajax({
 	       url: url,
 	       method: 'post',
 	       data: formData,
+	       enctype:"multipart/form-data",
 	       dataType: 'json',
 	       processData: false,
 	       contentType: false,
@@ -89,7 +90,7 @@ function PhotoUpload(files, obj){
 </script>
 <main class="main">
 
-	<form action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+	<form id="form" action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div>
 			<div class="view_wrap" id="view_top">

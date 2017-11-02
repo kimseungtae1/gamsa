@@ -61,7 +61,7 @@
 		
 		<c:if test="${not empty answer.content}">
 		<div class="reg-button">
-			<a href="../list">등록</a>
+			<a href="../list">수정</a>
 		</div>
 		</c:if>		
 		<c:if test="${empty answer.content}">
