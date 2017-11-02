@@ -16,7 +16,7 @@
 						<img src="${path}/resource/images/hamberger-menu.png" 
 						alt="카테고리"/>
 					</a>
-					<ul>
+					<!-- <ul>
 						<li>생물
 							<ul>
 								<li><a class="cursor atag" href="">동물</a></li>
@@ -70,7 +70,7 @@
 								<li><a class="cursor atag" href="">건축</a></li>
 							</ul>
 						</li>
-					</ul>
+					</ul> -->
 			</div>
 			
 			<div class="menu-list iblock">

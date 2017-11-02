@@ -54,5 +54,11 @@ public class SpringPhotoDao implements PhotoDao {
 			return result;
 	}
 
+	@Override
+	public int getList() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }

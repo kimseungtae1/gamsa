@@ -21,9 +21,6 @@
 <body>
 	<!-- header 부분 -->
 	<tiles:insertAttribute name="header" />
-	<!-- --------------------------- <visual> --------------------------------------- -->
-	<!-- visual 부분 -->
-	<%-- <tiles:insertAttribute name="photoUpload" /> --%>
 	<!-- --------------------------- <body> --------------------------------------- -->
 	<div id="body">
 		<div class="content-container clearfix">

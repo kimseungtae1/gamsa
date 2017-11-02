@@ -64,8 +64,9 @@
 	/* vertical-align: middle; */
 	text-align: center;
 	color:#fff;
-	font-size:14px; 
+	font-size:15px; 
 	outline: none;
+	font-family: 'Nanum Gothic', serif;
 }
 
 /* 메뉴 드롭다운 관련 css */
