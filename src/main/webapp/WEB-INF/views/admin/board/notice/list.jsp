@@ -5,9 +5,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 	<main class="main">
-	
+	<h1>공지사항</h1>
 	
 	<div class="view_wrap">
+
 		<table class="board">
 			<thead>
 				<td>번호</td>

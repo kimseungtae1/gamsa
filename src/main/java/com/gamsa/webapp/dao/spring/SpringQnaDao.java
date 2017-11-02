@@ -155,16 +155,22 @@ public class SpringQnaDao implements QnaDao {
 
 
 		@Override
-		public Qna delete(String id) {
-			// TODO Auto-generated method stub
-			return null;
+		public int delete(String id) {
+			String sql = "delete from Qna where id=?"; //sql문에 정해지지않은 부분은... object배열의 인자를 넣어줌으로써 해결한다!
+			
+
+			
+			int result = template.update(sql
+					, id);
+			
+			return result;
 		}
 
 
 
 		@Override
 		public int update(Qna qna) {
-		      String sql = "update Qna set title=?, content=? where id=?;";
+		      String sql = "update Qna set title=?, content=? where id=?";
 		      
 		      
 		      int result=template.update(sql, qna.getTitle(), qna.getContent(), qna.getId());

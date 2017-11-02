@@ -7,31 +7,72 @@
 	<table class="board">
 		<tr>
 			<th>번호</th>
-			<td>1</td>
+			<td>${question.id}</td>
 		</tr>
 		<tr>
 			<th>제목
 			</th>
-			<td>${qna.title}</td>
+			<td>${question.title}</td>
 		</tr>
 		<tr>
 			<th>게시일
 			</th>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${qna.regDate}" /></td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${question.regDate}" /></td>
 		</tr>
 
 	</table>
 	<div class="page_num">
-		<div class="content detail-content">${qna.content}</div>
+		<div class="content detail-content">${question.content}</div>
 
 		<div class="reg-button">
 			<a href="../list">목록으로</a>
 		</div>
 		
 
-		<div class="reg-button"><%-- ../notice/edit/${qna.id} --%>
-			<a href="../edit/${qna.id}">수정</a>
+		<div class="reg-button"><%-- ../notice/edit/${question.id} --%>
+			<a href="../edit/${question.id}">수정</a>
 		</div>
+	</div>
+		
+
+
+	</div>
+	
+	<div class="answer">
+	<table class="board">
+		<tr>
+			<th>번호</th>
+			<td>${answer.id}</td>
+		</tr>
+		<tr>
+			<th>제목
+			</th>
+			<td>${answer.title}</td>
+		</tr>
+		<tr>
+			<th>게시일
+			</th>
+			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${answer.regDate}" /></td>
+		</tr>
+
+	</table>
+	<div class="page_num">
+		<div class="content detail-content">${answer.content}</div>
+		
+		<c:if test="${not empty answer.content}">
+		<div class="reg-button">
+			<a href="../list">등록</a>
+		</div>
+		</c:if>		
+		<c:if test="${empty answer.content}">
+		<div class="reg-button">
+			<a href="../list">등록</a>
+		</div>
+		</c:if>
+
+<%-- 		<div class="reg-button">../notice/edit/${question.id}
+			<a href="../edit/${answer.id}">수정</a>
+		</div> --%>
 	</div>
 		
 

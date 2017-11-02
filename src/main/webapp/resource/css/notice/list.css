@@ -1,5 +1,9 @@
 @charset "UTF-8";
-
+h1 {
+	position:absolute;
+	top: 188px;
+	left: 267px;
+}
 
 .main .view_wrap {
 	max-width: 1000px;
