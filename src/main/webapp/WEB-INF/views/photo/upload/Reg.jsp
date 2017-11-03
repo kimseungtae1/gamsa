@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	
 $(function () {
     var obj = $(".view_big_img");
 
@@ -41,12 +40,14 @@ $(function () {
 //파일 멀티 업로드
 function F_FileMultiUpload(files, obj) {
 	if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
-	     var formData = new FormData($("#form"));
-	     for (var i = 0; i < files.length; i++) {
+		
+	    var formData = new FormData();
+	    
+	    for (var i = 0; i < files.length; i++) {
 	   	  formData.append('file', files[i]);
 	    }
-	
-	    var url = "../../../photo/upload/reg";
+	 
+	    var url = "../../../../gamsung/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}";
 	    $.ajax({
 	       url: url,
 	       method: 'post',
@@ -57,6 +58,7 @@ function F_FileMultiUpload(files, obj) {
 	       contentType: false,
 	       success: function(res) {
 	           F_FileMultiUpload_Callback(res.files);
+	           console.log('success');
 	       }
 	    });
 	}
@@ -120,14 +122,14 @@ function PhotoUpload(files, obj){
 						<ul>
 							<li></li>
 							<li><button type="button" class="view_down btn_down">
-									<img src="/static/common/img/view_icon_01.png" alt="등록"><span
+									<!-- <img src="/static/common/img/view_icon_01.png" alt="등록"> --><span
 										class="view_btn_txt"></span>
 								</button></li>
 
 
 
 							<li><button type="button" class="view_sns">
-									<img src="/static/common/img/view_icon_02.png" alt="취소">
+									<!-- <img src="/static/common/img/view_icon_02.png" alt="취소"> -->
 								</button></li>
 
 						</ul>

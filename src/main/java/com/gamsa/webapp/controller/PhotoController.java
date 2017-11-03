@@ -65,14 +65,56 @@ public class PhotoController {
 	@RequestMapping(value="upload/reg", method=RequestMethod.POST)
 	public String photoReg(
 			/*MultipartHttpServletRequest multipartRequest,
-			PhotoUpload photoUpload,
 			MultipartFile file,
 			HttpServletRequest request,
 			String url,
 			String file2*/
-			MultipartHttpServletRequest multi
-
+			MultipartHttpServletRequest file,
+			PhotoUpload photoUpload,
+			HttpServletRequest request
 			) throws IOException {
+		System.out.println(file);
+
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		
+		int nextId = Integer.parseInt(photoUploadDao.getNextId());
+		
+
+		 // 저장 경로 설정
+        //String root = file.getSession().getServletContext().getRealPath("/");
+		ServletContext ctx = request.getServletContext();
+        String path = ctx.getRealPath(String.format("/resource/upload/%s/", year));
+        System.out.println(path);
+         
+        String newFileName = ""; // 업로드 되는 파일명
+        File dir = new File(path);
+        if(!dir.isDirectory()){
+            dir.mkdir();
+        }
+        path += File.separator + file.getFileNames();
+        
+        Iterator<String> files = file.getFileNames();
+        while(files.hasNext()){
+            String uploadFile = files.next();
+                         
+            MultipartFile mFile = file.getFile(uploadFile);
+            String fileName = mFile.getOriginalFilename();
+            System.out.println("실제 파일 이름 : " +fileName);
+            newFileName = System.currentTimeMillis()+"."
+                    +fileName.substring(fileName.lastIndexOf(".")+1);
+             
+            try {
+                mFile.transferTo(new File(path+fileName));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        photoUploadDao.insert(new PhotoUpload(nextId, path, "1", "2"));
+
+	    return "redirect:../../index";
+	}
 		
 /*		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
@@ -149,42 +191,9 @@ public class PhotoController {
 	        }
 	                      
 	   }*/
-		 // 저장 경로 설정
-        String root = multi.getSession().getServletContext().getRealPath("/");
-        String path = root+"resources/upload/";
-         
-        String newFileName = ""; // 업로드 되는 파일명
-         
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-         
-        Iterator<String> files = multi.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-                         
-            MultipartFile mFile = multi.getFile(uploadFile);
-            String fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            newFileName = System.currentTimeMillis()+"."
-                    +fileName.substring(fileName.lastIndexOf(".")+1);
-             
-            try {
-                mFile.transferTo(new File(path+newFileName));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-
-	      
-	    return "redirect:../../index";
+		
 	    
 /*	    return "";*/
-	}
-	
-	
 }
 
 

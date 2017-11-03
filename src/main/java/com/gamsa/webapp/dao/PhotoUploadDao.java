@@ -9,4 +9,8 @@ public interface PhotoUploadDao {
 
 	int insert(PhotoUpload photoUpload);
 	
+	int insert(int id, String src, String photoId, String writerId);
+
+	String getNextId();
+	
 }

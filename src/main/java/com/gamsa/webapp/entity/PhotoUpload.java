@@ -11,8 +11,6 @@ public class PhotoUpload {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	public PhotoUpload(int id, String src, String photoId, String writerId) {
 		super();
 		this.id = id;
@@ -20,7 +18,6 @@ public class PhotoUpload {
 		this.photoId = photoId;
 		this.writerId = writerId;
 	}
-
 
 
 	public int getId() {
