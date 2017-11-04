@@ -44,8 +44,10 @@ function F_FileMultiUpload(files, obj) {
       for (var i = 0; i < files.length; i++) {
          data.append('file', files[i]);
       }
+      
 
-      var url = "../../../../upload/photo/2017";
+      //var url = "../../../../upload/photo/2017";
+      var url = "";
       $.ajax({
          url: url,
          method: 'post',
