@@ -1,18 +1,7 @@
 @charset "UTF-8";
-h1 {
-	position:absolute;
-	top: 188px;
-	left: 267px;
-}
 
-.main .view_wrap {
-	max-width: 1000px;
-	min-height: auto;
-	margin: 250px auto;
-	padding: 0 2.6%;
-	overflow: hidden;
-	border: 1px solid #e19b3e2e;
-}
+
+
 .main table.board {
     border-collapse: collapse;
     text-align: left;
@@ -29,24 +18,38 @@ h1 {
 	vertical-align: top;
 }
 
+
 .main table.board thead:first-child{
 
 	padding: 10px;
 	font-weight: bold;
 	vertical-align: top;
 }
-.main table.board td, table.board tr {
-	border-bottom: 1px solid rgba(254, 183, 39, 0.24);
-	text-align: center;
-}
+
 
 .main .page_num div{
-	text-align: center;
+	text-align: left;
 	
 }
 
-.main .title {
-    width: 65%;
+.main th{
+		width: 11%;
+	
+}
+/*제목*/
+.main input[type="text"] {
+    width: -webkit-fill-available;
+    height: 33px;
+    font-size: 29px;
+}
+/*콘텐츠  */
+textarea{
+	
+    width: -webkit-fill-available;
+	
+}
+.main .detail-content{
+    text-align: left;
 }
 /*글쓰기 버튼*/
 .main .reg-button {
@@ -59,7 +62,7 @@ h1 {
 }
 
 
-.main .reg-button > * {
+.main .reg-button > *,.main input[type="submit"]  {
     display: inline-block;
     width: 150px;
     height: 40px;
@@ -72,5 +75,7 @@ h1 {
     text-decoration: none;
     float: right;
     top: 10px;
-    
+    margin-left: 10px;
+    margin-top: 0px;
 }
+/* 답변 보이기 */

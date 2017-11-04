@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+h1 {
+	position: absolute;
+	top: 188px;
+	left: 267px;
+}
+
+.main .view_wrap {
+	/* max-width: 1000px;
+	min-height: auto;
+	margin: 250px auto;
+	padding: 0 2.6%;
+	overflow: hidden;
+	border: 1px solid #e19b3e2e; */
+	max-width: 1000px;
+	min-height: auto;
+	margin: 100px auto 0px auto;
+	padding: 0 2.6%;
+	overflow: hidden;
+	border: 1px solid #e19b3e2e;
+}
+
+.main table.board {
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid rgb(254, 183, 39);
+	border-bottom: 1px solid #ccc;
+	margin: 20px 10px;
+	width: -webkit-fill-available;
+}
+
+.main table.board td {
+	padding: 10px;
+	vertical-align: top;
+}
+
+.main table.board thead:first-child {
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.main table.board td, table.board tr {
+	border-bottom: 1px solid rgba(254, 183, 39, 0.24);
+	text-align: center;
+}
+
+.main .page_num div {
+	text-align: center;
+}
+
+.main .title {
+	width: 65%;
+}
+/*글쓰기 버튼*/
+.main .reg-button {
+	text-align: right;
+	margin-top: 30px;
+}
+
+.main .reg-button>a {
+	vertical-align: middle;
+}
+
+.main .reg-button>* {
+	display: inline-block;
+	width: 150px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: 700;
+	color: #fff;
+	background: rgb(254, 183, 39);
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	top: 10px;
+}
+/* 답변보이기 */
+.main .answer {
+	margin: 50px auto 100px auto;
+	max-width: 1000px;
+	min-height: auto;
+	padding: 0 2.6%;
+	overflow: hidden;
+	border: 1px solid #e19b3e2e;
+}

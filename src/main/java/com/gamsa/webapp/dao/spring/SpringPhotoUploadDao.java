@@ -35,7 +35,7 @@ public class SpringPhotoUploadDao implements PhotoUploadDao {
 	@Override
 	public int insert(PhotoUpload photoUpload) {
 		
-		String sql = "insert into PhotoUpload(id, src, protoId, writerId) values(?, ?, ?, ?)";
+		String sql = "insert into PhotoUpload(id, src, photoId, writerId) values(?, ?, ?, ?)";
 		
 		int result = 0;
 	
@@ -49,6 +49,23 @@ public class SpringPhotoUploadDao implements PhotoUploadDao {
 
 	}
 
-	
+	@Override
+	public int insert(int id, String src, String photoId, String writerId) {
+		
+		return insert(new PhotoUpload(id, src, photoId, writerId));
+	}
+
+	@Override
+	public String getNextId() {
+		
+		String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from PhotoUpload";
+				
+				String result = template.queryForObject(
+						sql,
+						String.class);
+				
+				return result;
+		}
+
 	
 }

@@ -11,16 +11,22 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${path}/resource/css/content-layout.css">
 <link rel="stylesheet" href="${path}/resource/css/header.css">
-<%-- <link rel="stylesheet" href="${path}/resource/css/visual.css"> --%>
 <link rel="stylesheet" href="${path}/resource/css/main.css">
 <link rel="stylesheet" href="${path}/resource/css/footer.css">
-<link rel="stylesheet" href="${path}/resource/css/photo/Reg.css">
-<!-- <meta name="viewport" content="width=device-width,initial-scale=1"> -->
+
+
+
+<link rel="stylesheet" href="${path}/resource/css/qna/list.css">
+<link rel="stylesheet" href="${path}/resource/css/qna/reg.css">
+
 <title></title>
 </head>
 <body>
 	<!-- header 부분 -->
 	<tiles:insertAttribute name="header" />
+	<!-- --------------------------- <visual> --------------------------------------- -->
+	<!-- visual 부분 -->
+
 	<!-- --------------------------- <body> --------------------------------------- -->
 	<div id="body">
 		<div class="content-container clearfix">

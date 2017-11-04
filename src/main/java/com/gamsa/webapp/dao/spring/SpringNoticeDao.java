@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
@@ -60,31 +62,6 @@ public class SpringNoticeDao implements NoticeDao {
 		return notice;
 	}
 
-	@Override
-	public int update(String id, String title, String content) {
-	
-		String sql = "update Notice set title=?, content=? where id=?";
-		
-		int result = template.update(sql
-				, title
-				, content
-				, id);
-		
-		//직접 하려면? 거의 쓸일은 없다. 혹시나 위의 방식으로 못쓰는경우에..
-		/*int result = template.update(sql, new PreparedStatementSetter() {
-
-			@Override
-			public void setValues(PreparedStatement st) throws SQLException {
-				st.setString(1, title);
-				st.setString(2, content);
-				st.setString(3, id);
-				
-			}
-			
-		});*/
-				
-		return result;
-	}
 
 	@Override
 	public Notice getPrev(String id) {
@@ -116,81 +93,7 @@ public class SpringNoticeDao implements NoticeDao {
 
 
 
-	//Transaction처리방법3과  4번(@transactional)
-	//AOP를 사용하는 방법
-	
 
-	//Transaction처리방법2
-	//TransactionTemplate 사용하는 방법
-	/*@Override
-	public int insert(Notice notice) {
-
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
-		
-		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
-		String sql1 = "update Member set point=point+1 where id=?";
-		
-		int result = 0;
-		
-		result = (int) transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-			
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
-
-				template.update(sql
-						, getNextId()		//서브쿼리를 이용하기 위한 메서드
-						, notice.getTitle()
-						, notice.getContent()
-						, notice.getWriterId());
-				
-				
-				template.update(sql1
-						, notice.getWriterId());
-				
-			}
-		});
-
-			return result;
-	
-	}*/
-	
-	//Transaction처리방법1
-	//TransactionManager를 직접 사용하는 방법
-	/*@Override
-	public int insert(Notice notice) {
-
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
-		
-		//트랜잭션을 구현하기 위해 service계층으로 나누어 내는 작업
-		String sql1 = "update Member set point=point+1 where id=?";
-		
-		
-		//수작업으로 해준 트랜잭션 처리(spring의 기능 사용 안한상태)
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		TransactionStatus state = transactionManager.getTransaction(def);
-		
-		try {
-			int result = template.update(sql
-					, getNextId()		//서브쿼리를 이용하기 위한 메서드
-					, notice.getTitle()
-					, notice.getContent()
-					, notice.getWriterId());
-			
-			
-			result += template.update(sql1
-					, notice.getWriterId());
-			
-			transactionManager.commit(state);
-			
-			return result;
-		}
-		catch (Exception e) {
-			transactionManager.rollback(state);
-			
-			throw e;
-		}
-		
-	}*/
 
 	@Override
 	public String getNextId() {
@@ -217,48 +120,28 @@ public class SpringNoticeDao implements NoticeDao {
 	}
 
 
-/*	@Override
-	public int insert(String title, String content, String writerId) {
 
-		
-		
-		String sql = "insert into Notice(id, title, content, writerId) values(?, ?, ?, ?)";
-		
-		
-		
-		int result = 0;
-	
-		result =template.update(sql
-					, getNextId()		//서브쿼리를 이용하기 위한 메서드
-					, title
-					, content
-					, "1");
-			
-		
-			
-
-		return result;
-		
-
-		
-			}*/
 	   public int insert(String title, String content, String writerId) {
-
+		   	 
 		      return insert(new Notice(title, content, writerId));
 		   }
 		   
 		   
 		   
-		   //트랜잭션 처리방법 3번과 4번!
-		   //AOP를 사용하는 방법
+
 		   @Override
 		   @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
 		   public int insert(Notice notice) {
+			   System.out.println(notice.getWriterId());
 
 		      String sql = "insert into Notice(id, title, content, writerId) values(?,?,?,?)";
 		      
+		      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		      System.out.println("username = " + user.getUsername());
 		      
-		      int result=template.update(sql, getNextId(), notice.getTitle(), notice.getContent(), "1");
+				
+		      
+		      int result=template.update(sql, getNextId(), notice.getTitle(), notice.getContent(), user.getUsername());
 		      
 		      
 		      
@@ -269,6 +152,19 @@ public class SpringNoticeDao implements NoticeDao {
 		   }
 
 
+		   @Override
+		   public int update(String id, String title, String content) {
+			   
+			   String sql = "update Notice set title=?, content=? where id=?";
+			   
+			   int result = template.update(sql
+					   , title
+					   , content
+					   , id);
+			   
+			   
+			   return result;
+		   }
 
 		@Override
 		public int update(Notice notice) {
