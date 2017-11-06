@@ -1,5 +1,7 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 /*기타*/
+
 
 /*화살표*/
 .main .arrow img {
@@ -31,7 +33,7 @@
 }
 /*사진과 사용자 명*/
 .main .profile {
-	height: auto;
+	/* height: auto; */
 	padding: 43px 0 42px;
 	margin: 0;
 	
@@ -41,7 +43,7 @@
 .main .view_wrap {
     position: relative;
     max-width: 1000px;
-    min-height: 1600px;
+    min-height: 1500px;
     margin: 62px auto;
     padding: 0 2.6%;
     overflow: hidden;
@@ -56,6 +58,15 @@
 /*     border: 1px solid blanchedalmond; */
 }
 
+.main .font-h2{
+	font-size: 20px;
+}
+.main .font-h2 input[type='text']{
+	width:700px;
+	height:25px;
+}
+
+
 
 .main .right h2{
 	text-align: right;
@@ -67,7 +78,7 @@
 }
 
 .main .profile div {
-    height: 90px;
+    /* height: 90px; */
     width: 49%;
     display: inline-block;
     border: none;
@@ -86,6 +97,7 @@
 }
 
 /*이미지*/
+.main .view_big_img{height:562px; }
 .main .view_big_img img {
     text-align: center;
     line-height: 19;
@@ -147,10 +159,36 @@
 	width: 10%;
 	width: 10%;
 }
+
+/*버튼*/
+.view_big_img input[type='submit'],
+.view_img_btn input[type='submit'], 
+.view_img_btn input[type='reset']
+{
+	background: transparent;
+	border: 0px;
+	font-size: 15px;
+	font-family: 'Nanum Gothic', serif;
+	background-color: rgb(254, 183, 39);
+	cursor: pointer;
+	padding:5px;
+	float: right;
+	display: inline-block;
+	color: #fff;
+}
+.view_img_btn input[type='submit'], 
+.view_img_btn input[type='reset']{
+	padding-top:10px;
+}
+.view_img_btn input[type='submit']{
+	margin-right:10px;
+}
+
+
 /*사진 설명*/
 .main .detail textarea {
     width: -webkit-fill-available;
-    height: 625px;
+    height: 675px;
     margin-bottom: 10px;
 }
 /*더보기*/

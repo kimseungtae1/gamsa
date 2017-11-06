@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function () {
@@ -90,53 +94,67 @@ function PhotoUpload(files, obj){
 
 
 </script>
-<main class="main">
-
-	<form id="form" action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<div>
-			<div class="view_wrap" id="view_top">
-				<div class="profile">
-
-					<div class="left">
-						<h2>제목:
-							<input type="text" name="title" value="${n.title}" />
-						</h2>
+</head>
+<body>
+	<main class="main">
+	
+			<div>
+				<div class="view_wrap" id="view_top">
+	
+					<form id="form" action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<div class="view_big_img">
+							<img src="" alt="사진을 넣으세요!">
+							<input class="" type="submit" value="사진 업로드"/>
+						</div>				
+					</form>	
+					
+					<div class="profile">
+	
+						<div class="left">
+							<h2 class="font-h2">제목
+								<input class="font-h2" type="text" name="title" value="${n.title}" />
+							</h2>
+						</div>
+	
+						<div class="right">
+							<h2 class="font-h2">사진작가명</h2>
+						</div>
 					</div>
-
-					<div class="right">
-						<h2>사진작가명</h2>
-					</div>
+					<form>
+					<h2 class="font-h2">설명</h2>
+						<div class="detail">
+							<textarea name="content"></textarea>
+						<br>
+							<div class="view_img_btn">
+								<ul>
+									<li></li>
+									<li>
+										<input type="submit" value="내용등록" />
+									<!-- <button type="button" class="view_down btn_down">
+											<img src="/static/common/img/view_icon_01.png" alt="등록">
+											<span class="view_btn_txt"></span>
+										</button> -->
+									</li>
+		
+		
+		
+									<li>
+										<input type="reset" value="취소" />
+									<!-- <button type="button" class="view_sns">
+											<img src="/static/common/img/view_icon_02.png" alt="취소">
+										</button> -->
+									</li>
+		
+								</ul>
+							</div>
+						</div>
+					</form>
 				</div>
-
-				<div class="view_big_img">
-				
-					<img src="" alt="사진을 넣으세요!">
-					<input type="submit" value="사진 업로드"/>
-				</div>				
-				
-				<h2>설명</h2>
-				<div class="detail"><textarea name="content"></textarea></div>
-				<br>
-					<div class="view_img_btn">
-						<ul>
-							<li></li>
-							<li><button type="button" class="view_down btn_down">
-									<!-- <img src="/static/common/img/view_icon_01.png" alt="등록"> --><span
-										class="view_btn_txt"></span>
-								</button></li>
-
-
-
-							<li><button type="button" class="view_sns">
-									<!-- <img src="/static/common/img/view_icon_02.png" alt="취소"> -->
-								</button></li>
-
-						</ul>
-					</div>
-				</div>
-		</div>
-
-	</form>
-
-</main>
+					
+			</div>
+	
+		
+	
+	</main>
+</body>
