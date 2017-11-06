@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	<main class="main">
-		<h1>질의응답</h1>
+<main class="main">
+	<h1>질의응답</h1>
 	
 	<div class="view_wrap">
 		<table class="board">
