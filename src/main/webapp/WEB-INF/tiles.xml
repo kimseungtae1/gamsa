@@ -20,15 +20,16 @@
   </definition> 
   
   <definition name="photo.*.*" template="/WEB-INF/views/photo/inc/sub-layout.jsp">
-    <put-attribute name="title" value="갬사 회원 페이지" />
+    <put-attribute name="title" value="갬사 사진 관련 페이지" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
     <put-attribute name="main" value="/WEB-INF/views/photo/{1}/{2}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition> 
   
-    <definition name="qna.*.*" template="/WEB-INF/views/qna/inc/sub-layout.jsp">
-    <put-attribute name="title" value="갬사  질의응답" />
+  <definition name="qna.*.*" template="/WEB-INF/views/qna/inc/sub-layout.jsp">
+    <put-attribute name="title" value="갬사 질의응답" />
     <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+    <put-attribute name="visual" value="/WEB-INF/views/qna/inc/visual.jsp" />
     <put-attribute name="main" value="/WEB-INF/views/qna/{1}/{2}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
   </definition> 

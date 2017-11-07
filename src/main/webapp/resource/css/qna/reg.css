@@ -40,7 +40,10 @@
 .main input[type="text"] {
     width: -webkit-fill-available;
     height: 33px;
-    font-size: 29px;
+    font-size: 15px;
+    border:0px;
+    outline: none;
+    background-color: #e9e9e9;
 }
 /*콘텐츠  */
 textarea{
@@ -79,3 +82,43 @@ textarea{
     margin-top: 0px;
 }
 /* 답변 보이기 */
+
+
+
+/* 답변 부분 css*/
+.main .view_wrap .board .table-text{
+	text-align: left;
+	padding-left:5%;
+	line-height: 30px;
+}
+.main .view_wrap .board .reply-list-id{
+	font-weight: bold;
+	font-size: 17px;
+	padding-right:10px; 
+}
+.main .view_wrap .board .reply-list-date{
+	font-size: 14px;
+}
+.main .view_wrap .board .reply-list-text{
+	font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
