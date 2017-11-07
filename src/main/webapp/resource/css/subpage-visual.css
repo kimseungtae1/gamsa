@@ -1,0 +1,152 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+/* 메인페이지 비주얼 css */
+.visual{
+	width:100%;
+    /* background: url("../images/key1.JPG") no-repeat center; 
+    background-size: cover; */
+    height:400px;
+}
+
+	/* 슬라이드쇼 */
+	#slides{
+		position: relative;
+		height: 400px;
+		padding: 0px;
+		margin: 0px;
+		list-style-type: none;
+	}
+	
+	.slide{
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		z-index: 1;
+	
+		-webkit-transition: opacity 1s;
+		-moz-transition: opacity 1s;
+		-o-transition: opacity 1s;
+		transition: opacity 1s;
+	}
+	
+	.showing{
+		opacity: 1;
+		z-index: 2;
+	}
+	
+	.slide:nth-of-type(1){
+		background: url("../images/key1.JPG") no-repeat center; 
+		background-size: cover;
+	}
+	.slide:nth-of-type(2){
+		background: url("../images/key2.JPG") no-repeat center; 
+		background-size: cover;
+	}
+	.slide:nth-of-type(3){
+		background: url("../images/key3.JPG") no-repeat center; 
+		background-size: cover;
+	}
+	.slide:nth-of-type(4){
+		background: url("../images/key4.JPG") no-repeat center; 
+		background-size: cover;
+	}
+	.slide:nth-of-type(5){
+		background: url("../images/key5.JPG") no-repeat center; 
+		background-size: cover;
+	}
+
+
+
+
+.key-text{
+	position:absolute;
+	height:180px;
+	padding-top:150px;
+	top:150px;
+	z-index:999;
+	left:50%;
+	margin-left:-800px;
+}
+
+.key-img-search{
+	width:300px;
+	height:50px;
+	border-radius: 15px;
+	font-size: 20px;
+	padding-left:15px;
+	/* text-align:center; */
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */ 
+	-moz-appearance: none; 
+	appearance: none;
+	opacity: 0.8;
+	outline: none;
+}
+
+.h1{
+	font-family:'Nanum Myeongjo', serif;
+	font-size: 50px;
+	/* color: #FEBC36; */
+	color: #FEB727;
+	font-weight: lighter;
+}
+
+.form{
+	width:300px;
+	position: absolute;
+}
+
+/* 버튼 */
+.key-img-search-btn{
+	width:25px;
+	height:25px;
+	/* background:url("../images/search-btn.png") no-repeat center; */ 
+	/* border: 0px; */
+	right:0;
+	top:14px;
+	position: absolute;
+	
+}
+
+
+
+/* --------- 사진등록페이지(photo/upload/reg.jsp) css ------------- */
+.photoUp{
+	width:100%;
+    background-color:#FEB727;
+    height:600px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

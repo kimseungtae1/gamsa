@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${path}/resource/css/footer.css">
 
 
-
+<link rel="stylesheet" href="${path}/resource/css/subpage-visual.css">
 <link rel="stylesheet" href="${path}/resource/css/qna/list.css">
 <link rel="stylesheet" href="${path}/resource/css/qna/reg.css">
 
@@ -26,6 +26,7 @@
 	<tiles:insertAttribute name="header" />
 	<!-- --------------------------- <visual> --------------------------------------- -->
 	<!-- visual 부분 -->
+	<tiles:insertAttribute name="visual" />
 
 	<!-- --------------------------- <body> --------------------------------------- -->
 	<div id="body">
