@@ -54,6 +54,7 @@ public class PhotoController {
 		
 		return "photo.list";
 		
+		
 	}
 	
 	@RequestMapping(value="upload/reg", method=RequestMethod.GET)
