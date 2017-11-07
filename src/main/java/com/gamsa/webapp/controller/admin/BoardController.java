@@ -45,6 +45,8 @@ public class BoardController {
 			@RequestParam(value="f", defaultValue="title") String field, //title을 기본값으로 검색하겠다
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) {
+		
+		
 		model.addAttribute("list", noticeDao.getList(page, field, query));
 		
 		return "admin.board.notice.list";
