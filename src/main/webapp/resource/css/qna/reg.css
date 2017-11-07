@@ -47,9 +47,7 @@
 }
 /*콘텐츠  */
 textarea{
-	
     width: -webkit-fill-available;
-	
 }
 .main .detail-content{
     text-align: left;
@@ -80,6 +78,12 @@ textarea{
     top: 10px;
     margin-left: 10px;
     margin-top: 0px;
+}
+
+.main .reg-button input[type='button']{
+	border: 0px;
+	outline: 0;
+	cursor: pointer;
 }
 /* 답변 보이기 */
 
