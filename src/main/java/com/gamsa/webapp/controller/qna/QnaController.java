@@ -29,22 +29,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gamsa.webapp.dao.NoticeDao;
 import com.gamsa.webapp.dao.QnaDao;
+import com.gamsa.webapp.dao.QnaReplyDao;
 import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Qna;
+import com.gamsa.webapp.entity.QnaReply;
 
 @Controller
 @RequestMapping("/qna/*")
 public class QnaController {
-
 	@Autowired
 	private QnaDao qnaDao;
+	private QnaReplyDao qnaReplayDao;
 	
 	
-/*	@RequestMapping(value="list")
-	public String photoReg() {
-		
-		return "qna.question.list";
-	}*/
 	@RequestMapping("list")
 	public String questionReg(
 			@RequestParam(value="p", defaultValue="1") Integer page,
@@ -55,14 +52,21 @@ public class QnaController {
 		return "qna.question.list";
 	}
 
-	@RequestMapping("detail/{id}")
+	@RequestMapping(value="detail/{id}",method=RequestMethod.GET)
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
 		model.addAttribute("question", qnaDao.get(id));
-		/*model.addAttribute("prev", noticeDao.getPrev(id));
-		model.addAttribute("next", noticeDao.getNext(id));*/
+		model.addAttribute("answer", qnaReplayDao.getList(id));
+		return "qna.question.detail";
+	}
+	
+	@RequestMapping(value="detail/{id}",method=RequestMethod.POST)
+	public String noticeDetail(@PathVariable("id") String id, Model model, 
+			QnaReply qnaReply, HttpServletRequest request) throws UnsupportedEncodingException {
 		
-		//return "customer/notice-detail";
+		model.addAttribute("question", qnaDao.get(id));
+		model.addAttribute("answer", qnaReplayDao.getList(id));
+		qnaReplayDao.insert(qnaReply);
 		return "qna.question.detail";
 	}
 	

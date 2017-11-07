@@ -80,15 +80,17 @@ window.onload = function(){
 				
 				</table>
 			</c:if>
-				
+</form>				
 	
 			<div class="page_num">
 				<div class="content detail-content">${answer.content}</div>
 				
 				<c:if test="${not empty answer.content}">
 					<div class="reg-button">
-						<input type="button" value="수정"/>
+						<input type="button" value="수정"/>						
+						<input type="button" value="등록"/>
 					</div>
+					
 				</c:if>		
 				<c:if test="${empty answer.content}">
 					<div class="reg-button">
@@ -100,8 +102,9 @@ window.onload = function(){
 					<a href="../edit/${answer.id}">수정</a>
 				</div> --%>
 			</div>
-		</div>
-	</form>
+	
+		
+
 	
 	<div class="view_wrap">
 	<%-- ${n} --%>개의 댓글

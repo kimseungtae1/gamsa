@@ -8,19 +8,19 @@ public class QnaReply {
 	private String content;
 	private Date regDate;
 	private int qnaId;
-	private String writerId;
+	private String answerWriterId;
 	
 	public QnaReply() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public QnaReply(String id, String content, Date regDate, int qnaId, String writerId) {
+	public QnaReply(String id, String content, Date regDate, int qnaId, String answerWriterId) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.regDate = regDate;
 		this.qnaId = qnaId;
-		this.writerId = writerId;
+		this.answerWriterId = answerWriterId;
 	}
 
 	public String getId() {
@@ -55,12 +55,12 @@ public class QnaReply {
 		this.qnaId = qnaId;
 	}
 
-	public String getWriterId() {
-		return writerId;
+	public String getanswerWriterId() {
+		return answerWriterId;
 	}
 
-	public void setWriterId(String writerId) {
-		this.writerId = writerId;
+	public void setanswerWriterId(String answerWriterId) {
+		this.answerWriterId = answerWriterId;
 	}
 	
 	
