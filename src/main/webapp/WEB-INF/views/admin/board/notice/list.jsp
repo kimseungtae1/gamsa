@@ -41,6 +41,38 @@
 		</div>
 
 	</div>
+	
+<%-- 	<div>
+	<c:set var="page" value="${param.p}"/>	<!--view에서도 파라미터에서 값을 탐색  -->
+		<c:set var="startNum" value="${page-(page-1)%5}"/>
+		<c:set var="lastNum" value="${fn:substringBefore((count%10 == 0 ? count/10 : count/10+1), '.')}"/>
+		
+		<div>
+			<div><a href="?p=1">이전</a></div>
+				<ul>
+					<c:forEach var="i" begin="0" end="4">
+						<!-- 현재 페이지 번호 오렌지색으로 표시 // 임시변수 이용!-->
+						<c:set var="strong" value=""/>
+						<c:if test="${page == startNum+i}">
+							<c:set var="strong" value="text-strong"/><!-- text-strong은 style에 class이름임! -->
+						</c:if>
+						<c:if test="${startNum + i <= lastNum}">
+							<li><a class="${strong}" href="?p=${startNum+i}">${startNum+i}</a></li>
+						</c:if>
+						
+						<c:if test="${startNum + i > lastNum}">
+							<li>${startNum+i}</li>
+						</c:if>
+					</c:forEach>
+				</ul>
+			<div>
+				<c:if test="${lastNum >= startNum+5}">
+				<a href="?p=${startNum+5}">다음</a>
+				</c:if>
+			</div>
+		</div>
+	
+	</div> --%>
 
 
 
