@@ -48,6 +48,7 @@ window.onload = function(){
 	</div>
 	
 	<form id="frm" action="${path}/qna/list" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="answer">
 		comment
 			<c:if test="${not empty answer.content}">
