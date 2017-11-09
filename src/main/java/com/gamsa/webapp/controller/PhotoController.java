@@ -85,6 +85,7 @@ public class PhotoController {
 		 // 저장 경로 설정
         //String root = file.getSession().getServletContext().getRealPath("/");
 		ServletContext ctx = request.getServletContext();
+		System.out.println("정체를드러내라!!  " + ctx);
         String path = ctx.getRealPath(String.format("/resource/upload/%s/", year));
         System.out.println(path);
          
