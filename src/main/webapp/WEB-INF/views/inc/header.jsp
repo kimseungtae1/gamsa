@@ -78,9 +78,9 @@
 					<li>
 						<a class="cursor atag">사진첩</a>
 						<ul>
-							<li><a class="cursor atag">인기사진100</a></li>
-							<li><a class="cursor atag">감성사진</a></li>
-							<li><a class="cursor atag">인기작가사진</a></li>
+							<li><a href="" class="cursor atag">인기사진100</a></li>
+							<li><a href="${path}/photo/list" class="cursor atag">감성사진</a></li>
+							<li><a href="" class="cursor atag">인기작가사진</a></li>
 						</ul>
 					</li>
 					<li>

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<main id="main">
-		hihi
+		<img src="${path}/"/>
 	</main>
 </body>
 </html>

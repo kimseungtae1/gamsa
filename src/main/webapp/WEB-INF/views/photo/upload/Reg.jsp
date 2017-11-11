@@ -100,12 +100,13 @@ function PhotoUpload(files, obj){
 	
 			<div>
 				<div class="view_wrap" id="view_top">
-	
+					
 					<form id="form" action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<div class="view_big_img">
 							<img src="" alt="사진을 넣으세요!">
 							<input class="" type="submit" value="사진 업로드"/>
+							
 						</div>				
 					</form>	
 					
