@@ -10,7 +10,19 @@
 </head>
 <body>
 	<main id="main">
-		<img src="${path}/"/>
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
+		
+		
+		<div class="tag-section">
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+			<div class="tag-section-child">#태그1#태그2#태그3</div>
+		</div>
 	</main>
 </body>
 </html>

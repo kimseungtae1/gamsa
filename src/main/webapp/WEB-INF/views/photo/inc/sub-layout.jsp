@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${path}/resource/css/content-layout.css">
 <link rel="stylesheet" href="${path}/resource/css/header.css">
-<%-- <link rel="stylesheet" href="${path}/resource/css/visual.css"> --%>
+<link rel="stylesheet" href="${path}/resource/css/visual.css">
 <link rel="stylesheet" href="${path}/resource/css/main.css">
 <link rel="stylesheet" href="${path}/resource/css/footer.css">
 <link rel="stylesheet" href="${path}/resource/css/photo/Reg.css">
