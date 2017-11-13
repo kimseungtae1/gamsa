@@ -3,28 +3,52 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
+window.addEventListener("load", function(){
+	
+	var submitButton = document.querySelector("#submit-button");
 
+	submitButton.onclick = function(e){
+		 var event = new MouseEvent("click", {
+				'view' : window,
+				'bubbles' : true,
+				'cancelbale' : true
+		}); 
+		var formData = $("#frm").serialize();
+			var file = fileInput.files[0];
+			alert(file.name);
+			var formData = new FormData();
+			formData.append("title", "테스트");
+			formData.append("content", "content");
+			
+			var xhr = new XMLHttpRequest(); 
+			xhr.open("POST", "${path}/qna/detail/regcomment?${_csrf.parameterName}=${_csrf.token}", true);
+			xhr.send(formData);
 
-
-function formSubmit() {
-    var params = jQuery("#formname1").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
-    console.log(params);
-    jQuery.ajax({
-        url: '${path}/qna/detail/regcomment',
-        type: 'POST',
-        data:params,
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-        dataType: 'html',
-        success: function (result) {
-            if (result){
-                // 데이타 성공일때 이벤트 작성
-            }
-        }
+	};
+});
+/* function submitForm() {
+    var formData = $("#frm").serialize();
+     console.log(formData);
+    $.ajax({
+        type: "POST",
+        url: "../../../qna/detail/regcomment",
+        data: formData,
+        success: function(json) {
+            // 받아온 데이터 파싱 후 
+            var json_data = JSON.stringify(json);
+            var parse_data = JSON.parse(json_data);
+     
+        },
+        error: function() {
+         
+        }        
     });
-}
+    
+} */
+
+
 </script>
 
 <main class="main">
@@ -59,8 +83,8 @@ function formSubmit() {
 		</div>
 	</div>
 	
-	<form id="formname1"  method="post">
-	<input type="hidden" name="qnaId" value="${question.id}"/>
+	<form name="frm" id="frm" action="${path}/qna/list" method="post">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="answer">
 		comment
 			<c:if test="${not empty answer.content}">
@@ -86,13 +110,14 @@ function formSubmit() {
 					<tr>
 						<th>내용</th>
 						<td>
-							<input type="text" name="content"/>
+							<input type="text"/>
 						</td>
 					</tr>
 				
 				</table>
 			</c:if>
-
+		
+	
 			<div class="page_num">
 				<div class="content detail-content">${answer.content}</div>
 				
@@ -105,7 +130,8 @@ function formSubmit() {
 				</c:if>		
 				<c:if test="${empty answer.content}">
 					<div class="reg-button">
-				       <input type="button" value="Ajax 폼 전송" onclick="formSubmit()" />
+						<button type="button" id="submit-button">전송</button>
+
 					</div>
 				</c:if>
 		
@@ -113,24 +139,10 @@ function formSubmit() {
 					<a href="../edit/${answer.id}">수정</a>
 				</div> --%>
 			</div>
-	
-		</form>				
-	
+	</form>
+		
 
 	
-	<div class="view_wrap">
-	<%-- ${n} --%>개의 댓글
-		<table class="board">
-			<%-- <c:forEach var="" items=""> --%>
-				<tr>
-					<td class="table-text">
-						<span class="reply-list-id">admin<%-- ${member.id} --%></span> 
-						<span class="reply-list-date">2017-11-07<%-- ${answer.regDate} --%></span><br/>
-						<span class="reply-list-text">아지토정식 13,000원<%-- ${answer.content} --%></span>
-					</td>
-				</tr>
-			<%-- </c:forEach> --%>
-		</table>
-	</div>
+
 	
 </main>

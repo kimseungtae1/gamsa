@@ -13,18 +13,24 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.security.auth.message.callback.SecretKeyCallback.Request;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gamsa.webapp.dao.NoticeDao;
@@ -56,19 +62,19 @@ public class QnaController {
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
 		model.addAttribute("question", qnaDao.get(id));
-		model.addAttribute("answer", qnaReplayDao.getList(id));
+		//model.addAttribute("answer", qnaReplayDao.getList(id));
 		return "qna.question.detail";
 	}
 	
-	@RequestMapping(value="detail/{id}",method=RequestMethod.POST)
+/*	@RequestMapping(value="detail/{id}",method=RequestMethod.POST)
 	public String noticeDetail(@PathVariable("id") String id, Model model, 
 			QnaReply qnaReply, HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		model.addAttribute("question", qnaDao.get(id));
-		model.addAttribute("answer", qnaReplayDao.getList(id));
-		qnaReplayDao.insert(qnaReply);
+		//model.addAttribute("answer", qnaReplayDao.getList(id));
+		//qnaReplayDao.insert(qnaReply);
 		return "qna.question.detail";
-	}
+	}*/
 	
 	@RequestMapping(value="reg", method=RequestMethod.GET)
 	public String noticeReg() {
@@ -108,7 +114,35 @@ public class QnaController {
 		
 		return "redirect:../list";
 	}
+	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
+	public Map<String, String> regInsert( @RequestParam(value = "comment") String comment) {
+    	
+    		
+			return qnaReplayDao.insert(comment);;
+    	        
+
+    	        
+	}
+	
+
+
+
+/*	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
+	public Map<String , String> Reply(HttpServletRequest request) {
+	    //String title = request.getParameter("title");
+	    String content = request.getParameter("content");    
+	 
+	    Map<String , String> Map = new HashMap<String, String>();
+	    Map.put("key", "value");
+
+	    return Map;
+	}*/
+	
+
+
+	
 }
+
 
 
 
