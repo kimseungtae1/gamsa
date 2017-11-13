@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
@@ -32,14 +34,27 @@ public class SpringPhotoDao implements PhotoDao {
 
 	@Override
 	public int insert(String title, String explain, String replyId, String writerId) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return insert(new Photo(title, explain, replyId, writerId));
 	}
 
 	@Override
 	public int insert(Photo photo) {
-		// TODO Auto-generated method stub
-		return 0;
+		//System.out.println(notice.getWriterId());
+		
+		String sql = "insert into Photo(id, title, explain, replyId, writerId) values(?,?,?,?,?)";
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("username = " + user.getUsername());
+		  
+		int result=template.update(
+				sql, 
+				getNextId(), 
+				photo.getTitle(), 
+				photo.getExplain(), 
+				photo.getReplyId(),
+				user.getUsername());
+		return result;
+
 	}
 
 	@Override

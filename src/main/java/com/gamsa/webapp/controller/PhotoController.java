@@ -65,123 +65,12 @@ public class PhotoController {
 
 	@RequestMapping(value="upload/reg", method=RequestMethod.POST)
 	public String photoReg(
-			//MultipartHttpServletRequest file,
-			MultipartFile file,
-			PhotoUpload photoUpload,
-			HttpServletRequest request
-			) throws IOException {
-		//System.out.println(file);
-
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
+			HttpServletRequest request,
+			Photo photo
+			) throws UnsupportedEncodingException {
 		
-		int nextId = Integer.parseInt(photoUploadDao.getNextId());
-		
-		ServletContext ctx = request.getServletContext();
-		System.out.println(ctx);
-        String path = ctx.getRealPath(String.format("/resource/upload/%s/%d", year, nextId));
-        System.out.println(path);
-         
-        String newFileName = ""; // 업로드 되는 파일명
-
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-        path += File.separator + file.getOriginalFilename();
-        File f2 = new File(path);
-        
-        InputStream fis = file.getInputStream();
-		OutputStream fos = new FileOutputStream(f2);
-        
-		byte[] buf = new byte[1024];
-		
-		int size = 0;
-		while((size = fis.read(buf)) > 0)
-			fos.write(buf, 0, size);
-		
-		
-		fis.close();
-		fos.close();
-		
-		String fileName = file.getOriginalFilename(); //db연동하기전에 파일이 넘어오는지 확인해야한다.
-		System.out.println(fileName);
-		
-       /* Iterator<String> files = file.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-        	
-            MultipartFile mFile = file.getFile(uploadFile);
-            fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            //newFileName = System.currentTimeMillis()+"."+fileName.substring(fileName.lastIndexOf(".")+1);
-            if(fileName != null && !fileName.equals("")) {
-            	if(new File(path + fileName).exists())
-            		newFileName = fileName + "_" + System.currentTimeMillis();
-            	
-	            try {
-	                //mFile.transferTo(new File(path+fileName));
-	            	mFile.transferTo(new File(path+fileName));
-	            	File A = new File(path+fileName);
-	            	mFile.transferTo(A);
-	            	//((MultipartFile) dir).transferTo(new File(path+fileName));
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-            }
-        }*/
-        //file.getFileNames() 이게 이상한거
-        String src = path;
-        photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));
-		
-		
-		
-		
-		
-		/*
-
-		// 저장 경로 설정
-		ServletContext ctx = request.getServletContext();
-		System.out.println(ctx);
-        String path = ctx.getRealPath(String.format("/resource/upload/%s/%d", year, nextId));
-        System.out.println(path);
-         
-        String newFileName = ""; // 업로드 되는 파일명
-        String fileName = "";
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-        //path += File.separator + file.getFileNames();
-        
-        Iterator<String> files = file.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-        	
-            MultipartFile mFile = file.getFile(uploadFile);
-            fileName = mFile.getOriginalFilename();
-            System.out.println("실제 파일 이름 : " +fileName);
-            //newFileName = System.currentTimeMillis()+"."+fileName.substring(fileName.lastIndexOf(".")+1);
-            if(fileName != null && !fileName.equals("")) {
-            	if(new File(path + fileName).exists())
-            		newFileName = fileName + "_" + System.currentTimeMillis();
-            	
-	            try {
-	                //mFile.transferTo(new File(path+fileName));
-	            	mFile.transferTo(new File(path+fileName));
-	            	File A = new File(path+fileName);
-	            	mFile.transferTo(A);
-	            	//((MultipartFile) dir).transferTo(new File(path+fileName));
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
-            }
-        }
-        //file.getFileNames() 이게 이상한거
-        String src = path + File.separator + fileName;
-        photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));*/
-
-	    return "redirect:../../index";
+		photoDao.insert(photo);
+		return "photo.upload.Reg";
 	}
 }
 

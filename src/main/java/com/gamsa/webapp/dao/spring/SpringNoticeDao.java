@@ -31,8 +31,6 @@ public class SpringNoticeDao implements NoticeDao {
 	private JdbcTemplate template;
 	
 
-	
-	
 	@Override
 	public List<Notice> getList(int page, String field, String query) {
 
