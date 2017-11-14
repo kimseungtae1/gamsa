@@ -104,7 +104,7 @@ $(function () {
 						</div>
 	
 						<div class="right">
-							<h2 class="font-h2">사진작가명${n.writerId}</h2>
+							<h2 class="font-h2">사진작가명</h2>
 						</div>
 					</div>
 				

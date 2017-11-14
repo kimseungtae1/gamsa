@@ -28,11 +28,10 @@ public class Photo {
 		this.writerId = writerId;
 	}
 
-	public Photo(String title, String explain, String replyId, String writerId) {
+	public Photo(String title, String explain, String writerId) {
 		super();
 		this.title = title;
 		this.explain = explain;
-		this.replyId = replyId;
 		this.writerId = writerId;
 	}
 
