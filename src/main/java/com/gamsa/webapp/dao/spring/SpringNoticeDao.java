@@ -143,31 +143,25 @@ public class SpringNoticeDao implements NoticeDao {
 	   }
 
 
-		   @Override
-		   public int update(String id, String title, String content) {
-			   
-			   String sql = "update Notice set title=?, content=? where id=?";
-			   
-			   int result = template.update(sql
-					   , title
-					   , content
-					   , id);
-			   
-			   
-			   return result;
-		   }
+	   @Override
+	   public int update(String id, String title, String content) {
+		   
+		   String sql = "update Notice set title=?, content=? where id=?";
+		   
+		   int result = template.update(sql
+				   , title
+				   , content
+				   , id);
+		   
+		   
+		   return result;
+	   }
 
 		@Override
 		public int update(Notice notice) {
-		      String sql = "update Notice set title=?, content=? where id=?;";
-		      
+		      String sql = "update Notice set title=?, content=? where id=?;";  
 		      
 		      int result=template.update(sql, notice.getTitle(), notice.getContent(), notice.getId());
-		      
-		      
-		      
-
-		      
 
 		      return result;
 		}

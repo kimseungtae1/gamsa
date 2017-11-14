@@ -33,17 +33,17 @@ public class SpringPhotoDao implements PhotoDao {
 	private JdbcTemplate template;
 
 	@Override
-	public int insert(String title, String explain, String writerId) {
+	public int insert(String title, String explain, String replyId, String writerId) {
 		
-		return insert(new Photo(title, explain, writerId));
+		return insert(new Photo(title, explain, replyId, writerId));
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public int insert(Photo photo) {
 		System.out.println(photo.getWriterId());
+		System.out.println(photo.getReplyId());
 		
-		String sql = "insert into Photo(id, title, explain, writerId) values(?,?,?,?)";
+		String sql = "insert into Photo(id, title, explain, replyId, writerId) values(?, ?, ?, ?, ?)";
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println("username = " + user.getUsername());
 		  
@@ -52,8 +52,8 @@ public class SpringPhotoDao implements PhotoDao {
 				getNextId(), 
 				photo.getTitle(), 
 				photo.getExplain(), 
+				"kst",
 				user.getUsername());
-		
 		return result;
 
 	}
