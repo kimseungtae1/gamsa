@@ -67,5 +67,15 @@ public class SpringPhotoUploadDao implements PhotoUploadDao {
 				return result;
 		}
 
-	
+	@Override
+	public List<PhotoUpload> getList(int page, String field, String query) {
+		String sql = "select * from PhotoUpload order by cast(id as unsigned) desc limit ?,10";
+		
+		List<PhotoUpload> list = template.query(
+				sql,
+				new Object[] {(page-1)*10},  //첫번째 물음표, 두번째 물음표
+				BeanPropertyRowMapper.newInstance(PhotoUpload.class));
+		
+		return list;
+	}
 }
