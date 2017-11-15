@@ -21,10 +21,8 @@
 		<c:set var="TextValue" value="${n.src}"/>
 			${n.src}<br/>	
 			<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
-			<%-- ${fn:replace(TextValue, '\', '/')} --%>
-			${fn:substringAfter(reTextValue,'wtpwebapps')}
 			<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
-			${n.regDate}<br/>
+			<img src="${path}/resource/upload/2017/2/bbb.png"/>
 			<hr/>
 		</c:forEach>
 		
