@@ -48,11 +48,7 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 		return qnaReply;
 	}
 	
-	@Override
-	public int insert(QnaReply qnaReply) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int update(QnaReply qnaReply) {
@@ -65,6 +61,46 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 	public int delete(String id) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+
+	@Override
+	public int insert(String content, String qnaId) {
+		// TODO Auto-generated method stub
+		return insert(new QnaReply(content, qnaId));
+	}
+
+
+
+	@Override
+	 //  @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
+	public int insert(QnaReply qnaReply) {
+		String sql = "insert into QnaReply(id,content,qnaId,AnswerWriterId) values(?,?,?,?)";
+		 User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      System.out.println("username = " + user.getUsername());
+	      
+	      int result=template.update(sql, getNextId(), qnaReply.getContent(), qnaReply.getQnaId(), user.getUsername());
+	      
+	      
+	      
+
+	      
+
+	      return result;
+	}
+
+
+	@Override
+	public String getNextId() {
+
+		String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from QnaReply";
+		
+		String result = template.queryForObject(
+				sql,
+				String.class);
+		
+		return result;
 	}
 	
 

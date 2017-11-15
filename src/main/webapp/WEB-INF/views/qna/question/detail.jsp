@@ -2,27 +2,44 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
+
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
 
 
 function formSubmit() {
     var params = jQuery("#formname1").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
     console.log(params);
     jQuery.ajax({
+    	beforeSend: function(xhr) {
+            xhr.setRequestHeader(header, token);
+        },
+        /* url: '${path}/qna/detail/regcomment', */
         url: '${path}/qna/detail/regcomment',
         type: 'POST',
         data:params,
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
         dataType: 'html',
-        success: function (result) {
-            if (result){
-                // 데이타 성공일때 이벤트 작성
-            }
-        }
+        success: function(data){
+            // 성공 했을 때 처리
+            alert("sucsess");
+            },
+             error:function(request,status,error){
+                alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+               },
+             complete : function(data) {
+                         //  실패했어도 완료가 되었을 때 처리
+                         alert("end");
+                }
+
+
     });
 }
 </script>
@@ -114,6 +131,9 @@ function formSubmit() {
 				</div> --%>
 			</div>
 	
+	<input type="hidden"
+	name="${_csrf.parameterName}"
+	value="${_csrf.token}"/>
 		</form>				
 	
 

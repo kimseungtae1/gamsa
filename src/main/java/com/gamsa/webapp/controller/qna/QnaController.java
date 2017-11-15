@@ -3,6 +3,7 @@ package com.gamsa.webapp.controller.qna;
 
 
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.security.auth.message.callback.SecretKeyCallback.Request;
@@ -45,6 +47,7 @@ import com.gamsa.webapp.entity.QnaReply;
 public class QnaController {
 	@Autowired
 	private QnaDao qnaDao;
+	@Autowired
 	private QnaReplyDao qnaReplayDao;
 	
 	
@@ -114,30 +117,27 @@ public class QnaController {
 		
 		return "redirect:../list";
 	}
-	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
-	public Map<String, String> regInsert( @RequestParam(value = "comment") String comment) {
+	
+/*	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
+	public Map<String, String> regInsert( @RequestParam(value = "content") String content,
+			@RequestParam(value = "qnaId") String qnaId) {
+		
+		qnaReplayDao.insert(content, qnaId);
+		return null;
     	
-    		
-			return qnaReplayDao.insert(comment);;
     	        
+	}*/
 
+	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
+	public Map<String, String> regInsert( @RequestParam(value = "content",defaultValue="error") String content,
+			@RequestParam(value = "qnaId",defaultValue="error") String qnaId) {
+		System.out.println(content);
+		System.out.println(qnaId);
+		qnaReplayDao.insert(content, qnaId);
+		return null;
+    	
     	        
 	}
-	
-
-
-
-/*	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
-	public Map<String , String> Reply(HttpServletRequest request) {
-	    //String title = request.getParameter("title");
-	    String content = request.getParameter("content");    
-	 
-	    Map<String , String> Map = new HashMap<String, String>();
-	    Map.put("key", "value");
-
-	    return Map;
-	}*/
-	
 
 
 	
