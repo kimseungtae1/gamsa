@@ -6,10 +6,12 @@ import com.gamsa.webapp.entity.Photo;
 
 public interface PhotoDao {
 	
-	int insert(String title, String explain, String writerId);
+	int insert(String title, String explain, String replyId, String writerId);
 	int insert(Photo photo);
 	String getNextId();
-	int getList();
+	//Photo getwriterId(String id);
+	//List<PhotoUpload> getList(int page, String field, String query);
+
 
 
 }

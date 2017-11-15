@@ -12,5 +12,7 @@ public interface PhotoUploadDao {
 	int insert(int id, String src, String photoId, String writerId);
 
 	String getNextId();
+
+	List<PhotoUpload> getList(int page, String field, String query);
 	
 }

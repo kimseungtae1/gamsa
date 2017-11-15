@@ -10,13 +10,13 @@
 </head>
 <body>
 	<main id="main">
+		<%-- <img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		
+		<img class="img-box" src="${path}/resource/images/key1.JPG"/> --%>
+		<c:forEach var="n" items="${list}">${n.src}</c:forEach>
 		
 		<div class="tag-section">
 			<div class="tag-section-child">#태그1#태그2#태그3</div>
