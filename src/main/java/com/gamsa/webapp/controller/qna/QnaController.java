@@ -129,15 +129,22 @@ public class QnaController {
 	}*/
 
 	@RequestMapping(value="detail/regcomment", method=RequestMethod.POST)
-	public Map<String, String> regInsert( @RequestParam(value = "content",defaultValue="error") String content,
+	public Map<String, String> regcomment( @RequestParam(value = "content",defaultValue="error") String content,
+			@RequestParam(value = "qnaId",defaultValue="error") String qnaId) {
+
+		qnaReplayDao.insert(content, qnaId);
+		return null; 	    	        
+	}
+	
+	@RequestMapping(value="detail/commentlist", method=RequestMethod.GET)
+	public Map<String, String> commentlist( @RequestParam(value = "content",defaultValue="error") String content,
 			@RequestParam(value = "qnaId",defaultValue="error") String qnaId) {
 		System.out.println(content);
 		System.out.println(qnaId);
 		qnaReplayDao.insert(content, qnaId);
-		return null;
-    	
-    	        
+		return null; 	    	        
 	}
+	
 
 
 	

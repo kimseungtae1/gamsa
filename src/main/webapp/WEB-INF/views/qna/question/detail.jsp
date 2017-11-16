@@ -10,12 +10,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
+
+
+
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 
 
 function formSubmit() {
-    var params = jQuery("#formname1").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.
+    var params = jQuery("#formname1").serialize(); // serialize() : 입력된 모든Element(을)를 문자열의 데이터에 serialize 한다.ide=54&
     console.log(params);
     jQuery.ajax({
     	beforeSend: function(xhr) {
@@ -41,6 +44,43 @@ function formSubmit() {
 
 
     });
+    
+    function commentList(){
+        $.ajax({
+            url : '${path}/qna/detail/commentlist',
+            type : 'get',
+            data : {'qnaId':qnaId},
+            success : function(data){
+                var a =''; 
+                $.each(data, function(key, value){ 
+                    a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                    a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+                    a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+                    a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+                    a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
+                    a += '</div></div>';
+                });
+                
+                $(".commentList").html(a);
+            },
+             error:function(request,status,error){
+                alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+               }
+        });
+    }
+
+
+
+    
+    
+    
+
+    $(document).ready(function(){
+        commentList(); //페이지 로딩시 댓글 목록 출력 
+    });
+
+    
+    
 }
 </script>
 
@@ -135,7 +175,9 @@ function formSubmit() {
 	name="${_csrf.parameterName}"
 	value="${_csrf.token}"/>
 		</form>				
-	
+	   <div class="container">
+        <div class="commentList"></div>
+    </div>
 
 	
 	<div class="view_wrap">
@@ -152,5 +194,10 @@ function formSubmit() {
 			<%-- </c:forEach> --%>
 		</table>
 	</div>
+	
+
+
+
+
 	
 </main>
