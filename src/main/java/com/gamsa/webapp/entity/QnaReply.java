@@ -26,14 +26,14 @@ public class QnaReply {
 
 
 
-/*	public QnaReply(String id, String content, Date regDate, String qnaId, String answerWriterId) {
+	public QnaReply(String id, String content, Date regDate, String qnaId, String answerWriterId) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.regDate = regDate;
 		this.qnaId = qnaId;
 		this.answerWriterId = answerWriterId;
-	}*/
+	}
 
 	public String getId() {
 		return id;

@@ -34,7 +34,7 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 	@Autowired
 	private JdbcTemplate template;
 
-	@Override
+/*	@Override
 	public QnaReply get(String id) {
 		String sql = "select * from QnaReply where id=?"; //sql문에 정해지지않은 부분은... object배열의 인자를 넣어줌으로써 해결한다!
 		
@@ -46,7 +46,7 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 		
 		
 		return qnaReply;
-	}
+	}*/
 	
 
 
@@ -101,6 +101,30 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 				String.class);
 		
 		return result;
+	}
+
+/*
+ 	@Override
+	public List<Notice> getList(int page, String field, String query) {
+
+		String sql = "select * from Notice where " + field + " like ? order by regDate desc limit ?,10";
+		
+		List<Notice> list = template.query(
+				sql,
+				new Object[] {"%"+query+"%" , (page-1)*10},  //첫번째 물음표, 두번째 물음표
+				BeanPropertyRowMapper.newInstance(Notice.class));
+		
+		return list;
+	}
+ */
+	@Override
+	public List<QnaReply> getList(String qnaId) {
+		String sql = "select * from QnaReply where qnaId=? order by regDate desc;";
+		List<QnaReply> list = template.query(
+				sql,
+				new Object[] {qnaId},  //첫번째 물음표, 두번째 물음표
+				BeanPropertyRowMapper.newInstance(QnaReply.class));
+		return list;
 	}
 	
 
