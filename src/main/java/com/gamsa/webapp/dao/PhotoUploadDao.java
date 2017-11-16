@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gamsa.webapp.entity.Photo;
 import com.gamsa.webapp.entity.PhotoUpload;
+import com.gamsa.webapp.entity.PhotoView;
 
 public interface PhotoUploadDao {
 
@@ -13,6 +14,6 @@ public interface PhotoUploadDao {
 
 	String getNextId();
 
-	List<PhotoUpload> getList(int page, String field, String query);
+	List<PhotoView> getList(int page, String field, String query);
 	
 }
