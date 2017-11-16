@@ -56,22 +56,11 @@ public class SpringPhotoUploadDao implements PhotoUploadDao {
 		return insert(new PhotoUpload(id, src, photoId, writerId));
 	}
 
-	@Override
-	public String getNextId() {
-		
-		String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from PhotoUpload";
-				
-				String result = template.queryForObject(
-						sql,
-						String.class);
-				
-				return result;
-		}
 
 	@Override
 	public List<PhotoView> getList(int page, String field, String query) {
 		//String sql = "select * from PhotoView order by cast(id as unsigned) desc limit ?,10";
-				String sql = "select * from PhotoView order by regDate desc limit ?,10";
+		String sql = "select * from PhotoView order by regDate desc limit ?,10";
 		
 		List<PhotoView> list = template.query(
 				sql,
@@ -80,4 +69,18 @@ public class SpringPhotoUploadDao implements PhotoUploadDao {
 		
 		return list;
 	}
+	
+	
+	@Override
+	public String getNextId() {
+		
+		String sql = "select ifnull(max(cast(id as unsigned)),0) + 1 from PhotoUpload";
+		
+		String result = template.queryForObject(
+				sql,
+				String.class);
+		
+		return result;
+	}
+
 }

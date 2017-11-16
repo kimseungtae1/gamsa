@@ -59,6 +59,17 @@ public class PhotoController {
 		
 	}
 	
+	@RequestMapping("detail/{id}")
+	public String photoDetail(@PathVariable("id") String id, Model model) {
+		
+		model.addAttribute("p", photoDao.get(id));
+		/*model.addAttribute("prev", noticeDao.getPrev(id));
+		model.addAttribute("next", noticeDao.getNext(id));*/
+		
+		//return "customer/notice-detail";
+		return "photo.detail";
+	}
+	
 	@RequestMapping(value="upload/reg", method=RequestMethod.GET)
 	public String photoReg() {
 		

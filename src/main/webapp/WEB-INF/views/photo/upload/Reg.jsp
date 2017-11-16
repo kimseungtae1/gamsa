@@ -7,15 +7,45 @@
 <head>
 <title>Insert title here</title>
 <meta charset="UTF-8">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 $(function () {
-    var obj = $(".view_big_img");
-    var submitbutton = $("#uploadForm input[type='submit']");
-    
 
-    obj.on('dragenter', function (e) {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
+	$(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+	
+    var drop = document.querySelector(".view_big_img");
+    var submitbutton = $("#uploadForm input[type='submit']");
+    var form = $("#form");
+    
+    drop.ondragover = function(e){
+    	e.preventDefault();
+    };
+    
+    drop.ondrop = function(e) {
+   	  e.preventDefault(); // 이 부분이 없으면 파일을 브라우저 실행해버립니다.
+   	  var data = e.dataTransfer;
+   	  if (data.items) { // DataTransferItemList 객체 사용
+   	    for (var i = 0; i < data.items.length; i++) { // DataTransferItem 객체 사용
+   	      if (data.items[i].kind == "file") { // 아이템 종류가 파일이면
+   	        var file = data.items[i].getAsFile(); // File API 사용
+   	        alert(file.name);
+   	      }
+   	    }
+   	  } else { // File API 사용
+   	    for (var i = 0; i < data.files.length; i++) {
+   	      alert(data.files[i].name);
+   	    }
+   	  };
+    };
+    /* obj.on('dragenter', function (e) {
          e.stopPropagation();
          e.preventDefault();
          $(this).css('border', '2px solid #5272A0');
@@ -39,9 +69,15 @@ $(function () {
          var files = e.originalEvent.dataTransfer.files;
          if(files.length < 1)
               return;
-
-         F_FileMultiUpload(files, obj);
+        // F_FileMultiUpload(files, obj);
+    }); */
+    
+    submitbutton.click(function(){
+        alert("success");
+        F_FileMultiUpload(files, obj);
+    	form.submit();
     });
+    
 
   //파일 멀티 업로드
     function F_FileMultiUpload(files, obj) {
@@ -52,11 +88,12 @@ $(function () {
     	    for (var i = 0; i < files.length; i++) {
     	   	  formData.append('file', files[i]);
     	    }
-    	 
-    	    var url = "../../../../gamsung/photo/upload?${_csrf.parameterName}=${_csrf.token}";
-    	    //var url = "Reg.jsp";
+    	    
+    	    formData.append("title", $("input[name=title]").val()); 
+    	    formData.append("explain", $("textarea[name=explain]").text()); 
+
     	    $.ajax({
-    	       url: url,
+    	       url: "${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}",
     	       method: 'post',
     	       data: formData,
     	       enctype:"multipart/form-data",
@@ -88,6 +125,7 @@ $(function () {
 			<div class="view_wrap" id="view_top">
 				
 				<%-- <form id="uploadForm" action="${path}/photo/upload/reg?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"> --%> 
+				<form id="uploadForm" action="${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 					<div class="view_big_img">
 						<img src="" alt="사진을 넣으세요!">
 						<!-- <input class="" type="submit" value="사진 업로드"/> -->
@@ -95,7 +133,6 @@ $(function () {
 					</div>				
 
 				
-				<form action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 					<div class="profile">
 						<div class="left">
 							<h2 class="font-h2">제목

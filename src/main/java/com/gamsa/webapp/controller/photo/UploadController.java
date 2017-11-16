@@ -19,23 +19,25 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gamsa.webapp.dao.NoticeDao;
+import com.gamsa.webapp.dao.PhotoDao;
 import com.gamsa.webapp.dao.PhotoUploadDao;
-import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.PhotoUpload;
+import com.gamsa.webapp.entity.Photo;
 
 @Controller
 @RequestMapping("/photo/*")
 public class UploadController {
 
+	private PhotoDao photoDao;
+	
 	@Autowired
 	private PhotoUploadDao photoUploadDao;
 	
@@ -50,9 +52,14 @@ public class UploadController {
 	public String noticeReg(
 			MultipartFile file,
 			PhotoUpload photoUpload,
+			Photo photo,
 			HttpServletRequest request
-			) throws IOException{
-
+			) throws IOException{		
+		//사진 설명 입력
+		photoDao.insert(photo);
+		
+		
+		//사진 저장주소 입력
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		
@@ -86,9 +93,14 @@ public class UploadController {
 		
 		String fileName = file.getOriginalFilename(); //db연동하기전에 파일이 넘어오는지 확인해야한다.
 		System.out.println(fileName);
-
+		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		//String photoId = photoUploadDao.getPhotoId();
+		//String writerId = photoDao.getWriterId();
+		
         String src = path;
-        photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));
+        photoUploadDao.insert(new PhotoUpload(nextId, src, photo.getReplyId(), photo.getWriterId()));//id  src  photoId  writerId
         
         
 		

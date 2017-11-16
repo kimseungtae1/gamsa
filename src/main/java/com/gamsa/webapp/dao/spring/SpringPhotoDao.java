@@ -26,6 +26,7 @@ import com.gamsa.webapp.dao.NoticeDao;
 import com.gamsa.webapp.dao.PhotoDao;
 import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Photo;
+import com.gamsa.webapp.entity.PhotoView;
 
 public class SpringPhotoDao implements PhotoDao {
 	
@@ -71,6 +72,20 @@ public class SpringPhotoDao implements PhotoDao {
 			
 			return result;
 	}
+
+	@Override
+	public PhotoView get(String id) {
+		String sql = "select * from PhotoView where id=?";
+	
+		PhotoView photo = template.queryForObject(
+				sql, 
+				new Object[] {id},
+				BeanPropertyRowMapper.newInstance(PhotoView.class));
+		
+		return photo;
+	}
+
+
 
 	
 
