@@ -22,9 +22,9 @@
 			${n.src}<br/>	
 			<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
 			<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
-			<img src="${path}/resource/upload/2017/2/bbb.png"/>
 			<hr/>
 		</c:forEach>
+			<img src="${path}/resource/upload/2017/2/bbb.png"/>
 		
 		<div class="tag-section">
 			<div class="tag-section-child">#태그1#태그2#태그3</div>
