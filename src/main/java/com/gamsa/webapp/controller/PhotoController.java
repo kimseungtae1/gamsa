@@ -79,10 +79,12 @@ public class PhotoController {
 	@RequestMapping(value="upload/reg", method=RequestMethod.POST)
 	public String photoReg(
 			HttpServletRequest request,
+			PhotoUpload photoUpload,
 			Photo photo
 			) throws UnsupportedEncodingException {
 		
 		photoDao.insert(photo);
+		photoUploadDao.update(photoUpload);
 		//model.addAttribute("user", photoDao.getwriterId());
 		
 		return "redirect:../../index";

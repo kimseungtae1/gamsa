@@ -42,8 +42,8 @@ public class SpringPhotoDao implements PhotoDao {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public int insert(Photo photo) {
-		System.out.println(photo.getWriterId());
-		System.out.println(photo.getReplyId());
+		
+		
 		
 		String sql = "insert into Photo(id, title, `explain`, replyId, writerId) values(?, ?, ?, ?, ?)";
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -56,6 +56,9 @@ public class SpringPhotoDao implements PhotoDao {
 				photo.getExplain(), 
 				"kst",
 				user.getUsername());
+		
+		System.out.println("replyId : " + photo.getReplyId());
+		System.out.println("writerId : " + photo.getWriterId());
 		
 		return result;
 

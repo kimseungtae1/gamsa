@@ -55,8 +55,6 @@ public class UploadController {
 			Photo photo,
 			HttpServletRequest request
 			) throws IOException{		
-		//사진 설명 입력
-		photoDao.insert(photo);
 		
 		
 		//사진 저장주소 입력
@@ -100,7 +98,9 @@ public class UploadController {
 		//String writerId = photoDao.getWriterId();
 		
         String src = path;
-        photoUploadDao.insert(new PhotoUpload(nextId, src, photo.getReplyId(), photo.getWriterId()));//id  src  photoId  writerId
+        photoUploadDao.insert(new PhotoUpload(nextId, src, null, null));//id  src  photoId  writerId
+        //photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));//id  src  photoId  writerId
+        
         
         
 		

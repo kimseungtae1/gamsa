@@ -6,12 +6,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.support.DaoSupport;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,7 +30,7 @@ import com.gamsa.webapp.entity.Photo;
 import com.gamsa.webapp.entity.PhotoUpload;
 import com.gamsa.webapp.entity.PhotoView;
 
-public class SpringPhotoUploadDao implements PhotoUploadDao {
+public class SpringPhotoUploadDao implements PhotoUploadDao{
 	
 	@Autowired
 	private JdbcTemplate template;
@@ -82,5 +84,45 @@ public class SpringPhotoUploadDao implements PhotoUploadDao {
 		
 		return result;
 	}
+
+	@Override
+	public String getPhotoId() {
+		String sql = "select writerId from Photo where id=?";
+		
+		String result = template.queryForObject(
+				sql, 
+				new Object[] {},
+				String.class);
+		return result;
+		
+	}
+
+	@Override
+	public int update(PhotoUpload photoUpload) {
+		String sql = "update PhotoUpload set photoId = ? , writerId = ? where id = ?";  
+			      
+		int result=template.update(sql
+				, photoUpload.getPhotoId()
+				, photoUpload.getWriterId()
+				, photoUpload.getId());
+		
+		return result;
+	}
+	//사진 내용 입력후 폼 전송시에 실행되는 photoUpload의 photoId와 writerId가 photo의 id에 맞춰서 수정되는 부분 ==> view에서 합쳐진다
+	//update PhotoUpload set photoId = (select ifnull(max(cast(id as unsigned)),0) from Photo) , writerId = 'admin' where id = (select ifnull(max(cast(id as unsigned)),0) from Photo);
+	
+	@Override
+	public int update(String photoId, String writerId, String id) {
+		String sql = "update PhotoUpload set photoId = ? , writerId = ? where id = ?";
+		String sql2 = "select ifnull(max(cast(id as unsigned)),0) from Photo";
+				   
+		int result = 0;
+		result = template.queryForObject(sql
+				   ,Integer.class);
+		result += 
+		   
+		return result;
+	}
+
 
 }
