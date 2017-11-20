@@ -97,7 +97,7 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 		
 	}
 
-	@Override
+	/*@Override
 	public int update(PhotoUpload photoUpload) {
 		String sql = "update PhotoUpload set photoId = ? , writerId = ? where id = ?";  
 			      
@@ -107,11 +107,11 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 				, photoUpload.getId());
 		
 		return result;
-	}
+	}*/
 	//사진 내용 입력후 폼 전송시에 실행되는 photoUpload의 photoId와 writerId가 photo의 id에 맞춰서 수정되는 부분 ==> view에서 합쳐진다
 	//update PhotoUpload set photoId = (select ifnull(max(cast(id as unsigned)),0) from Photo) , writerId = 'admin' where id = (select ifnull(max(cast(id as unsigned)),0) from Photo);
 	
-	@Override
+	/*@Override
 	public int update(String photoId, String writerId, String id) {
 		String sql = "update PhotoUpload set photoId = ? , writerId = ? where id = ?";
 		String sql2 = "select ifnull(max(cast(id as unsigned)),0) from Photo";
@@ -122,7 +122,7 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 		result += 
 		   
 		return result;
-	}
+	}*/
 
 
 }
