@@ -2,6 +2,7 @@ package com.gamsa.webapp.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.userdetails.User;
 
 import com.gamsa.webapp.entity.Photo;
@@ -16,7 +17,7 @@ public interface PhotoUploadDao {
 
 	String getNextId();
 
-	List<PhotoView> getList(int page, String field, String query);
+	List<PhotoView> getList(@Param("page") int page, String field, String query);
 
 	String getPhotoId();
 

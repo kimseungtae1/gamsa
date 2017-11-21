@@ -49,7 +49,6 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 					, photoUpload.getWriterId());
 
 		return result;
-
 	}
 
 	@Override
@@ -66,7 +65,7 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 		
 		List<PhotoView> list = template.query(
 				sql,
-				new Object[] {(page-1)*10},  //첫번째 물음표, 두번째 물음표
+				new Object[] {(page-1)*10},  //두번째 물음표
 				BeanPropertyRowMapper.newInstance(PhotoView.class));
 		
 		return list;
@@ -94,7 +93,18 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 				new Object[] {},
 				String.class);
 		return result;
-		
+	}
+
+	@Override
+	public int update(PhotoUpload photoUpload) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(String photoId, String writerId, String id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	/*@Override
