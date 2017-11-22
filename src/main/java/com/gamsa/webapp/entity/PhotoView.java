@@ -11,6 +11,7 @@ public class PhotoView extends Photo{
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	public PhotoView(String id, String title, String explain, Date regDate, int liked, String replyId, String writerId) {
 		super(id, title, explain, regDate, liked, replyId, writerId);
 	}

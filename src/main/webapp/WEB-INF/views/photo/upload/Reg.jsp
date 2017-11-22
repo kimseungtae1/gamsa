@@ -22,8 +22,15 @@ $(function () {
     });
 	
     var obj = $(".view_big_img");
-    var submitbutton = $("#uploadForm input[type='submit']");
+    var submitButton = $("#uploadForm input[type='submit']");
+    var resetButton = $("#uploadForm input[type='reset']");
     var form = $("#form");
+    
+    resetButton.click(function(event){
+    	event.stopPropagation();
+    	event.preventDefault();
+    	location.href = "${path}/photo/delete";
+    });
     
     /* drop.ondragover = function(e){
     	e.preventDefault();
@@ -73,7 +80,7 @@ $(function () {
          F_FileMultiUpload(files, obj);
     });
     
-    /* submitbutton.click(function(){
+    /* submitButton.click(function(){
         alert("success");
         F_FileMultiUpload(files, obj);
     	form.submit();
