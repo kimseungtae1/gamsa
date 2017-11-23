@@ -97,7 +97,7 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 
 	@Override
 	public int delete() {
-		String sql = "delete from PhotoUpload where id = ifnull(max(cast(id as unsigned)),0)";
+		String sql = "delete from PhotoUpload where id = (select * from (select ifnull(max(cast(id as unsigned)),0) from PhotoUpload) A)";
 		
 		int result = 0;
 		
