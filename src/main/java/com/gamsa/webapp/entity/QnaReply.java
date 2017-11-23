@@ -10,7 +10,11 @@ public class QnaReply {
 	private String qnaId;
 	private String answerWriterId;
 	
-	
+/*	private String id;
+	private String content;
+	private Date date;
+	private String freeId;
+	private String writerId;*/
 	
 	
 	public QnaReply() {

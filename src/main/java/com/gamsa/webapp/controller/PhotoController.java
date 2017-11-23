@@ -49,7 +49,7 @@ public class PhotoController {
 	@RequestMapping("list")
 	public String photoList(
 			@RequestParam(value="p", defaultValue="1") Integer page,
-			@RequestParam(value="t", defaultValue="title") String field, //title을 기본값으로 검색하겠다
+			@RequestParam(value="t", defaultValue="") String field, //title을 기본값으로 검색하겠다
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model
 			) {

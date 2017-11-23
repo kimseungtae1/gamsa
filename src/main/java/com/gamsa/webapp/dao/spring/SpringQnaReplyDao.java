@@ -34,20 +34,7 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 	@Autowired
 	private JdbcTemplate template;
 
-/*	@Override
-	public QnaReply get(String id) {
-		String sql = "select * from QnaReply where id=?"; //sql문에 정해지지않은 부분은... object배열의 인자를 넣어줌으로써 해결한다!
-		
-		
-		QnaReply qnaReply = template.queryForObject(
-				sql, 
-				new Object[] {id},
-				BeanPropertyRowMapper.newInstance(QnaReply.class));
-		
-		
-		return qnaReply;
-	}*/
-	
+
 
 
 	@Override
@@ -65,15 +52,10 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 
 
 
-	@Override
-	public int insert(String content, String qnaId) {
-		// TODO Auto-generated method stub
-		return insert(new QnaReply(content, qnaId));
-	}
 
 
 
-	@Override
+/*	@Override
 	 //  @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
 	public int insert(QnaReply qnaReply) {
 		String sql = "insert into QnaReply(id,content,qnaId,AnswerWriterId) values(?,?,?,?)";
@@ -89,7 +71,7 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 
 	      return result;
 	}
-
+*/
 
 	@Override
 	public String getNextId() {
@@ -103,28 +85,37 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 		return result;
 	}
 
-/*
- 	@Override
-	public List<Notice> getList(int page, String field, String query) {
-
-		String sql = "select * from Notice where " + field + " like ? order by regDate desc limit ?,10";
-		
-		List<Notice> list = template.query(
-				sql,
-				new Object[] {"%"+query+"%" , (page-1)*10},  //첫번째 물음표, 두번째 물음표
-				BeanPropertyRowMapper.newInstance(Notice.class));
-		
-		return list;
-	}
- */
 	@Override
-	public List<QnaReply> getList(String qnaId) {
-		String sql = "select * from QnaReply where qnaId=? order by regDate desc;";
+	public List<QnaReply> getUpdateList(String qnaId, String cId) {
+		String sql = "select * from QnaReply where qnaId=? and id >? order by regDate asc;";
 		List<QnaReply> list = template.query(
 				sql,
-				new Object[] {qnaId},  //첫번째 물음표, 두번째 물음표
+				new Object[] {qnaId,cId},  //첫번째 물음표, 두번째 물음표
 				BeanPropertyRowMapper.newInstance(QnaReply.class));
 		return list;
+	}
+
+
+	@Override
+	public int insert(String content, String qnaId, String writerid) {
+		String sql = "insert into QnaReply(id,content,qnaId,answerWriterId) values(?,?,?,?)";
+		int result = template.update(sql,getNextId(),content,qnaId,writerid);
+		
+		return result;
+	}
+
+
+	@Override
+	public int insert(QnaReply qnaReply) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<QnaReply> getList(String qnaId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
