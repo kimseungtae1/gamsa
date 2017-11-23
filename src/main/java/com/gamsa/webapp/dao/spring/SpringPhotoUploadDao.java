@@ -59,13 +59,13 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 
 
 	@Override
-	public List<PhotoView> getList(int page, String field, String query) {
+	public List<PhotoView> getList(/*int page, String field, String query*/) {
 		//String sql = "select * from PhotoView order by cast(id as unsigned) desc limit ?,10";
-		String sql = "select * from PhotoView order by regDate desc limit ?,10";
+		//String sql = "select * from PhotoView order by regDate desc limit ?,10";
+		String sql = "select * from PhotoView order by cast(id as unsigned) desc";
 		
 		List<PhotoView> list = template.query(
 				sql,
-				new Object[] {(page-1)*10},  //두번째 물음표
 				BeanPropertyRowMapper.newInstance(PhotoView.class));
 		
 		return list;
@@ -96,6 +96,17 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 	}
 
 	@Override
+	public int delete() {
+		String sql = "delete from PhotoUpload where id = (select * from (select ifnull(max(cast(id as unsigned)),0) from PhotoUpload) A)";
+		
+		int result = 0;
+		
+		result = template.update(sql);
+
+		return result;
+	}
+
+	/*@Override
 	public int update(PhotoUpload photoUpload) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -105,7 +116,7 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 	public int update(String photoId, String writerId, String id) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
+	}*/
 
 	/*@Override
 	public int update(PhotoUpload photoUpload) {

@@ -48,13 +48,13 @@ public class PhotoController {
 	
 	@RequestMapping("list")
 	public String photoList(
-			@RequestParam(value="p", defaultValue="1") Integer page,
-			@RequestParam(value="t", defaultValue="") String field, //title�� �⺻������ �˻��ϰڴ�
-			@RequestParam(value="q", defaultValue="") String query,
-			Model model
-			) {
-		model.addAttribute("list", photoUploadDao.getList(page, field, query));
-		
+			/*@RequestParam(value="p", defaultValue="1") Integer page,
+			@RequestParam(value="t", defaultValue="title") String field, //title을 기본값으로 검색하겠다
+			@RequestParam(value="q", defaultValue="") String query,*/
+			Model model) {
+
+		model.addAttribute("list", photoUploadDao.getList(/*page, field, query*/));
+
 		return "photo.list";
 		
 	}
@@ -88,6 +88,58 @@ public class PhotoController {
 		//model.addAttribute("user", photoDao.getwriterId());
 		
 		return "redirect:../../index";
+	}
+	
+	@RequestMapping("delete")
+	public String photoDelete(
+			/*@RequestParam(value="p", defaultValue="1") Integer page,
+			@RequestParam(value="t", defaultValue="title") String field, //title을 기본값으로 검색하겠다
+			@RequestParam(value="q", defaultValue="") String query,*/
+			HttpServletRequest request,
+			Model model) {
+
+		photoUploadDao.delete();
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		
+		int nextId = Integer.parseInt(photoUploadDao.getNextId());
+		
+		ServletContext ctx = request.getServletContext();
+		System.out.println(ctx);
+        String path = ctx.getRealPath(String.format("/resource/upload/%s/%d", year, nextId));
+        System.out.println(path);
+        
+        File file = new File(path);
+        
+        if( file.exists() ){ //파일존재여부확인
+             
+            if(file.isDirectory()){ //파일이 디렉토리인지 확인
+                 
+                File[] files = file.listFiles();
+                 
+                for( int i=0; i<files.length; i++){
+                    if( files[i].delete() ){
+                        System.out.println(files[i].getName()+" 삭제성공");
+                    }else{
+                        System.out.println(files[i].getName()+" 삭제실패");
+                    }
+                }
+                 
+            }
+            if(file.delete()){
+                System.out.println("파일삭제 성공");
+            }else{
+                System.out.println("파일삭제 실패");
+            }
+             
+        }else{
+            System.out.println("파일이 존재하지 않습니다.");
+        }
+		//model.addAttribute("list", photoUploadDao.getList(/*page, field, query*/));
+
+		return "redirect:../index";
+		
 	}
 }
 

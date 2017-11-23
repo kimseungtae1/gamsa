@@ -22,29 +22,11 @@ $(function () {
     });
 	
     var obj = $(".view_big_img");
-    var submitbutton = $("#uploadForm input[type='submit']");
+    var submitButton = $("#uploadForm input[type='submit']");
+    var resetButton = $("#uploadForm input[type='reset']");
     var form = $("#form");
-    
-    /* drop.ondragover = function(e){
-    	e.preventDefault();
-    };
-    
-    drop.ondrop = function(e) {
-  	  e.preventDefault(); // 이 부분이 없으면 파일을 브라우저 실행해버립니다.
-  	  var data = e.dataTransfer;
-  	  if (data.items) { // DataTransferItemList 객체 사용
- 	    for (var i = 0; i < data.items.length; i++) { // DataTransferItem 객체 사용
- 	      if (data.items[i].kind == "file") { // 아이템 종류가 파일이면
- 	        var file = data.items[i].getAsFile(); // File API 사용
- 	        alert(file.name);
- 	      }
- 	    }
-  	  } else { // File API 사용
-  	    for (var i = 0; i < data.files.length; i++) {
-  	      alert(data.files[i].name);
-  	    }
-  	  };
-    }; */
+    var files = "";
+  
     
     obj.on('dragenter', function (e) {
          e.stopPropagation();
@@ -67,13 +49,20 @@ $(function () {
          e.preventDefault();
          obj.css('border', '2px dotted #8296C2');
 
-         var files = e.originalEvent.dataTransfer.files;
+         //var files = e.originalEvent.dataTransfer.files;
+         files = e.originalEvent.dataTransfer.files;
          if(files.length < 1)
               return;
          F_FileMultiUpload(files, obj);
     });
-    
-    /* submitbutton.click(function(){
+
+    resetButton.click(function(event){
+    	event.stopPropagation();
+    	event.preventDefault();
+    	alert("사진업로드가 취소되었습니다.");
+    	location.href = "${path}/photo/delete";
+    });
+    /* submitButton.click(function(){
         alert("success");
         F_FileMultiUpload(files, obj);
     	form.submit();

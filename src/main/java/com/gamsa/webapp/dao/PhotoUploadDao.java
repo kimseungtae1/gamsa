@@ -17,13 +17,15 @@ public interface PhotoUploadDao {
 
 	String getNextId();
 
-	List<PhotoView> getList(@Param("page") int page, String field, String query);
+	List<PhotoView> getList(/*int page, String field, String query*/);
 
 	String getPhotoId();
 
-	int update(PhotoUpload photoUpload);
+	int delete();
+
+	/*int update(PhotoUpload photoUpload);
 	
-	int update(String photoId, String writerId, String id);
+	int update(String photoId, String writerId, String id);*/
 
 	
 
