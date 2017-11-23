@@ -23,9 +23,11 @@ public interface PhotoUploadDao {
 
 	int delete();
 
-	/*int update(PhotoUpload photoUpload);
+	int update(String id);
+
+	/*int update(Photo photo);
 	
-	int update(String photoId, String writerId, String id);*/
+	int update(String photoId);*/
 
 	
 
