@@ -75,6 +75,7 @@
 <script>	
 	var count = 0;
 	$(function() {
+		
 		var updateComment = function() {
 
 			
@@ -95,15 +96,17 @@
 						+ fianlCommentLastId, function(data) {
 						
 						//alert(data);
-						if(data=="[]")
+						/* if(data=="[]")
 							alert("최신댓글입니다.");
-						else{
+						else{ */
 							var json =JSON.parse(data);//data를 json형식으로 만들어줌
 				
 	 						for (var i = 0; i < json.length; i++) {
 								var clone = $(document.importNode(template.prop("content"),
 										true));
+								$("template tr td").empty();
 								var tds = clone.find("td");
+								
 								tds.eq(0).text(json[i].answerWriterId);
 								tds.eq(1).text(json[i].content);
 								var date = new Date(parseInt(Date.parse(json[i].regDate)));
@@ -118,9 +121,15 @@
 								tbody.append(clone);// 복제된 clone(tr)을 노드 트리에 추가
 								count++;
 							}
-						}	
+						//}	
 				});
 			};
+			
+			updateComment();
+			
+		
+			
+			
 		//댓글을 다는 이벤트
 		$("#comment_reg")
 				.click(
@@ -152,11 +161,21 @@
 										contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 										type : 'POST',
 										async : false, //동기: false, 비동기: ture
-										data : objParams 								
+										data : objParams,
+										error : function(error) {
+									        alert("Error!");
+									    },
+									    success : function(gson) {
+									        alert("success!");
+									    }
+
+
+									
 								});
 
 							//댓글 초기화
-							$("#comment_content").val("");
+							//$("#comment_content").val("");
+							$("template tr td").empty();
 							updateComment();
 						}
 
