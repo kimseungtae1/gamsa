@@ -15,6 +15,9 @@ public interface PhotoDao {
 	//Photo getwriterId(String id);
 	//List<PhotoUpload> getList(int page, String field, String query);
 	PhotoView get(String id);
+	String getPhotoNextId();
+	String getWriterId();
+	String getPhotoWriterId();
 
 
 

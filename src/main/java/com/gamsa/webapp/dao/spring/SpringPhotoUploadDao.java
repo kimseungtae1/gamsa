@@ -106,6 +106,29 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 		return result;
 	}
 
+	@Override
+	public int update(String id) {
+		String sql = "update PhotoUpload set photoId = ? where id = (select ifnull(max(cast(id as unsigned)),0) from Photo)";  
+	      
+		int result=template.update(sql
+				, id);
+		System.out.println("id : "+id);
+
+		return result;
+	}
+
+	@Override
+	public int update2(String id) {
+		String sql = "update PhotoUpload set writerId = ? where id = (select ifnull(max(cast(id as unsigned)),0) from Photo)";  
+	      
+		int result=template.update(sql
+				, id);
+		System.out.println("writerId : "+id);
+
+		return result;
+		
+	}
+
 	/*@Override
 	public int update(PhotoUpload photoUpload) {
 		// TODO Auto-generated method stub
@@ -119,31 +142,22 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 	}*/
 
 	/*@Override
-	public int update(PhotoUpload photoUpload) {
-		String sql = "update PhotoUpload set photoId = ? , writerId = ? where id = ?";  
-			      
-		int result=template.update(sql
-				, photoUpload.getPhotoId()
-				, photoUpload.getWriterId()
-				, photoUpload.getId());
-		
-		return result;
+	public int update(String photoId) {
+		return update(photoId);
 	}*/
+	
 	//사진 내용 입력후 폼 전송시에 실행되는 photoUpload의 photoId와 writerId가 photo의 id에 맞춰서 수정되는 부분 ==> view에서 합쳐진다
 	//update PhotoUpload set photoId = (select ifnull(max(cast(id as unsigned)),0) from Photo) , writerId = 'admin' where id = (select ifnull(max(cast(id as unsigned)),0) from Photo);
-	
 	/*@Override
-	public int update(String photoId, String writerId, String id) {
-		String sql = "update PhotoUpload set photoId = ? , writerId = ? where id = ?";
-		String sql2 = "select ifnull(max(cast(id as unsigned)),0) from Photo";
-				   
-		int result = 0;
-		result = template.queryForObject(sql
-				   ,Integer.class);
-		result += 
-		   
-		return result;
-	}*/
+	public int update() {
+		String sql = "update PhotoUpload set photoId = ? where id = (select * from (select ifnull(max(cast(id as unsigned)),0) from Photo) A)";  
+			      
+		int result=template.update(sql
+				, );
+		System.out.println(photo.getId());
 
+		return result;
+	}
+*/
 
 }
