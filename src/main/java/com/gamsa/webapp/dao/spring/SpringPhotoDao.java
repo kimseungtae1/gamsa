@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,6 +26,7 @@ import com.gamsa.webapp.dao.NoticeDao;
 import com.gamsa.webapp.dao.PhotoDao;
 import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Photo;
+import com.gamsa.webapp.entity.PhotoView;
 
 public class SpringPhotoDao implements PhotoDao {
 	
@@ -32,14 +35,31 @@ public class SpringPhotoDao implements PhotoDao {
 
 	@Override
 	public int insert(String title, String explain, String replyId, String writerId) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return insert(new Photo(title, explain, replyId, writerId));
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public int insert(Photo photo) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		String sql = "insert into Photo(id, title, `explain`, replyId, writerId) values(?, ?, ?, ?, ?)";
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      System.out.println("username = " + user.getUsername());
+		  
+		int result=template.update(
+				sql, 
+				getNextId(), 
+				photo.getTitle(), 
+				photo.getExplain(), 
+				"kst",
+				user.getUsername());
+		
+		System.out.println("replyId : " + photo.getReplyId());
+		System.out.println("writerId : " + photo.getWriterId());
+		
+		return result;
+
 	}
 
 	@Override
@@ -55,10 +75,65 @@ public class SpringPhotoDao implements PhotoDao {
 	}
 
 	@Override
-	public int getList() {
-		// TODO Auto-generated method stub
-		return 0;
+	public PhotoView get(String id) {
+		String sql = "select * from PhotoView where id=?";
+	
+		PhotoView photo = template.queryForObject(
+				sql, 
+				new Object[] {id},
+				BeanPropertyRowMapper.newInstance(PhotoView.class));
+		
+		return photo;
 	}
+
+	@Override
+	public String getPhotoNextId() {
+		String sql = "select ifnull(max(cast(id as unsigned)),0) from Photo";
+		
+		String result = template.queryForObject(
+				sql,
+				String.class);
+		
+		return result;
+	}
+
+	@Override
+	public String getWriterId() {
+		/*User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    System.out.println("username = " + user.getUsername());*/
+	    
+		return null;
+	}
+
+	@Override
+	public String getPhotoWriterId() {
+		String sql = "select writerId from Photo where id = (select * from (select ifnull(max(cast(id as unsigned)),0) from Photo) A)";
+		
+		String result = template.queryForObject(
+				sql,
+				String.class);
+		
+		return result;
+	}
+
+
+
+	
+
+	/*@Override
+	public Photo getwriterId(String id) {
+		String sql = "select writerId from Photo where id = ?";
+		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("username = " + user.getUsername());
+		
+		Photo photo = template.queryForObject(
+				sql,
+				new Object[] {id},
+				BeanPropertyRowMapper.newInstance(Photo.class));
+		
+		return photo;
+	}*/
 
 	
 }

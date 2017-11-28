@@ -3,6 +3,7 @@ package com.gamsa.webapp.controller.qna;
 
 
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,18 +14,25 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
+import javax.security.auth.message.callback.SecretKeyCallback.Request;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gamsa.webapp.dao.NoticeDao;
@@ -33,12 +41,15 @@ import com.gamsa.webapp.dao.QnaReplyDao;
 import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Qna;
 import com.gamsa.webapp.entity.QnaReply;
+import com.google.gson.Gson;
+
 
 @Controller
 @RequestMapping("/qna/*")
 public class QnaController {
 	@Autowired
 	private QnaDao qnaDao;
+	@Autowired
 	private QnaReplyDao qnaReplayDao;
 	
 	
@@ -52,24 +63,17 @@ public class QnaController {
 		return "qna.question.list";
 	}
 
-	@RequestMapping(value="detail/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="detail/{id}"/*,method=RequestMethod.GET*/)
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		
 		model.addAttribute("question", qnaDao.get(id));
-		model.addAttribute("answer", qnaReplayDao.getList(id));
-		return "qna.question.detail";
-	}
-	
-	@RequestMapping(value="detail/{id}",method=RequestMethod.POST)
-	public String noticeDetail(@PathVariable("id") String id, Model model, 
-			QnaReply qnaReply, HttpServletRequest request) throws UnsupportedEncodingException {
 		
-		model.addAttribute("question", qnaDao.get(id));
-		model.addAttribute("answer", qnaReplayDao.getList(id));
-		qnaReplayDao.insert(qnaReply);
+		//댓글 모델 설정
+		List<QnaReply> list = qnaReplayDao.getList(id);
+		model.addAttribute("CommentList",list);
 		return "qna.question.detail";
 	}
-	
+
 	@RequestMapping(value="reg", method=RequestMethod.GET)
 	public String noticeReg() {
 		
@@ -104,11 +108,62 @@ public class QnaController {
 	@RequestMapping("delete/{id}")
 	public String noticeDelete(@PathVariable("id") String id, Model model) {
 		
-		model.addAttribute("question", qnaDao.delete(id));
+		model.addAttribute("list", qnaReplayDao.getList(id));
 		
 		return "redirect:../list";
 	}
+	
+	
+	@RequestMapping(value="comment/save", method=RequestMethod.POST)
+    @ResponseBody
+    //public String boardReplySave(@RequestParam Map<String , Object>comment_content) {
+    public String boardCommentSave(@RequestParam Map<String, Object> objParams,Principal principal) {
+    	 
+
+        //정보입력
+    	String content = objParams.get("comment_content").toString();
+    	String qna_id = objParams.get("qna_id").toString();
+    	String writer_id = principal.getName();
+   
+        int result = qnaReplayDao.insert(content, qna_id, writer_id);
+        System.out.println(content);
+        System.out.println(qna_id);
+        System.out.println(writer_id);
+        if(result>0){
+        	System.out.println("comment등록에 성공하였습니다.");
+        }else{
+            System.out.println("comment등록에 실패하였습니다.");
+        }
+        //return "admin.board.free.detail";
+        return "aa";
+    }
+	
+	@RequestMapping(value="comment/update-ajax", method=RequestMethod.GET)
+    @ResponseBody
+    public String boardCommentUpdate(@RequestParam String qnaId,@RequestParam String cId) {
+	
+    	//정보입력
+    	System.out.println("qnaId : "+qnaId+", id : "+cId);
+    	List<QnaReply> list = qnaReplayDao.getUpdateList(qnaId,cId);
+    	if(list==null)
+    		System.out.println("최신글입니다");
+    	else 
+    		System.out.println("최신 :"+list);
+    	
+    	String json = "";	
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+    }
+
+
+	
+
+
+	
 }
+
 
 
 

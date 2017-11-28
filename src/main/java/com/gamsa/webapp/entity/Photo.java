@@ -17,7 +17,6 @@ public class Photo {
 	}
 
 	
-	
 	public Photo(String id, String title, String explain, Date regDate, int liked, String replyId, String writerId) {
 		super();
 		this.id = id;
@@ -29,6 +28,13 @@ public class Photo {
 		this.writerId = writerId;
 	}
 
+	public Photo(String title, String explain, String replyId, String writerId) {
+		super();
+		this.title = title;
+		this.explain = explain;
+		this.replyId = replyId;
+		this.writerId = writerId;
+	}
 
 
 	public String getId() {

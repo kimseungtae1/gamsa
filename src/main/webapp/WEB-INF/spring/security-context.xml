@@ -9,8 +9,8 @@
 	
 	<http>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN') or  hasRole('ROLE_USER')"/>
-		<intercept-url pattern="/student/**" access="hasRole('ROLE_STUDENT')"/>
-		<intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')"/>
+		<intercept-url pattern="/photo/upload/*" access="hasRole('ROLE_ADMIN') or  hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/qna/**" access="hasRole('ROLE_ADMIN') or  hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/customer/*" access="hasRole('ROLE_USER')"/>	
 		
 		

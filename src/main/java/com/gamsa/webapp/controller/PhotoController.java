@@ -48,13 +48,26 @@ public class PhotoController {
 	
 	@RequestMapping("list")
 	public String photoList(
-			Model model
-			) {
-		//model.addAttribute("list", photoDao.getList());
-		
+			/*@RequestParam(value="p", defaultValue="1") Integer page,
+			@RequestParam(value="t", defaultValue="title") String field, //titleì„ ê¸°ë³¸ê°’ìœ¼ë¡œ ê²€ìƒ‰í•˜ê² ë‹¤
+			@RequestParam(value="q", defaultValue="") String query,*/
+			Model model) {
+
+		model.addAttribute("list", photoUploadDao.getList(/*page, field, query*/));
+
 		return "photo.list";
 		
+	}
+	
+	@RequestMapping("detail/{id}")
+	public String photoDetail(@PathVariable("id") String id, Model model) {
 		
+		model.addAttribute("p", photoDao.get(id));
+		/*model.addAttribute("prev", noticeDao.getPrev(id));
+		model.addAttribute("next", noticeDao.getNext(id));*/
+		
+		//return "customer/notice-detail";
+		return "photo.detail";
 	}
 	
 	@RequestMapping(value="upload/reg", method=RequestMethod.GET)
@@ -65,13 +78,33 @@ public class PhotoController {
 
 	@RequestMapping(value="upload/reg", method=RequestMethod.POST)
 	public String photoReg(
-			//MultipartHttpServletRequest file,
-			MultipartFile file,
+			HttpServletRequest request,
 			PhotoUpload photoUpload,
-			HttpServletRequest request
-			) throws IOException {
-		//System.out.println(file);
+			Photo photo
+			) throws UnsupportedEncodingException {
+		
+		photoDao.insert(photo);
+		
+		photo.setId(photoDao.getPhotoNextId());
+		photoUploadDao.update(photo.getId());
+		
+		photo.setWriterId(photoDao.getPhotoWriterId());
+		photoUploadDao.update2(photo.getWriterId());
+		//model.addAttribute("user", photoDao.getwriterId());
+		
+		return "redirect:../../index";
+	}
+	
+	@RequestMapping("delete")
+	public String photoDelete(
+			/*@RequestParam(value="p", defaultValue="1") Integer page,
+			@RequestParam(value="t", defaultValue="title") String field, //titleì„ ê¸°ë³¸ê°’ìœ¼ë¡œ ê²€ìƒ‰í•˜ê² ë‹¤
+			@RequestParam(value="q", defaultValue="") String query,*/
+			HttpServletRequest request,
+			Model model) {
 
+		photoUploadDao.delete();
+		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		
@@ -81,107 +114,37 @@ public class PhotoController {
 		System.out.println(ctx);
         String path = ctx.getRealPath(String.format("/resource/upload/%s/%d", year, nextId));
         System.out.println(path);
-         
-        String newFileName = ""; // ¾÷·Îµå µÇ´Â ÆÄÀÏ¸í
-
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-        path += File.separator + file.getOriginalFilename();
-        File f2 = new File(path);
         
-        InputStream fis = file.getInputStream();
-		OutputStream fos = new FileOutputStream(f2);
+        File file = new File(path);
         
-		byte[] buf = new byte[1024];
-		
-		int size = 0;
-		while((size = fis.read(buf)) > 0)
-			fos.write(buf, 0, size);
-		
-		
-		fis.close();
-		fos.close();
-		
-		String fileName = file.getOriginalFilename(); //db¿¬µ¿ÇÏ±âÀü¿¡ ÆÄÀÏÀÌ ³Ñ¾î¿À´ÂÁö È®ÀÎÇØ¾ßÇÑ´Ù.
-		System.out.println(fileName);
-		
-       /* Iterator<String> files = file.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-        	
-            MultipartFile mFile = file.getFile(uploadFile);
-            fileName = mFile.getOriginalFilename();
-            System.out.println("½ÇÁ¦ ÆÄÀÏ ÀÌ¸§ : " +fileName);
-            //newFileName = System.currentTimeMillis()+"."+fileName.substring(fileName.lastIndexOf(".")+1);
-            if(fileName != null && !fileName.equals("")) {
-            	if(new File(path + fileName).exists())
-            		newFileName = fileName + "_" + System.currentTimeMillis();
-            	
-	            try {
-	                //mFile.transferTo(new File(path+fileName));
-	            	mFile.transferTo(new File(path+fileName));
-	            	File A = new File(path+fileName);
-	            	mFile.transferTo(A);
-	            	//((MultipartFile) dir).transferTo(new File(path+fileName));
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+        if( file.exists() ){ //íŒŒì¼ì¡´ì¬ì—¬ë¶€í™•ì¸
+             
+            if(file.isDirectory()){ //íŒŒì¼ì´ ë””ë ‰í† ë¦¬ì¸ì§€ í™•ì¸
+                 
+                File[] files = file.listFiles();
+                 
+                for( int i=0; i<files.length; i++){
+                    if( files[i].delete() ){
+                        System.out.println(files[i].getName()+" ì‚­ì œì„±ê³µ");
+                    }else{
+                        System.out.println(files[i].getName()+" ì‚­ì œì‹¤íŒ¨");
+                    }
+                }
+                 
             }
-        }*/
-        //file.getFileNames() ÀÌ°Ô ÀÌ»óÇÑ°Å
-        String src = path;
-        photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));
-		
-		
-		
-		
-		
-		/*
-
-		// ÀúÀå °æ·Î ¼³Á¤
-		ServletContext ctx = request.getServletContext();
-		System.out.println(ctx);
-        String path = ctx.getRealPath(String.format("/resource/upload/%s/%d", year, nextId));
-        System.out.println(path);
-         
-        String newFileName = ""; // ¾÷·Îµå µÇ´Â ÆÄÀÏ¸í
-        String fileName = "";
-        File dir = new File(path);
-        if(!dir.isDirectory()){
-            dir.mkdir();
-        }
-        //path += File.separator + file.getFileNames();
-        
-        Iterator<String> files = file.getFileNames();
-        while(files.hasNext()){
-            String uploadFile = files.next();
-        	
-            MultipartFile mFile = file.getFile(uploadFile);
-            fileName = mFile.getOriginalFilename();
-            System.out.println("½ÇÁ¦ ÆÄÀÏ ÀÌ¸§ : " +fileName);
-            //newFileName = System.currentTimeMillis()+"."+fileName.substring(fileName.lastIndexOf(".")+1);
-            if(fileName != null && !fileName.equals("")) {
-            	if(new File(path + fileName).exists())
-            		newFileName = fileName + "_" + System.currentTimeMillis();
-            	
-	            try {
-	                //mFile.transferTo(new File(path+fileName));
-	            	mFile.transferTo(new File(path+fileName));
-	            	File A = new File(path+fileName);
-	            	mFile.transferTo(A);
-	            	//((MultipartFile) dir).transferTo(new File(path+fileName));
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+            if(file.delete()){
+                System.out.println("íŒŒì¼ì‚­ì œ ì„±ê³µ");
+            }else{
+                System.out.println("íŒŒì¼ì‚­ì œ ì‹¤íŒ¨");
             }
+             
+        }else{
+            System.out.println("íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
-        //file.getFileNames() ÀÌ°Ô ÀÌ»óÇÑ°Å
-        String src = path + File.separator + fileName;
-        photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));*/
+		//model.addAttribute("list", photoUploadDao.getList(/*page, field, query*/));
 
-	    return "redirect:../../index";
+		return "redirect:../index";
+		
 	}
 }
 

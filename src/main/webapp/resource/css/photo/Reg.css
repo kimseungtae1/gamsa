@@ -97,16 +97,16 @@
 }
 
 /*이미지*/
-.main .view_big_img{height:562px; }
+.main .view_big_img{
+	position: relative;	
+    /* display: inline; */
+	height:560px; 
+}
 .main .view_big_img img {
     text-align: center;
     line-height: 19;
 }
 
-.main .view_big_img{
-    position: relative;	
-    display: inline;
-}
 .main li{
 	display: inline-block;
 }

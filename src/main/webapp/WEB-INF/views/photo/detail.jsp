@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사진리스트보기</title>
+<title>사진상세페이지</title>
 </head>
 <body>
 	<main id="main">
@@ -17,14 +17,24 @@
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/> --%>
-		<c:forEach var="n" items="${list}">
+		<%-- <c:forEach var="n" items="${list}">
 		<c:set var="TextValue" value="${n.src}"/>
 			${n.src}<br/>	
 			<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
 			<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
 			<hr/>
-		</c:forEach>
-			<img src="${path}/resource/upload/2017/2/bbb.png"/>
+		</c:forEach> --%>
+		${p.id}<br/>
+		${p.title}<br/>
+		${p.explain}<br/>
+		${p.regDate}<br/>
+		${p.liked}<br/>
+		${p.replyId}<br/>
+		${p.writerId}<br/>
+		${p.src}<br/>
+		${p.photoId}<br/>
+		
+		
 		
 		<div class="tag-section">
 			<div class="tag-section-child">#태그1#태그2#태그3</div>

@@ -19,23 +19,27 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import com.gamsa.webapp.dao.NoticeDao;
-import com.gamsa.webapp.entity.Notice;
+import com.gamsa.webapp.dao.PhotoDao;
+import com.gamsa.webapp.dao.PhotoUploadDao;
+import com.gamsa.webapp.entity.PhotoUpload;
+import com.gamsa.webapp.entity.Photo;
 
 @Controller
 @RequestMapping("/photo/*")
 public class UploadController {
 
+	private PhotoDao photoDao;
+	
 	@Autowired
-	private NoticeDao noticeDao;
+	private PhotoUploadDao photoUploadDao;
 	
 	
 	@RequestMapping(value="upload", method=RequestMethod.GET)
@@ -46,11 +50,58 @@ public class UploadController {
 
 	@RequestMapping(value="upload", method=RequestMethod.POST)
 	public String noticeReg(
-			Notice notice, HttpServletRequest request
-			) throws UnsupportedEncodingException {
-		noticeDao.insert(notice);
+			MultipartFile file,
+			PhotoUpload photoUpload,
+			Photo photo,
+			HttpServletRequest request
+			) throws IOException{		
 		
-		return "redirect:../notice";
+		
+		//사진 저장주소 입력
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		
+		int nextId = Integer.parseInt(photoUploadDao.getNextId());
+		
+		ServletContext ctx = request.getServletContext();
+		System.out.println(ctx);
+        String path = ctx.getRealPath(String.format("/resource/upload/%s/%d", year, nextId));
+        System.out.println(path);
+         
+        String newFileName = ""; // 업로드 되는 파일명
+
+        File dir = new File(path);
+        if(!dir.isDirectory()){
+            dir.mkdir();
+        }
+        path += File.separator + file.getOriginalFilename();
+        File f2 = new File(path);
+        
+        InputStream fis = file.getInputStream();
+		OutputStream fos = new FileOutputStream(f2);
+        
+		byte[] buf = new byte[1024];
+		
+		int size = 0;
+		while((size = fis.read(buf)) > 0)
+			fos.write(buf, 0, size);
+		
+		fis.close();
+		fos.close();
+		
+		String fileName = file.getOriginalFilename(); //db연동하기전에 파일이 넘어오는지 확인해야한다.
+		System.out.println(fileName);
+		
+		//String writerId = photoDao.getWriterId();
+		
+        String src = path;
+        photoUploadDao.insert(new PhotoUpload(nextId, src, null, null));//id  src  photoId  writerId
+        //photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));//id  src  photoId  writerId
+        
+        
+        
+		
+	    return "redirect:../../index";
 	}
 	
 	

@@ -27,7 +27,7 @@
 						</td>
 						
 					</tr>
-					</c:forEach>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="page_num">

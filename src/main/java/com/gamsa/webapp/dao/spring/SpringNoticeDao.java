@@ -31,8 +31,6 @@ public class SpringNoticeDao implements NoticeDao {
 	private JdbcTemplate template;
 	
 
-	
-	
 	@Override
 	public List<Notice> getList(int page, String field, String query) {
 
@@ -129,54 +127,41 @@ public class SpringNoticeDao implements NoticeDao {
 		   
 		   
 
-		   @Override
-		   @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
-		   public int insert(Notice notice) {
-			   System.out.println(notice.getWriterId());
+	   @Override
+	   @Transactional(propagation=Propagation.REQUIRES_NEW)//  처리한 쿼리문이 정상적으로 완료가 되고, 처리 도중 에러가 났을 때 쿼리를 자동 rollback 해주기 위해 사용된다.
+	   public int insert(Notice notice) {
+		  System.out.println(notice.getWriterId());
 
-		      String sql = "insert into Notice(id, title, content, writerId) values(?,?,?,?)";
-		      
-		      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		      System.out.println("username = " + user.getUsername());
-		      
-				
-		      
-		      int result=template.update(sql, getNextId(), notice.getTitle(), notice.getContent(), user.getUsername());
-		      
-		      
-		      
+	      String sql = "insert into Notice(id, title, content, writerId) values(?,?,?,?)";
+	      
+	      User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	      System.out.println("username = " + user.getUsername());
+	      
+	      int result=template.update(sql, getNextId(), notice.getTitle(), notice.getContent(), user.getUsername());
 
-		      
-
-		      return result;
-		   }
+	      return result;
+	   }
 
 
-		   @Override
-		   public int update(String id, String title, String content) {
-			   
-			   String sql = "update Notice set title=?, content=? where id=?";
-			   
-			   int result = template.update(sql
-					   , title
-					   , content
-					   , id);
-			   
-			   
-			   return result;
-		   }
+	   @Override
+	   public int update(String id, String title, String content) {
+		   
+		   String sql = "update Notice set title=?, content=? where id=?";
+		   
+		   int result = template.update(sql
+				   , title
+				   , content
+				   , id);
+		   
+		   
+		   return result;
+	   }
 
 		@Override
 		public int update(Notice notice) {
-		      String sql = "update Notice set title=?, content=? where id=?;";
-		      
+		      String sql = "update Notice set title=?, content=? where id=?;";  
 		      
 		      int result=template.update(sql, notice.getTitle(), notice.getContent(), notice.getId());
-		      
-		      
-		      
-
-		      
 
 		      return result;
 		}
