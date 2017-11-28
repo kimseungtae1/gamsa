@@ -25,6 +25,8 @@ public interface PhotoUploadDao {
 
 	int update(String id);
 
+	int update2(String writerId);
+
 	/*int update(Photo photo);
 	
 	int update(String photoId);*/

@@ -42,12 +42,10 @@ public class SpringPhotoDao implements PhotoDao {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public int insert(Photo photo) {
-		
-		
-		
+
 		String sql = "insert into Photo(id, title, `explain`, replyId, writerId) values(?, ?, ?, ?, ?)";
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("username = " + user.getUsername());
+	      System.out.println("username = " + user.getUsername());
 		  
 		int result=template.update(
 				sql, 
@@ -86,6 +84,36 @@ public class SpringPhotoDao implements PhotoDao {
 				BeanPropertyRowMapper.newInstance(PhotoView.class));
 		
 		return photo;
+	}
+
+	@Override
+	public String getPhotoNextId() {
+		String sql = "select ifnull(max(cast(id as unsigned)),0) from Photo";
+		
+		String result = template.queryForObject(
+				sql,
+				String.class);
+		
+		return result;
+	}
+
+	@Override
+	public String getWriterId() {
+		/*User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    System.out.println("username = " + user.getUsername());*/
+	    
+		return null;
+	}
+
+	@Override
+	public String getPhotoWriterId() {
+		String sql = "select writerId from Photo where id = (select * from (select ifnull(max(cast(id as unsigned)),0) from Photo) A)";
+		
+		String result = template.queryForObject(
+				sql,
+				String.class);
+		
+		return result;
 	}
 
 

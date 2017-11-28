@@ -84,8 +84,12 @@ public class PhotoController {
 			) throws UnsupportedEncodingException {
 		
 		photoDao.insert(photo);
-		photo.setId(photoDao.getNextId());
+		
+		photo.setId(photoDao.getPhotoNextId());
 		photoUploadDao.update(photo.getId());
+		
+		photo.setWriterId(photoDao.getPhotoWriterId());
+		photoUploadDao.update2(photo.getWriterId());
 		//model.addAttribute("user", photoDao.getwriterId());
 		
 		return "redirect:../../index";

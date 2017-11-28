@@ -108,13 +108,25 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 
 	@Override
 	public int update(String id) {
-		String sql = "update PhotoUpload set photoId = ? where id = (select * from (select ifnull(max(cast(id as unsigned)),0) from Photo) A)";  
+		String sql = "update PhotoUpload set photoId = ? where id = (select ifnull(max(cast(id as unsigned)),0) from Photo)";  
 	      
 		int result=template.update(sql
 				, id);
 		System.out.println("id : "+id);
 
 		return result;
+	}
+
+	@Override
+	public int update2(String id) {
+		String sql = "update PhotoUpload set writerId = ? where id = (select ifnull(max(cast(id as unsigned)),0) from Photo)";  
+	      
+		int result=template.update(sql
+				, id);
+		System.out.println("writerId : "+id);
+
+		return result;
+		
 	}
 
 	/*@Override

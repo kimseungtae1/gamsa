@@ -92,9 +92,6 @@ public class UploadController {
 		String fileName = file.getOriginalFilename(); //db연동하기전에 파일이 넘어오는지 확인해야한다.
 		System.out.println(fileName);
 		
-		//User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		//String photoId = photoUploadDao.getPhotoId();
 		//String writerId = photoDao.getWriterId();
 		
         String src = path;
