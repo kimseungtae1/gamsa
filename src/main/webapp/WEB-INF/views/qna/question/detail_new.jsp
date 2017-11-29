@@ -44,14 +44,14 @@
 <!--DB에서 가져온 댓글테이블  -->
 <table id="comment_area">
 	<tbody>
-	 <%--  <c:forEach var="comment" items="${CommentList}" varStatus="status">
+	  <c:forEach var="comment" items="${CommentList}" varStatus="status">
 	  	<tr>
 	  		<td>${comment.writerId}</td>
 	  		<td>${comment.content}</td>
 	  		<td><fmt:formatDate value="${comment.date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	  	</tr>
 	  	<input type="hidden" class="Comment_id" name="Comment_id" value="${comment.id}" /> 
-	  </c:forEach> --%>
+	  </c:forEach>
   </tbody>
   <template>
 	<tr>
@@ -104,7 +104,7 @@
 	 						for (var i = 0; i < json.length; i++) {
 								var clone = $(document.importNode(template.prop("content"),
 										true));
-								//$("template tr td").empty();
+								$("template tr td").empty();
 								var tds = clone.find("td");
 								
 								tds.eq(0).text(json[i].answerWriterId);
@@ -175,7 +175,7 @@
 
 							//댓글 초기화
 							//$("#comment_content").val("");
-							$("#comment_area tbody").empty();
+							$("template tr td").empty();
 							updateComment();
 						}
 
