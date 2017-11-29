@@ -1,8 +1,5 @@
 package com.gamsa.webapp.controller.photo;
 
-
-
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,12 +16,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gamsa.webapp.dao.PhotoDao;
@@ -36,6 +35,8 @@ import com.gamsa.webapp.entity.Photo;
 @RequestMapping("/photo/*")
 public class UploadController {
 
+	
+	@Autowired
 	private PhotoDao photoDao;
 	
 	@Autowired
@@ -45,10 +46,10 @@ public class UploadController {
 	@RequestMapping(value="upload", method=RequestMethod.GET)
 	public String photoReg() {
 		
-		return "photo.upload.reg";
+		return "photo.upload.Reg";
 	}
 
-	@RequestMapping(value="upload", method=RequestMethod.POST)
+	@RequestMapping(value="upload", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
 	public String noticeReg(
 			MultipartFile file,
 			PhotoUpload photoUpload,
@@ -56,6 +57,9 @@ public class UploadController {
 			HttpServletRequest request
 			) throws IOException{		
 		
+		System.out.println("originalName : "+file.getOriginalFilename());
+		System.out.println("size : "+file.getSize());
+		System.out.println("contentType : "+file.getContentType());
 		
 		//사진 저장주소 입력
 		Calendar cal = Calendar.getInstance();
@@ -97,15 +101,9 @@ public class UploadController {
         String src = path;
         photoUploadDao.insert(new PhotoUpload(nextId, src, null, null));//id  src  photoId  writerId
         //photoUploadDao.insert(new PhotoUpload(nextId, src, "1", "2"));//id  src  photoId  writerId
-        
-        
-        
-		
-	    return "redirect:../../index";
+
+	    return "photo.upload.Reg";
 	}
-	
-	
-	
 	
 }
 

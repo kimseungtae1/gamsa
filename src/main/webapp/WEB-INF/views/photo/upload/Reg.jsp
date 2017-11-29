@@ -51,61 +51,97 @@ $(function () {
 
          //var files = e.originalEvent.dataTransfer.files;
          files = e.originalEvent.dataTransfer.files;
-         if(files.length < 1)
-              return;
-         F_FileMultiUpload(files, obj);
-    });
+         
+         var file = files[0];
+         console.log(file);
+         
+         var formData = new FormData();
+         
+         formData.append("file", file);
+         
+		$.ajax({
+			url : "${path}/photo/upload/ajax",
+			type : "post",
+			data : formData,
+			dataType : "text",
+			processData: false,
+            contentType: false,
+			success : function(data) {
+				//F_FileMultiUpload_Callback(data.files);
+				console.log('success');
+				
+				if(checkImageType(data)){ 
+	                str = "<div><a href='${path}/upload/displayFile?fileName="+getImageLink(data)+"'>";
+	                str += "<img src='${path}/upload/displayFile?fileName="+data+"'></a>";
+	            // 일반파일이면 다운로드링크
+	            } else { 
+	                str = "<div><a href='${path}/upload/displayFile?fileName="+data+"'>"+getOriginalName(data)+"</a>";
+	            }
+	            // 삭제 버튼
+	            str += "<span data-src="+data+">[삭제]</span></div>";
+	            $(".uploadedList").append(str);
+			}
+		});
 
-    resetButton.click(function(event){
-    	event.stopPropagation();
-    	event.preventDefault();
-    	alert("사진업로드가 취소되었습니다.");
-    	location.href = "${path}/photo/delete";
-    });
-    /* submitButton.click(function(){
-        alert("success");
-        F_FileMultiUpload(files, obj);
-    	form.submit();
-    }); */
-    
+	});
 
-  //파일 멀티 업로드
-    function F_FileMultiUpload(files, obj) {
-    	if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
-    		
-    	    var formData = new FormData();
-    	    
-    	    for (var i = 0; i < files.length; i++) {
-    	   	  formData.append('file', files[i]);
-    	    }
-    	    
-    	    //formData.append("title", $("input[name=title]").val()); 
-    	    //formData.append("explain", $("textarea[name=explain]").text()); 
+	resetButton.click(function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		alert("사진업로드가 취소되었습니다.");
+		location.href = "${path}/photo/delete";
+	});
+	
+	
+		//파일 멀티 업로드
+		/* function F_FileMultiUpload(files, obj) {
+			if (confirm(files.length + "개의 파일을 업로드 하시겠습니까?")) {
 
-    	    $.ajax({
-    	       url: "${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}",
-    	       method: 'post',
-    	       data: formData,
-    	       enctype:"multipart/form-data",
-    	       dataType: 'json',
-    	       processData: false,
-    	       contentType: false,
-    	       success: function(res) {
-    	           F_FileMultiUpload_Callback(res.files);
-    	           console.log('success');
-    	       }
-    	    });
-    	}
-    }
+				console.log(files[0]);
+				var formData = new FormData();
 
-    //파일 멀티 업로드 Callback
-    function F_FileMultiUpload_Callback(files) {
-    	for(var i=0; i < files.length; i++)
-    	    console.log(files[i].file_nm + " - " + files[i].file_size);
-    }
-    
-});
+				for (var i = 0; i < files.length; i++) {
+					formData.append('file', files[i]);
+				}
 
+				$
+						.ajax({
+							url : "${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}",
+							type : 'post',
+							data : formData,
+							 enctype:"multipart/form-data", 
+							dataType : 'text',
+							processData : false,
+							contentType : false,
+							success : function(data) {
+								F_FileMultiUpload_Callback(data.files);
+								console.log('success');
+								alert(data);
+
+								var str = "";
+								
+								if(checkImageType(data)){ 
+								     str = "<div><a href='${path}/upload/displayFile?fileName="+getImageLink(data)+"'>";
+								     str += "<img src='${path}/upload/displayFile?fileName="+data+"'></a>";
+								 // 일반파일이면 다운로드링크
+								 } else { 
+								     str = "<div><a href='${path}/upload/displayFile?fileName="+data+"'>"+getOriginalName(data)+"</a>";
+								 }
+								 // 삭제 버튼
+								 str += "<span data-src="+data+">[삭제]</span></div>";
+								 $(".uploadedList").append(str);
+							}
+						});
+			}
+		}
+
+		//파일 멀티 업로드 Callback
+		function F_FileMultiUpload_Callback(files) {
+			for (var i = 0; i < files.length; i++)
+				console.log(files[i].file_nm + " - " + files[i].file_size);
+		} */
+
+	});
 </script>
 </head>
 <body>
