@@ -18,7 +18,5 @@ public interface PhotoDao {
 	String getPhotoNextId();
 	String getWriterId();
 	String getPhotoWriterId();
-
-
-
+	List<PhotoView> getList();
 }

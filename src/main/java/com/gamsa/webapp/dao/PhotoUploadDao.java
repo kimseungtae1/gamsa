@@ -17,7 +17,7 @@ public interface PhotoUploadDao {
 
 	String getNextId();
 
-	List<PhotoView> getList(/*int page, String field, String query*/);
+	List<PhotoUpload> getList(int page, String field, String query);
 
 	String getPhotoId();
 

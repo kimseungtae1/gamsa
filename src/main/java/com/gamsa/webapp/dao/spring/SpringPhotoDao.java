@@ -27,6 +27,7 @@ import com.gamsa.webapp.dao.PhotoDao;
 import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Photo;
 import com.gamsa.webapp.entity.PhotoView;
+import com.gamsa.webapp.entity.Qna;
 
 public class SpringPhotoDao implements PhotoDao {
 	
@@ -114,6 +115,18 @@ public class SpringPhotoDao implements PhotoDao {
 				String.class);
 		
 		return result;
+	}
+
+	@Override
+	public List<PhotoView> getList() {
+
+		String sql = "select * from PhotoView order by cast(id as unsigned) asc";
+		
+		List<PhotoView> list = template.query(
+				sql,  
+				BeanPropertyRowMapper.newInstance(PhotoView.class));
+		
+		return list;
 	}
 
 

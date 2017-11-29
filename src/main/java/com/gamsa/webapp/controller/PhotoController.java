@@ -1,8 +1,6 @@
 package com.gamsa.webapp.controller;
 
 
-
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,13 +46,13 @@ public class PhotoController {
 	
 	@RequestMapping("list")
 	public String photoList(
-			/*@RequestParam(value="p", defaultValue="1") Integer page,
-			@RequestParam(value="t", defaultValue="title") String field, //title을 기본값으로 검색하겠다
-			@RequestParam(value="q", defaultValue="") String query,*/
-			Model model) {
-
-		model.addAttribute("list", photoUploadDao.getList(/*page, field, query*/));
-
+			@RequestParam(value="p", defaultValue="1") Integer page,
+			@RequestParam(value="f", defaultValue="title") String field, //title을 기본값으로 검색하겠다
+			@RequestParam(value="q", defaultValue="") String query,
+			Model model
+			) {
+		model.addAttribute("list", photoUploadDao.getList(page, field, query));
+		
 		return "photo.list";
 		
 	}
