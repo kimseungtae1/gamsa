@@ -163,10 +163,10 @@
 										async : false, //동기: false, 비동기: ture
 										data : objParams,
 										error : function(error) {
-									        alert("Error!");
+									        alert("등록완료");
 									    },
 									    success : function(gson) {
-									        alert("success!");
+									        alert("등록실패");
 									    }
 
 
