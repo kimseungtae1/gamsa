@@ -93,11 +93,9 @@ public class PhotoController {
 		return "redirect:../../index";
 	}
 	
+	@ResponseBody
 	@RequestMapping("delete")
 	public String photoDelete(
-			/*@RequestParam(value="p", defaultValue="1") Integer page,
-			@RequestParam(value="t", defaultValue="title") String field, //title을 기본값으로 검색하겠다
-			@RequestParam(value="q", defaultValue="") String query,*/
 			HttpServletRequest request,
 			Model model) {
 
@@ -107,6 +105,9 @@ public class PhotoController {
 		int year = cal.get(Calendar.YEAR);
 		
 		int nextId = Integer.parseInt(photoUploadDao.getNextId());
+		System.out.println("사진업로드 다음번호" + nextId);
+		int photoId = Integer.parseInt(photoDao.getNextId());
+		System.out.println("사진 다음번호" + photoId);
 		
 		ServletContext ctx = request.getServletContext();
 		System.out.println(ctx);
@@ -114,13 +115,13 @@ public class PhotoController {
         System.out.println(path);
         
         File file = new File(path);
-        
-        if( file.exists() ){ //파일존재여부확인
+
+        if( file.exists()){ //파일존재여부확인
              
             if(file.isDirectory()){ //파일이 디렉토리인지 확인
                  
                 File[] files = file.listFiles();
-                 
+                
                 for( int i=0; i<files.length; i++){
                     if( files[i].delete() ){
                         System.out.println(files[i].getName()+" 삭제성공");
@@ -139,9 +140,8 @@ public class PhotoController {
         }else{
             System.out.println("파일이 존재하지 않습니다.");
         }
-		//model.addAttribute("list", photoUploadDao.getList(/*page, field, query*/));
 
-		return "redirect:../index";
+		return "";
 		
 	}
 }

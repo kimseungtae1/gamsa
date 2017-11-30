@@ -12,6 +12,45 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
+/* window.addEventListener("beforeunload", function(evt){
+	 
+	$.ajax({
+		url : "${path}/photo/delete",
+		type : "delete",
+		success : function(data) {
+			//F_FileMultiUpload_Callback(data.files);
+			console.log('success');
+			alert("aa");
+		}
+	});
+	 
+}); */
+
+/* window.addEventListener("beforeunload", function (evt) {
+
+	  evt.returnValue = "진짜 나감?";
+
+	}); */
+
+	
+/* 
+window.onbeforeunload = function(){
+	
+	var xhr = new XMLHttpRequest();
+
+	
+	
+	xhr.onerror = function(e){
+		alert("예기치 못한 오류가 생겼습니다.")
+	};
+	
+	xhr.open("get", "${path}/photo/delete", true);
+	xhr.send();
+	
+	return "";
+};
+ */
+
 $(function () {
 
 	var token = $("meta[name='_csrf']").attr("content");
@@ -25,6 +64,7 @@ $(function () {
     var submitButton = $("#uploadForm input[type='submit']");
     var resetButton = $("#uploadForm input[type='reset']");
     var form = $("#form");
+    var uploadForm = $("#uploadForm");
     var files = "";
   
     
@@ -60,7 +100,7 @@ $(function () {
          formData.append("file", file);
          
 		$.ajax({
-			url : "${path}/photo/upload/ajax",
+			url : "${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}",
 			type : "post",
 			data : formData,
 			dataType : "text",
@@ -69,22 +109,34 @@ $(function () {
 			success : function(data) {
 				//F_FileMultiUpload_Callback(data.files);
 				console.log('success');
-				
-				if(checkImageType(data)){ 
-	                str = "<div><a href='${path}/upload/displayFile?fileName="+getImageLink(data)+"'>";
-	                str += "<img src='${path}/upload/displayFile?fileName="+data+"'></a>";
-	            // 일반파일이면 다운로드링크
-	            } else { 
-	                str = "<div><a href='${path}/upload/displayFile?fileName="+data+"'>"+getOriginalName(data)+"</a>";
-	            }
-	            // 삭제 버튼
-	            str += "<span data-src="+data+">[삭제]</span></div>";
-	            $(".uploadedList").append(str);
+				alert("이미지는 업로드 되었습니다. 사진 제목과 내용을 입력해주세요.");
 			}
 		});
 
 	});
 
+    $(window).on("beforeunload",function (evtt){
+    	
+    	submitButton.click(function() {
+    		$(window).off("beforeunload");
+    		uploadForm.submit();
+    	});
+    	
+    	/* $.ajax({
+    		url : "${path}/photo/delete",
+    		cache : "false",
+    		type : "delete",
+    		async : false, //동기화설정(비동기화사용안함)
+    		success:function(args){   
+    			console.log('데이터삭제success');
+    		},   
+    		error:function(e){  
+    			console.log('오류로 인해 삭제가 되지 않았습니다.');  
+    		}
+    	});  */
+    	return ""; 
+    });
+    
 	resetButton.click(function(event) {
 		event.stopPropagation();
 		event.preventDefault();
