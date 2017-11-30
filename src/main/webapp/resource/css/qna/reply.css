@@ -1,33 +1,60 @@
-/* @charset "UTF-8";
+@charset "UTF-8";
+
 .main .qna-board {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid rgb(254, 183, 39);
-    border-bottom: 1px solid #ccc;
-    margin: 60px auto 0px auto;
-    width: 1000px;
+	width: 1085px;
+	min-height: auto;
+	margin: 100px auto 0px auto;
+	/* padding: 0 2.6%; */
+	overflow: hidden;
+	border: 1px solid #e19b3e2e;
+text-align: center;
 }
-.main .qna-board td:nth-child(1){
+
+.main .qna-board tr {
+	text-align: left;
+	padding-left: 5%;
+	border-bottom: 1px solid rgba(254, 183, 39, 0.24);
+}
+
+}
+/* .main .qna-board #data td:nth-child(1){
     font-weight: bold;
     font-size: 17px;
     padding-right: 10px;
+    width: 400px;
+} */
+.main .qna-board td{
+	
+    width: 150px;
+	
 }
-.main .qna-board td:nth-child(2){
-        text-align: left;
-    padding-left: 5%;
+.main .qna-board td:first-of-type {
+	text-align: left;
+	/* padding-left: 5%; */
+	line-height: 30px;
+	font-size: 18px;
+	
+    text-align: center;
+}
+
+.main .qna-board td:nth-child(2) {    text-align: left;
+    width: 70%;
     line-height: 30px;
     font-size: 18px;
 }
-.main .qna-board td:nth-child(3){   
-	font-size: 14px;
+
+.main .qna-board td:nth-child(3) {
+    font-size: 14px;
+    /* text-align: right; */
+    padding-right: 22px;
+    width: 151px;
 }
-.main .reg_comment{
+
+.main .reg_comment {
 	max-width: 1000px;
-    min-height: auto;
-    margin: 100px auto 0px auto;
-    padding: 0 2.6%;
-    overflow: hidden;
-    border: 1px solid #e19b3e2e;
-	
-} */
+	min-height: auto;
+	margin: 100px auto 0px auto;
+	padding: 0 2.6%;
+	overflow: hidden;
+	border: 1px solid #e19b3e2e;
+}
