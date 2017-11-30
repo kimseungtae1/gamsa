@@ -9,7 +9,7 @@ public interface QnaReplyDao {
 	int insert(QnaReply qnaReply);
 	int update(QnaReply qnaReply);
  	List<QnaReply> getList(String qnaId);
- 	List<QnaReply> getUpdateList(String qnaId, String cId);
+ 	List<QnaReply> getUpdateList(String qnaId);
 	int delete(String id);
 	String getNextId();
 }

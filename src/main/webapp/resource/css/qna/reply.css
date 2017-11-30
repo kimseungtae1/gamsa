@@ -1,0 +1,33 @@
+/* @charset "UTF-8";
+.main .qna-board {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid rgb(254, 183, 39);
+    border-bottom: 1px solid #ccc;
+    margin: 60px auto 0px auto;
+    width: 1000px;
+}
+.main .qna-board td:nth-child(1){
+    font-weight: bold;
+    font-size: 17px;
+    padding-right: 10px;
+}
+.main .qna-board td:nth-child(2){
+        text-align: left;
+    padding-left: 5%;
+    line-height: 30px;
+    font-size: 18px;
+}
+.main .qna-board td:nth-child(3){   
+	font-size: 14px;
+}
+.main .reg_comment{
+	max-width: 1000px;
+    min-height: auto;
+    margin: 100px auto 0px auto;
+    padding: 0 2.6%;
+    overflow: hidden;
+    border: 1px solid #e19b3e2e;
+	
+} */

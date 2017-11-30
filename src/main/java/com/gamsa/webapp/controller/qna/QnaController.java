@@ -144,11 +144,8 @@ public class QnaController {
 	
     	//정보입력
     	System.out.println("qnaId : "+qnaId+", id : "+cId);
-    	List<QnaReply> list = qnaReplayDao.getUpdateList(qnaId,cId);
-    	if(list==null)
-    		System.out.println("최신글입니다");
-    	else 
-    		System.out.println("최신 :"+list);
+    	List<QnaReply> list = qnaReplayDao.getUpdateList(qnaId);
+
     	
     	String json = "";	
 		Gson gson = new Gson();

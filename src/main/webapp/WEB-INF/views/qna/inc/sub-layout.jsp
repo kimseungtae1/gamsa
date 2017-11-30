@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="${path}/resource/css/subpage-visual.css">
 <link rel="stylesheet" href="${path}/resource/css/qna/list.css">
 <link rel="stylesheet" href="${path}/resource/css/qna/reg.css">
+<link rel="stylesheet" href="${path}/resource/css/qna/reply.css">
 
 <title></title>
 </head>
