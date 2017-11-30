@@ -18,13 +18,15 @@
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/> --%>
 		<c:forEach var="n" items="${list}">
-		<c:set var="TextValue" value="${n.src}"/>
-			${n.src}<br/>	
-			<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
-			<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
-			<hr/>
+		<c:set var="TextValue" value="${n.src}"/>	
+		<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
+			<div class="img-card">
+				<a href="${path}/photo/detail/${n.id}">
+					<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" />
+				</a>
+			</div>
 		</c:forEach>
-			<img src="${path}/resource/upload/2017/2/bbb.png"/>
+			
 		
 		<div class="tag-section">
 			<div class="tag-section-child">#태그1#태그2#태그3</div>

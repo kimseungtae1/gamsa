@@ -128,6 +128,18 @@ public class SpringPhotoUploadDao implements PhotoUploadDao{
 		
 	}
 
+	@Override
+	public PhotoView get(String id) {
+		String sql = "select * from PhotoView where id=?";
+	
+		PhotoView photo = template.queryForObject(
+				sql, 
+				new Object[] {id},
+				BeanPropertyRowMapper.newInstance(PhotoView.class));
+		
+		return photo;
+	}
+
 	/*@Override
 	public int update(PhotoUpload photoUpload) {
 		// TODO Auto-generated method stub
