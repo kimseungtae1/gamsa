@@ -86,11 +86,11 @@ public class SpringQnaReplyDao implements QnaReplyDao {
 	}
 
 	@Override
-	public List<QnaReply> getUpdateList(String qnaId, String cId) {
-		String sql = "select * from QnaReply where qnaId=? and id >? order by regDate asc;";
+	public List<QnaReply> getUpdateList(String qnaId) {
+		String sql = "select * from QnaReply where qnaId=? order by regDate asc;";
 		List<QnaReply> list = template.query(
 				sql,
-				new Object[] {qnaId,cId},  //첫번째 물음표, 두번째 물음표
+				new Object[] {qnaId},  //첫번째 물음표, 두번째 물음표
 				BeanPropertyRowMapper.newInstance(QnaReply.class));
 		return list;
 	}

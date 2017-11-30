@@ -41,9 +41,18 @@
 			</div>
 		</div>
 	</div>
+	<div>
+	<table class="qna-board">
+	<tr>
+		<td>작성자</td>
+		<td>내용</td>
+		<td>개시일</td>
+	</tr>
+	</table>
+		</div>	
 <!--DB에서 가져온 댓글테이블  -->
-<table id="comment_area">
-	<tbody id="data">
+<table id="comment_area" class="qna-board">
+	<tbody>
 	 <%--  <c:forEach var="comment" items="${CommentList}" varStatus="status">
 	  	<tr>
 	  		<td>${comment.writerId}</td>
@@ -53,6 +62,7 @@
 	  	<input type="hidden" class="Comment_id" name="Comment_id" value="${comment.id}" /> 
 	  </c:forEach> --%>
   </tbody>
+  
   <template>
 	<tr>
 		<td></td>
@@ -62,30 +72,22 @@
   </template>
 </table>
 <!-- 댓글 삽입하는 테이블 -->
-<table>
+<table class="reg_comment">
 	<tr>
 		<td><textarea id="comment_content" name="comment_content" placeholder="댓글을 입력하세요."></textarea></td>
-		<td><button id="comment_reg" name="comment_reg">댓글 등록</button></td><!-- 
-		<td><button id="comment_update" name="comment_update">리플 새로고침</button></td> -->
+		<td><button id="comment_reg" name="comment_reg">댓글 등록</button></td>
+		<td><button id="comment_update" name="comment_update">리플 새로고침</button></td>
 	</tr>
 </table>
 <!-- Bootstrap -->
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>	
-/* var auto_refresh = setInterval(
-		function ()
-		{
-		$('#comment_area').load('#comment_area #data').fadeIn("slow");
-		}, 1000);
- */
-
-	var commentLength =0;
 	var count = 0;
-	
 	$(function() {
 		
 		var updateComment = function() {
+
 			
 				//ajax 호출
 				console.log("count더하기 전"+$(".Comment_id").last().val());
@@ -108,9 +110,7 @@
 							alert("최신댓글입니다.");
 						else{ */
 							var json =JSON.parse(data);//data를 json형식으로 만들어줌
-							console.log(json);
-							console.log("개수:"+json.length);
-							commentLength = json.length
+				
 	 						for (var i = 0; i < json.length; i++) {
 								var clone = $(document.importNode(template.prop("content"),
 										true));
@@ -127,6 +127,7 @@
 								var min = date.getMinutes();	
 								var sec = date.getSeconds();
 								tds.eq(2).text(year+"-"+month+"-"+day+" "+hour+":"+min+":"+sec);
+
 								tbody.append(clone);// 복제된 clone(tr)을 노드 트리에 추가
 								count++;
 							}
@@ -172,25 +173,31 @@
 										async : false, //동기: false, 비동기: ture
 										data : objParams,
 										error : function(error) {
-									        alert("Error!");
+									        alert("등록 완료");
+									    	$("#comment_area tbody").empty();
+											updateComment();
 									    },
 									    success : function(gson) {
-									        alert("success!");
+									        alert("등록 실패");
 									    }
+
+
 									
 								});
+
 							//댓글 초기화
 							//$("#comment_content").val("");
-							/* $("#comment_area").empty(); */
-							/* $("#comment_area #data td").empty(); */
-							$("#comment_area #data td").remove();
-							updateComment();
+							/* $("#comment_area tbody").empty();
+							updateComment(); */
 						}
+
 				);
+
 		//댓글 새로고침을 하는 이벤트
 		$("#comment_update").click(function() {
 			updateComment();
 		});
+
 		//삭제링크를 눌렀을때 해당 댓글을 삭제하는 이벤트
 		$(document)
 				.on(
@@ -199,13 +206,16 @@
 						function() {//동적으로 버튼이 생긴 경우 처리 방식
 							if ($(this).attr("name") == "pDel") {
 								if (confirm("답글을 삭제 하시면 밑에 답글도 모두 삭제 됩니다. 정말 삭제하시겠습니까?") == true) { //확인
+
 									var delComment = $(this);
 									delComment.remove();
+
 								} else
 									//취소
 									return;
 							}
 						});
+
 	});
 </script>
 <%-- 	<form id="formname1"  method="post">
@@ -241,6 +251,7 @@
 				
 				</table>
 			</c:if>
+
 			<div class="page_num">
 				<div class="content detail-content">${answer.content}</div>
 				
