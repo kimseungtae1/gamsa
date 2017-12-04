@@ -74,3 +74,17 @@ h1 {
     top: 10px;
     
 }
+/*페이징*/
+.listnum {
+
+}
+
+.listnum li{
+	float: left;
+	list-style:none;
+}
+
+.text-strong{
+	color: orange;
+	font-weight: bold;
+}
