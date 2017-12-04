@@ -7,6 +7,36 @@
 <head>
 <meta charset="UTF-8">
 <title>갬사_Gamsa</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+	window.addEventListener("load", function(){
+		var moreButton = document.querySelector("#more-btn");
+		
+		moreButton.onclick = function(){
+			var xhr = new XMLHttpRequest();
+			
+			xhr.onload = function(){
+				data = JSON.parse(xhr.responseText);
+				// 2. ajax icon제거
+				container.removeChild(container.lastChild);
+			};
+			
+			xhr.onerror = function(e){
+				alert("예기치 못한 오류가 생겼습니다.")
+			};
+			
+			xhr.open("GET", "", true);
+			xhr.send();
+			
+			var img = document.createElement("img");
+			img.src = "../images/ajax-loader.gif";
+			container.appendChild(img);
+		};
+		
+	});
+	
+</script>
 </head>
 <body>
 	<main id="main">
@@ -41,7 +71,7 @@
 			<img class="img-box" src="${path}/resource/images/key4.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key5.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
+			<%-- <img class="img-box" src="${path}/resource/images/key2.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key4.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key5.JPG"/>
@@ -52,13 +82,13 @@
 			<img class="img-box" src="${path}/resource/images/key5.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 			<img class="img-box" src="${path}/resource/images/key2.JPG"/>
-			<img class="img-box" src="${path}/resource/images/key3.JPG"/>
+			<img class="img-box" src="${path}/resource/images/key3.JPG"/> --%>
 		</div>
 		
 		
 		<div class="img-list">
 			<div class="more-btn-div">
-				<button class="more-btn" type="button">사진 더보기</button>
+				<button class="more-btn" id="more-btn" type="button">사진 더보기</button>
 			</div>
 		</div>
 		

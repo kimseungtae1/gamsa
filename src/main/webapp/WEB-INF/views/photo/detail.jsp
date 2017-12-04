@@ -34,11 +34,8 @@
 		photoId : ${p.photoId}<br/>--%>
 		<c:set var="TextValue" value="${p.src}"/>
 		<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
-		src : <img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
-		
-		
-		
-		
+		<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
+
 		<div class="tag-section">
 			<div class="tag-section-child">#태그1#태그2#태그3</div>
 			<div class="tag-section-child">#태그1#태그2#태그3</div>
