@@ -54,14 +54,13 @@ public class PhotoController {
 		model.addAttribute("list", photoUploadDao.getList(page, field, query));
 		
 		return "photo.list";
-		
 	}
 	
 	@RequestMapping("detail/{id}")
 	public String photoDetail(@PathVariable("id") String id, Model model) {
 		
-		//model.addAttribute("p", photoDao.get(id));
-		model.addAttribute("p", photoUploadDao.get(id));
+		model.addAttribute("p", photoDao.get(id));
+		//model.addAttribute("p", photoUploadDao.get(id));
 		
 		//return "customer/notice-detail";
 		return "photo.detail";

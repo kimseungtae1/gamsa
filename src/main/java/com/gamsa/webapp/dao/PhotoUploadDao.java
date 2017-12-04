@@ -32,9 +32,5 @@ public interface PhotoUploadDao {
 	/*int update(Photo photo);
 	
 	int update(String photoId);*/
-
-	
-
-	
 	
 }
