@@ -87,3 +87,17 @@ h1 {
 	overflow: hidden;
 	border: 1px solid #e19b3e2e;
 }
+/*페이징*/
+.listnum {
+
+}
+
+.listnum li{
+	float: left;
+	list-style:none;
+}
+
+.text-strong{
+	color: orange;
+	font-weight: bold;
+}

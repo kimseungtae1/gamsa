@@ -45,18 +45,22 @@
 	</div>
 </div>
 <!--DB에서 가져온 댓글테이블  -->
-<tbody>
-	댓글수:
-	<p class="count"></p>
-	개
-</tbody>
-<table id="comment_area" class="qna-board">
+<table  class="qna-board name">
 	<tr>
 		<td>작성자</td>
 		<td>내용</td>
 		<td>개시일</td>
-	</tr>
+	</tr> 
+	</table>
+<table id="comment_area" class="qna-board">
+
+<!-- 	<tr>
+		<td>작성자</td>
+		<td>내용</td>
+		<td>개시일</td>
+	</tr> -->
 	<tbody id="data" class="view_wrap">
+	
 		<%--  <c:forEach var="comment" items="${CommentList}" varStatus="status">
 	  	<tr>
 	  		<td>${comment.writerId}</td>
@@ -75,17 +79,45 @@
 	</template>
 </table>
 <!-- 댓글 삽입하는 테이블 -->
-<table>
-	<tr>
+<!-- <table class="view_wrap">
+	<tr class="table-text">
 		<td><textarea id="comment_content" name="comment_content"
 				placeholder="댓글을 입력하세요."></textarea></td>
 		<td><button id="comment_reg" name="comment_reg">댓글 등록</button></td>
-		<!-- 
-		<td><button id="comment_update" name="comment_update">리플 새로고침</button></td> -->
+		
+		<td><button id="comment_update" name="comment_update">리플 새로고침</button></td>
 	</tr>
-</table>
-<!-- Bootstrap --> <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) --> <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</table> -->
+<div class="view_wrap">
+	댓글 등록
+	<table class="board">
+		<%-- <c:forEach var="" items=""> --%>
+		<tr>
+						
+				<span class="reply-list-text"><textarea id="comment_content" name="comment_content"
+				placeholder="댓글을 입력하세요."></textarea>
+				<button id="comment_reg" name="comment_reg" class="reply-reg">댓글 등록</button></span>
+			</td>
+		</tr>
+		<%-- </c:forEach> --%>
+	</table>
+</div>
+<%-- <div class="view_wrap">
+	${n}
+	개의 댓글
+	<table class="board">
+		<c:forEach var="" items="">
+		<tr>
+			<td class="table-text"><span class="reply-list-id">admin${member.id}</span>
+				<span class="reply-list-date">2017-11-07${answer.regDate}</span><br />
+				<span class="reply-list-text">아지토정식 13,000원${answer.content}</span>
+			</td>
+		</tr>
+		</c:forEach>
+	</table>
+</div> --%>
+<!-- Bootstrap --> <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	/* var auto_refresh = setInterval(
 	 function ()
@@ -142,7 +174,7 @@
 					tds.eq(2).html(
 							year + "-" + month + "-" + day + " " + hour + ":"
 									+ min + ":" + sec);
-					tds.eq(3).html("ㅅㄴ");
+					
 					tbody.append(clone);// 복제된 clone(tr)을 노드 트리에 추가
 					count++;
 				}
@@ -281,20 +313,6 @@
 		</form>	 --%>
 
 
-<div class="view_wrap">
-	<%-- ${n} --%>
-	개의 댓글
-	<table class="board">
-		<%-- <c:forEach var="" items=""> --%>
-		<tr>
-			<td class="table-text"><span class="reply-list-id">admin<%-- ${member.id} --%></span>
-				<span class="reply-list-date">2017-11-07<%-- ${answer.regDate} --%></span><br />
-				<span class="reply-list-text">아지토정식 13,000원<%-- ${answer.content} --%></span>
-			</td>
-		</tr>
-		<%-- </c:forEach> --%>
-	</table>
-</div>
 
 
 

@@ -63,6 +63,8 @@ public class QnaController {
 		return "qna.question.list";
 	}
 
+	
+	
 	@RequestMapping(value="detail/{id}"/*,method=RequestMethod.GET*/)
 	public String noticeDetail(@PathVariable("id") String id, Model model) {
 		

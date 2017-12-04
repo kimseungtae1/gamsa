@@ -48,7 +48,17 @@ public class SpringQnaDao implements QnaDao {
 		return list;
 	}
 
+	@Override
+	public int getCount() {
 
+		String sql = "select count(id) `count` from Notice";
+		
+		int count = template.queryForObject(
+				sql,
+				Integer.class);
+		
+		return count;
+	}
 
 	@Override
 	public Qna get(String id) {

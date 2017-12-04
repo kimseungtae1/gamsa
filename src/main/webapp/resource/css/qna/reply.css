@@ -13,10 +13,29 @@ text-align: center;
 .main .qna-board tr {
 	text-align: left;
 	padding-left: 5%;
-	border-bottom: 1px solid rgba(254, 183, 39, 0.24);
+	/* border-bottom: 1px solid rgba(254, 183, 39, 0.24); */
 }
-
+.main .qna-board  tr:first-child {
+    text-align: center;
+    padding-left: 5%;
+    /* border-bottom: 1px solid rgba(254, 183, 39, 0.24); */
 }
+.name{
+	
+}
+.main .qna-board th,
+.main .qna-board td {
+/*     border: 1px solid #444444; */
+border: 1px solid #e19b3e2e;
+  }
+/* .main .qna-board tr:first-of-type {
+	text-align: left;
+	padding-left: 5%;
+	line-height: 30px;
+	font-size: 18px;
+	
+    text-align: center;
+} */
 /* .main .qna-board #data td:nth-child(1){
     font-weight: bold;
     font-size: 17px;
@@ -37,10 +56,12 @@ text-align: center;
     text-align: center;
 }
 
-.main .qna-board td:nth-child(2) {    text-align: left;
+.main .qna-board td:nth-child(2) {    
+    /* text-align: left; */
     width: 70%;
     line-height: 30px;
     font-size: 18px;
+    padding: 0px 15px 2px;
 }
 
 .main .qna-board td:nth-child(3) {
@@ -57,4 +78,29 @@ text-align: center;
 	padding: 0 2.6%;
 	overflow: hidden;
 	border: 1px solid #e19b3e2e;
+}
+
+.main .reg_comment .table-text{
+	text-align: left;
+	padding-left:5%;
+	line-height: 30px;
+}
+
+
+
+.reply-reg{
+	    display: inline-block;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 700;
+    color: #fff;
+    background: rgb(254, 183, 39);
+    text-align: center;
+    text-decoration: none;
+    float: right;
+    top: 10px;
+    margin-left: 10px;
+    margin-top: 0px;	
 }

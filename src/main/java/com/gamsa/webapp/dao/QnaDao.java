@@ -16,6 +16,7 @@ public interface QnaDao {
 	List<Qna> getList(int page, String field, String query);
 	int insert(String title, String content, String writerId);
 	int insert(Qna qna);
-	int update(Qna qna);	
+	int update(Qna qna);
+	int getCount();	
 
 }
