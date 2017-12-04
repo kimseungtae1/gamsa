@@ -3,12 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <main class="main">
-<h1>공지사항</h1>
+<h1>질의응답</h1>
 
 <div class="view_wrap">
-
 	<table class="board">
 		<thead>
 			<td>번호</td>
@@ -17,20 +16,19 @@
 			<td>게시일</td>
 		</thead>
 		<tbody>
-			<c:forEach var="n" items="${list}">
+			<c:forEach var="question" items="${list}">
 				<tr>
-					<td>${n.id}</td>
-					<td class="title indent"><a href="notice/${n.id}">${n.title}</a></td>
-					<td>${n.writerId}</td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${n.regDate}" />
-					</td>
+					<td>${question.id}</td>
+					<td class="title indent"><a href="detail/${question.id}">${question.title}</a></td>
+					<td>${question.writerId}</td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd"
+							value="${question.regDate}" /></td>
 
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-
-
+	
 	<!-- 리스트 : 이전  1 2 3 4 5 ... 다음 -->
 	<c:set var="page" value="${param.p}" />
 	<c:set var="startNum" value="${page-((page-1)%5)}" />
@@ -56,7 +54,6 @@
 							<c:set var="strong" value="text-strong"/><!-- text-strong은 style에 class이름임! -->
 							
 						</c:if>
-						
 						<c:if test="${startNum + i <= lastNum || startNum + i > lastNum}">
 							<li><a class="${strong}" href="?p=${startNum+i}">${startNum+i}</a></li>
 						</c:if>
@@ -74,12 +71,14 @@
 			</div>
 		</div>
 			<div class="reg-button">
-		<a href="notice/reg">글 쓰기</a>
+		<a href="reg">글 쓰기</a>
 	</div>
 	</div>
 
 
 
 </div>
+
+
 
 </main>

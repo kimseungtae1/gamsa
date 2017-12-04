@@ -48,7 +48,7 @@ public class BoardController {
 		
 		
 		model.addAttribute("list", noticeDao.getList(page, field, query));
-		
+		model.addAttribute("count", noticeDao.getCount());
 		return "admin.board.notice.list";
 	}
 	

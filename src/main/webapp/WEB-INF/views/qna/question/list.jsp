@@ -45,20 +45,24 @@
 		<div>
 			<div><a href="?p=1">이전</a></div>
 				<ul>
-					<c:forEach var="i" begin="0" end="4">
+					<c:set var="pageRow" value="${count/10}"/>
+					<c:forEach var="i" begin="0" end="${(pageRow+(1-(pageRow%1))%1)-1}">
 						<!-- 현재 페이지 번호 오렌지색으로 표시 // 임시변수 이용!-->
+						
 						<c:set var="strong" value=""/>
 						<c:if test="${page == startNum+i}">
 							<c:set var="strong" value="text-strong"/><!-- text-strong은 style에 class이름임! -->
+							
 						</c:if>
-						<c:if test="${startNum + i <= lastNum}">
+						
+						<c:if test="${startNum + i <= lastNum || startNum + i > lastNum}">
 							<li><a class="${strong}" href="?p=${startNum+i}">${startNum+i}</a></li>
 						</c:if>
 						
-						<c:if test="${startNum + i > lastNum}">
-			<%-- 			<li>${startNum+i}</li> --%>
+<%-- 						<c:if test="${startNum + i > lastNum}">
+						<li>${startNum+i}</li>
 							<li><a class="${strong}" href="?p=${startNum+i}">${startNum+i}</a></li>
-						</c:if>
+						</c:if> --%>
 					</c:forEach>
 				</ul>
 			<div>

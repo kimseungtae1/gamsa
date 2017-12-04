@@ -60,6 +60,7 @@ public class QnaController {
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) {
 		model.addAttribute("list", qnaDao.getList(page, field, query));
+		model.addAttribute("count", qnaDao.getCount());
 		return "qna.question.list";
 	}
 

@@ -17,6 +17,7 @@ public interface NoticeDao {
 	int insert(Notice notice);
 	int delete(String id);
 	int update(Notice notice);
+	int getCount();
 
 
 }
