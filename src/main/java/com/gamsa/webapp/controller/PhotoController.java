@@ -56,7 +56,7 @@ public class PhotoController {
 		return "photo.list";
 	}
 	
-	@RequestMapping("detail/{id}")
+	@RequestMapping("detail/{id}")	
 	public String photoDetail(@PathVariable("id") String id, Model model) {
 		
 		model.addAttribute("p", photoDao.get(id));

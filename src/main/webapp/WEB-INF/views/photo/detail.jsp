@@ -24,15 +24,18 @@
 			<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
 			<hr/>
 		</c:forEach> --%>
-		${p.id}<br/>
-		${p.title}<br/>
-		${p.explain}<br/>
-		${p.regDate}<br/>
-		${p.liked}<br/>
-		${p.replyId}<br/>
-		${p.writerId}<br/>
-		${p.src}<br/>
-		${p.photoId}<br/>
+		<%-- id : ${p.id}<br/>
+		title : ${p.title}<br/>
+		explain : ${p.explain}<br/>
+		regDate : ${p.regDate}<br/>
+		liked : ${p.liked}<br/>
+		replyId : ${p.replyId}<br/>
+		writerId : ${p.writerId}<br/> 
+		photoId : ${p.photoId}<br/>--%>
+		<c:set var="TextValue" value="${p.src}"/>
+		<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
+		src : <img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" /><br/>
+		
 		
 		
 		
