@@ -54,7 +54,6 @@
 							<c:set var="strong" value="text-strong"/><!-- text-strong은 style에 class이름임! -->
 							
 						</c:if>
-						
 						<c:if test="${startNum + i <= lastNum || startNum + i > lastNum}">
 							<li><a class="${strong}" href="?p=${startNum+i}">${startNum+i}</a></li>
 						</c:if>

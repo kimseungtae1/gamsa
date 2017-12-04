@@ -87,7 +87,7 @@
 						<a class="cursor atag">커뮤니티</a>
 						<ul>
 							<li><a href="${path}/admin/board/notice" class="cursor atag">공지사항</a></li>
-							<li><a href="${path}/qna/list" class="cursor atag">문의사항</a></li>
+							<li><a href="${path}/qna/list?p=1" class="cursor atag">문의사항</a></li>
 						</ul>
 					</li>
 					<li><a href="${path}/photo/upload/reg" class="cursor atag">사진올리기</a></li>
