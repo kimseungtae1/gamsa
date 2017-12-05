@@ -1,0 +1,12 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/*상세페이지*/
+td{
+	border-right: 1px solid #e19b3e2e;
+}
+.img_area{    
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    max-height: 1000px;
+}

@@ -54,11 +54,7 @@
 	</table>
 <table id="comment_area" class="qna-board">
 
-<!-- 	<tr>
-		<td>작성자</td>
-		<td>내용</td>
-		<td>개시일</td>
-	</tr> -->
+
 	<tbody id="data" class="view_wrap">
 	
 		<%--  <c:forEach var="comment" items="${CommentList}" varStatus="status">

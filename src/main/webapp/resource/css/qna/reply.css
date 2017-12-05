@@ -104,3 +104,12 @@ border: 1px solid #e19b3e2e;
     margin-left: 10px;
     margin-top: 0px;	
 }
+/*댓글과 설명의 간격*/
+#comment_area{
+	    margin-top: auto;
+}
+
+
+
+
+
