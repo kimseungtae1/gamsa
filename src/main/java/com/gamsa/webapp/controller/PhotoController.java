@@ -2,17 +2,11 @@ package com.gamsa.webapp.controller;
 
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,19 +14,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.gamsa.webapp.dao.PhotoDao;
 import com.gamsa.webapp.dao.PhotoUploadDao;
+import com.gamsa.webapp.dao.ReplayDao;
 import com.gamsa.webapp.entity.Photo;
 import com.gamsa.webapp.entity.PhotoUpload;
+import com.gamsa.webapp.entity.Reply;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/photo/*")
@@ -40,6 +34,9 @@ public class PhotoController {
 
 	@Autowired
 	private PhotoDao photoDao;
+	
+	@Autowired
+	private ReplayDao replayDao;
 	
 	@Autowired
 	private PhotoUploadDao photoUploadDao;
@@ -142,6 +139,46 @@ public class PhotoController {
 		return "";
 		
 	}
+	
+	@RequestMapping(value="comment/save", method=RequestMethod.POST)
+    @ResponseBody
+    //public String boardReplySave(@RequestParam Map<String , Object>comment_content) {
+    public String boardCommentSave(@RequestParam Map<String, Object> objParams,Principal principal) {
+    	 
+
+        //정보입력
+    	String content = objParams.get("comment_content").toString();
+    	String photo_id = objParams.get("photo_id").toString();
+    	String writer_id = principal.getName();
+   
+        int result = replayDao.insert(content, photo_id, writer_id);
+        System.out.println(content);
+        System.out.println(photo_id);
+        System.out.println(writer_id);
+        if(result>0){
+        	System.out.println("comment등록에 성공하였습니다.");
+        }else{
+            System.out.println("comment등록에 실패하였습니다.");
+        }
+        //return "admin.board.free.detail";
+        return "aa";
+    }
+	
+	@RequestMapping(value="comment/update-ajax", method=RequestMethod.GET)
+    @ResponseBody
+    public String boardCommentUpdate(@RequestParam String photoId,@RequestParam String cId) {
+	
+    	//정보입력
+    	System.out.println("qnaId : "+photoId+", id : "+cId);
+    	List<Reply> list = replayDao.getUpdateList(photoId);
+
+    	
+    	String json = "";	
+		Gson gson = new Gson();
+		json = gson.toJson(list);
+		
+		return json;
+    }
 }
 
 

@@ -2,7 +2,6 @@ package com.gamsa.webapp.dao;
 
 import java.util.List;
 
-import com.gamsa.webapp.entity.Notice;
 import com.gamsa.webapp.entity.Qna;
 
 public interface QnaDao {

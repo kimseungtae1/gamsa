@@ -2,8 +2,6 @@ package com.gamsa.webapp.dao;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.User;
-
 import com.gamsa.webapp.entity.Photo;
 import com.gamsa.webapp.entity.PhotoView;
 

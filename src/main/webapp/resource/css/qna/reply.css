@@ -1,4 +1,8 @@
-@charset "UTF-8";
+ @charset "UTF-8";
+.comment-all{
+	max-width: 1000px;
+	margin: 100px auto 0px auto;
+}
 
 .main .qna-board {
 	width: 1085px;
@@ -7,7 +11,7 @@
 	/* padding: 0 2.6%; */
 	overflow: hidden;
 	border: 1px solid #e19b3e2e;
-text-align: center;
+	text-align: center;
 }
 
 .main .qna-board tr {
@@ -15,19 +19,19 @@ text-align: center;
 	padding-left: 5%;
 	/* border-bottom: 1px solid rgba(254, 183, 39, 0.24); */
 }
+
 .main .qna-board  tr:first-child {
-    text-align: center;
-    padding-left: 5%;
-    /* border-bottom: 1px solid rgba(254, 183, 39, 0.24); */
+	/*     text-align: center; */
+	padding-left: 5%;
+	/* border-bottom: 1px solid rgba(254, 183, 39, 0.24); */
 }
-.name{
-	
+
+
+
+.main .qna-board th, .main .qna-board td {
+	/*     border: 1px solid #444444; */
+	border: 1px solid #e19b3e2e;
 }
-.main .qna-board th,
-.main .qna-board td {
-/*     border: 1px solid #444444; */
-border: 1px solid #e19b3e2e;
-  }
 /* .main .qna-board tr:first-of-type {
 	text-align: left;
 	padding-left: 5%;
@@ -42,33 +46,31 @@ border: 1px solid #e19b3e2e;
     padding-right: 10px;
     width: 400px;
 } */
-.main .qna-board td{
-	
-    width: 150px;
-	
+.main .qna-board td {
+	width: 150px;
 }
+
 .main .qna-board td:first-of-type {
 	text-align: left;
 	/* padding-left: 5%; */
 	line-height: 30px;
 	font-size: 18px;
-	
-    text-align: center;
+	text-align: center;
 }
 
-.main .qna-board td:nth-child(2) {    
-    /* text-align: left; */
-    width: 70%;
-    line-height: 30px;
-    font-size: 18px;
-    padding: 0px 15px 2px;
+.main .qna-board td:nth-child(2) {
+	/* text-align: left; */
+	width: 70%;
+	line-height: 30px;
+	font-size: 18px;
+	padding: 0px 15px 2px;
 }
 
 .main .qna-board td:nth-child(3) {
-    font-size: 14px;
-    /* text-align: right; */
-    padding-right: 22px;
-    width: 151px;
+	font-size: 14px;
+	text-align: center;
+/* 	padding-right: 22px; */
+	width: 151px;
 }
 
 .main .reg_comment {
@@ -80,36 +82,122 @@ border: 1px solid #e19b3e2e;
 	border: 1px solid #e19b3e2e;
 }
 
-.main .reg_comment .table-text{
+.main .reg_comment .table-text {
 	text-align: left;
-	padding-left:5%;
+	padding-left: 5%;
 	line-height: 30px;
 }
 
-
-
-.reply-reg{
-	    display: inline-block;
-    width: 150px;
-    height: 40px;
-    font-size: 18px;
-    line-height: 40px;
-    font-weight: 700;
-    color: #fff;
-    background: rgb(254, 183, 39);
-    text-align: center;
-    text-decoration: none;
-    float: right;
-    top: 10px;
-    margin-left: 10px;
-    margin-top: 0px;	
+.reply-reg {
+	display: inline-block;
+	width: 150px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: 700;
+	color: #fff;
+	background: rgb(254, 183, 39);
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	top: 10px;
+	margin-left: 10px;
+	margin-top: 0px;
 }
 /*댓글과 설명의 간격*/
-#comment_area{
-	    margin-top: auto;
+#comment_area {
+	margin-top: auto;
 }
 
+.comment-title td {
+	text-align: center;
+}
 
+/*다운로드 버튼*/
+body {
+	background-color: white;
+}
 
+.buttonDownload {
+	display: inline-block;
+	position: relative;
+	padding: 10px 25px;
+  
+	background-color: #4CC713;
+	color: white;
+  
+	font-family: sans-serif;
+	text-decoration: none;
+	font-size: 0.9em;
+	text-align: center;
+	text-indent: 15px;
+}
 
+.buttonDownload:hover {
+	background-color: #fcd000;
+	color: white;
+}
 
+.buttonDownload:before, .buttonDownload:after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 15px;
+	top: 52%;
+}
+
+/* Download box shape  */
+.buttonDownload:before {
+	width: 10px;
+	height: 2px;
+	border-style: solid;
+	border-width: 0 2px 2px;
+}
+
+/* Download arrow shape */
+.buttonDownload:after {
+	width: 0;
+	height: 0;
+	margin-left: 3px;
+	margin-top: -7px;
+  
+	border-style: solid;
+	border-width: 4px 4px 0 4px;
+	border-color: transparent;
+	border-top-color: inherit;
+	
+	animation: downloadArrow 2s linear infinite;
+	animation-play-state: paused;
+}
+
+.buttonDownload:hover:before {
+	border-color: #ffffff;
+}
+
+.buttonDownload:hover:after {
+	border-top-color: #ffffff;
+	animation-play-state: running;
+}
+
+/* keyframes for the download icon anim */
+@keyframes downloadArrow {
+	/* 0% and 0.001% keyframes used as a hackish way of having the button frozen on a nice looking frame by default */
+	0% {
+		margin-top: -7px;
+		opacity: 1;
+	}
+	
+	0.001% {
+		margin-top: -15px;
+		opacity: 0;
+	}
+	
+	50% {
+		opacity: 1;
+	}
+	
+	100% {
+		margin-top: 0;
+		opacity: 0;
+	}
+}

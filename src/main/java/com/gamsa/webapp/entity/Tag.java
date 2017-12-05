@@ -1,7 +1,5 @@
 package com.gamsa.webapp.entity;
 
-import java.util.Date;
-
 public class Tag {
 	
 	private int id;

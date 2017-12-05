@@ -10,8 +10,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<main class="main"> <input type="hidden" id="qna_id"
-	name="qna_id" value="${question.id}" />
+<main class="main"> 
+<input type="hidden" id="qna_id" name="qna_id" value="${question.id}" />
 <div class="view_wrap">
 	문의사항
 	<table class="board">
@@ -45,6 +45,7 @@
 	</div>
 </div>
 <!--DB에서 가져온 댓글테이블  -->
+<div class="comment-all">
 <table  class="qna-board name">
 	<tr>
 		<td>작성자</td>
@@ -57,14 +58,6 @@
 
 	<tbody id="data" class="view_wrap">
 	
-		<%--  <c:forEach var="comment" items="${CommentList}" varStatus="status">
-	  	<tr>
-	  		<td>${comment.writerId}</td>
-	  		<td>${comment.content}</td>
-	  		<td><fmt:formatDate value="${comment.date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-	  	</tr>
-	  	<input type="hidden" class="Comment_id" name="Comment_id" value="${comment.id}" /> 
-	  </c:forEach> --%>
 	</tbody>
 	<template>
 	<tr>
@@ -75,15 +68,6 @@
 	</template>
 </table>
 <!-- 댓글 삽입하는 테이블 -->
-<!-- <table class="view_wrap">
-	<tr class="table-text">
-		<td><textarea id="comment_content" name="comment_content"
-				placeholder="댓글을 입력하세요."></textarea></td>
-		<td><button id="comment_reg" name="comment_reg">댓글 등록</button></td>
-		
-		<td><button id="comment_update" name="comment_update">리플 새로고침</button></td>
-	</tr>
-</table> -->
 <div class="view_wrap">
 	댓글 등록
 	<table class="board">
@@ -93,25 +77,12 @@
 				<span class="reply-list-text"><textarea id="comment_content" name="comment_content"
 				placeholder="댓글을 입력하세요."></textarea>
 				<button id="comment_reg" name="comment_reg" class="reply-reg">댓글 등록</button></span>
-			</td>
+		
 		</tr>
 		<%-- </c:forEach> --%>
 	</table>
+	</div>
 </div>
-<%-- <div class="view_wrap">
-	${n}
-	개의 댓글
-	<table class="board">
-		<c:forEach var="" items="">
-		<tr>
-			<td class="table-text"><span class="reply-list-id">admin${member.id}</span>
-				<span class="reply-list-date">2017-11-07${answer.regDate}</span><br />
-				<span class="reply-list-text">아지토정식 13,000원${answer.content}</span>
-			</td>
-		</tr>
-		</c:forEach>
-	</table>
-</div> --%>
 <!-- Bootstrap --> <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
@@ -121,6 +92,7 @@
 	 $('#comment_area').load('#comment_area #data').fadeIn("slow");
 	 }, 1000);
 	 */
+	 
 
 	var commentLength = 0;
 	var count = 0;
@@ -229,84 +201,10 @@
 							$("#comment_area #data tr").remove();
 							updateComment();
 						});
-		//댓글 새로고침을 하는 이벤트
-		$("#comment_update").click(function() {
-			updateComment();
-		});
-		//삭제링크를 눌렀을때 해당 댓글을 삭제하는 이벤트
-		$(document)
-				.on(
-						"click",
-						"table#commentTable a",
-						function() {//동적으로 버튼이 생긴 경우 처리 방식
-							if ($(this).attr("name") == "pDel") {
-								if (confirm("답글을 삭제 하시면 밑에 답글도 모두 삭제 됩니다. 정말 삭제하시겠습니까?") == true) { //확인
-									var delComment = $(this);
-									delComment.remove();
-								} else
-									//취소
-									return;
-							}
-						});
+
+
 	});
-</script> <%-- 	<form id="formname1"  method="post">
-	<input type="hidden" name="qnaId" value="${question.id}"/>
-		<div class="answer">
-		comment
-			<c:if test="${not empty answer.content}">
-				<table class="board">
-					<tr>
-						<th>번호</th>
-						<td>${answer.id}</td>
-					</tr>
-					<tr>
-						<th>제목</th>
-						<td>${answer.title}</td>
-					</tr>
-					<tr>
-						<th>게시일</th>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${answer.regDate}" /></td>
-					</tr>
-				
-				</table>
-			</c:if>
-				
-			<c:if test="${empty answer.content}">
-				<table class="board">
-					<tr>
-						<th>내용</th>
-						<td>
-							<input type="text" name="content"/>
-						</td>
-					</tr>
-				
-				</table>
-			</c:if>
-			<div class="page_num">
-				<div class="content detail-content">${answer.content}</div>
-				
-				<c:if test="${not empty answer.content}">
-					<div class="reg-button">
-						<input type="button" value="수정"/>						
-						<input type="button" value="등록"/>
-					</div>
-					
-				</c:if>		
-				<c:if test="${empty answer.content}">
-					<div class="reg-button">
-				       <input type="button" value="Ajax 폼 전송" onclick="formSubmit()" />
-					</div>
-				</c:if>
-		
-				<div class="reg-button">../notice/edit/${question.id}
-					<a href="../edit/${answer.id}">수정</a>
-				</div>
-			</div>
-	
-	<input type="hidden"
-	name="${_csrf.parameterName}"
-	value="${_csrf.token}"/>
-		</form>	 --%>
+</script> 
 
 
 

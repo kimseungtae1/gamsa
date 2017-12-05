@@ -31,6 +31,7 @@
 	<bean class="com.gamsa.webapp.dao.spring.SpringQnaDao"/>
 	<bean class="com.gamsa.webapp.dao.spring.SpringQnaReplyDao"/>
 	<bean class="com.gamsa.webapp.dao.spring.SpringPhotoUploadDao"/>
+	<bean class="com.gamsa.webapp.dao.spring.SpringReplyDao"/>
 	
 	<context:annotation-config />
 </beans>
