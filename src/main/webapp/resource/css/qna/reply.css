@@ -114,9 +114,6 @@
 }
 
 /*다운로드 버튼*/
-body {
-	background-color: white;
-}
 
 .buttonDownload {
 	display: inline-block;
@@ -131,6 +128,8 @@ body {
 	font-size: 0.9em;
 	text-align: center;
 	text-indent: 15px;
+	
+	float: right;
 }
 
 .buttonDownload:hover {

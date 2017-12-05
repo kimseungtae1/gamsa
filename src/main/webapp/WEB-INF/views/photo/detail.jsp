@@ -36,7 +36,7 @@
 			</tr>
 		</table>
 		<div class="img_area"><img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" ></div>
-		<a class="buttonDownload" href="${fn:substringAfter(reTextValue,'wtpwebapps')}" download>Download</a>
+		<a class="buttonDownload"  href="${fn:substringAfter(reTextValue,'wtpwebapps')}" download>Download</a>
 
 	</div>
 <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
