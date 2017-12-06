@@ -11,7 +11,6 @@
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-
 /* window.addEventListener("beforeunload", function(evt){
 	 
 	$.ajax({
@@ -25,19 +24,14 @@
 	});
 	 
 }); */
-
 /* window.addEventListener("beforeunload", function (evt) {
-
 	  evt.returnValue = "진짜 나감?";
-
 	}); */
-
 	
 /* 
 window.onbeforeunload = function(){
 	
 	var xhr = new XMLHttpRequest();
-
 	
 	
 	xhr.onerror = function(e){
@@ -50,9 +44,7 @@ window.onbeforeunload = function(){
 	return "";
 };
  */
-
 $(function () {
-
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
@@ -73,22 +65,18 @@ $(function () {
          e.preventDefault();
          obj.css('border', '2px solid #5272A0');
     });
-
     obj.on('dragleave', function (e) {
          e.stopPropagation();
          e.preventDefault();
          obj.css('border', '2px dotted #8296C2');
     });
-
     obj.on('dragover', function (e) {
          e.stopPropagation();
          e.preventDefault();
     });
-
     obj.on('drop', function (e) {
          e.preventDefault();
          obj.css('border', '2px dotted #8296C2');
-
          //var files = e.originalEvent.dataTransfer.files;
          files = e.originalEvent.dataTransfer.files;
          
@@ -112,9 +100,7 @@ $(function () {
 				alert("이미지는 업로드 되었습니다. 사진 제목과 내용을 입력해주세요.");
 			}
 		});
-
 	});
-
     $(window).on("beforeunload",function (evtt){
     	
     	submitButton.click(function() {
@@ -148,14 +134,11 @@ $(function () {
 		//파일 멀티 업로드
 		/* function F_FileMultiUpload(files, obj) {
 			if (confirm(files.length + "개의 파일을 업로드 하시겠습니까?")) {
-
 				console.log(files[0]);
 				var formData = new FormData();
-
 				for (var i = 0; i < files.length; i++) {
 					formData.append('file', files[i]);
 				}
-
 				$
 						.ajax({
 							url : "${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}",
@@ -169,7 +152,6 @@ $(function () {
 								F_FileMultiUpload_Callback(data.files);
 								console.log('success');
 								alert(data);
-
 								var str = "";
 								
 								if(checkImageType(data)){ 
@@ -186,13 +168,11 @@ $(function () {
 						});
 			}
 		}
-
 		//파일 멀티 업로드 Callback
 		function F_FileMultiUpload_Callback(files) {
 			for (var i = 0; i < files.length; i++)
 				console.log(files[i].file_nm + " - " + files[i].file_size);
 		} */
-
 	});
 </script>
 </head>

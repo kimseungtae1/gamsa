@@ -22,6 +22,8 @@
 </head>
 <body class="main"><input type="hidden" id="photo_id"
 	name="photo_id" value="${p.id}" />
+	
+	<div class="sub-title top">감성사진</div>
 	<div class="view_wrap">
 		<c:set var="TextValue" value="${p.src}" />
 		<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
@@ -42,6 +44,7 @@
 <!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  --><!--  -->
 <!--DB에서 가져온 댓글테이블  -->
 <div class="comment-all">
+	<div class="sub-title">댓글</div>
 <table  class="qna-board name comment-title">
 	<tr>
 		<td>작성자</td>
@@ -66,7 +69,7 @@
 </table>
 <!-- 댓글 삽입하는 테이블 -->
 <div class="view_wrap">
-	댓글 등록
+	<div class="sub-title reply">댓글 등록</div>
 	<table class="board">
 		<%-- <c:forEach var="" items=""> --%>
 		<tr>

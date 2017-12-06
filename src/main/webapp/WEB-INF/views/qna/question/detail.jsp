@@ -10,10 +10,12 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<main class="main"> 
-<input type="hidden" id="qna_id" name="qna_id" value="${question.id}" />
+<main class="main"> <input type="hidden" id="qna_id"
+	name="qna_id" value="${question.id}" />
+		<div class="sub-title">문의사항</div>
 <div class="view_wrap">
-	문의사항
+
+
 	<table class="board">
 		<tr>
 			<th>번호</th>
@@ -46,45 +48,47 @@
 </div>
 <!--DB에서 가져온 댓글테이블  -->
 <div class="comment-all">
-<table  class="qna-board name">
-	<tr>
-		<td>작성자</td>
-		<td>내용</td>
-		<td>개시일</td>
-	</tr> 
-	</table>
-<table id="comment_area" class="qna-board">
-
-
-	<tbody id="data" class="view_wrap">
-	
-	</tbody>
-	<template>
-	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	</template>
-</table>
-<!-- 댓글 삽입하는 테이블 -->
-<div class="view_wrap">
-	댓글 등록
-	<table class="board">
-		<%-- <c:forEach var="" items=""> --%>
+	<div class="sub-title">댓글</div>
+	<table class="qna-board name">
 		<tr>
-						
-				<span class="reply-list-text"><textarea id="comment_content" name="comment_content"
-				placeholder="댓글을 입력하세요."></textarea>
-				<button id="comment_reg" name="comment_reg" class="reply-reg">댓글 등록</button></span>
-		
+			<td>작성자</td>
+			<td>내용</td>
+			<td>개시일</td>
 		</tr>
-		<%-- </c:forEach> --%>
 	</table>
+	<table id="comment_area" class="qna-board">
+
+
+		<tbody id="data" class="view_wrap">
+
+		</tbody>
+		<template>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		</template>
+	</table>
+	<!-- 댓글 삽입하는 테이블 -->
+	<div class="view_wrap">
+		<div class="sub-title reply">댓글 등록</div>
+		<table class="board">
+			<%-- <c:forEach var="" items=""> --%>
+			<tr>
+
+				<span class="reply-list-text"><textarea id="comment_content"
+						name="comment_content" placeholder="댓글을 입력하세요."></textarea>
+					<button id="comment_reg" name="comment_reg" class="reply-reg">댓글
+						등록</button></span>
+
+			</tr>
+			<%-- </c:forEach> --%>
+		</table>
 	</div>
 </div>
-<!-- Bootstrap --> <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap --> <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) --> <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	/* var auto_refresh = setInterval(
 	 function ()
@@ -92,7 +96,6 @@
 	 $('#comment_area').load('#comment_area #data').fadeIn("slow");
 	 }, 1000);
 	 */
-	 
 
 	var commentLength = 0;
 	var count = 0;
@@ -142,7 +145,7 @@
 					tds.eq(2).html(
 							year + "-" + month + "-" + day + " " + hour + ":"
 									+ min + ":" + sec);
-					
+
 					tbody.append(clone);// 복제된 clone(tr)을 노드 트리에 추가
 					count++;
 				}
@@ -202,15 +205,5 @@
 							updateComment();
 						});
 
-
 	});
-</script> 
-
-
-
-
-
-
-
-
-</main>
+</script> </main>

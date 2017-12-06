@@ -1,17 +1,20 @@
  @charset "UTF-8";
+
+
+
 .comment-all{
 	max-width: 1000px;
 	margin: 100px auto 0px auto;
 }
 
 .main .qna-board {
-	width: 1085px;
-	min-height: auto;
-	margin: 100px auto 0px auto;
-	/* padding: 0 2.6%; */
-	overflow: hidden;
-	border: 1px solid #e19b3e2e;
-	text-align: center;
+    width: 1085px;
+    min-height: auto;
+    margin: 6px auto 0px auto;
+    /* padding: 0 2.6%; */
+    overflow: hidden;
+    border: 1px solid #e19b3e2e;
+    text-align: center;
 }
 
 .main .qna-board tr {
@@ -26,7 +29,12 @@
 	/* border-bottom: 1px solid rgba(254, 183, 39, 0.24); */
 }
 
-
+.sub-title{
+    margin: 22px 260px;
+    font-size: 36px;
+    color: rgb(254, 183, 39);
+	
+}
 
 .main .qna-board th, .main .qna-board td {
 	/*     border: 1px solid #444444; */
@@ -199,4 +207,8 @@
 		margin-top: 0;
 		opacity: 0;
 	}
+}
+
+.reply{
+	margin: 6px -37px 10px;
 }
