@@ -112,7 +112,6 @@ $(function () {
 				alert("이미지는 업로드 되었습니다. 사진 제목과 내용을 입력해주세요.");
 			}
 		});
-
 	});
 
     $(window).on("beforeunload",function (evtt){
