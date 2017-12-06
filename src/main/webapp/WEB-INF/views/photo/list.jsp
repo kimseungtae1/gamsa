@@ -10,7 +10,8 @@
 <title>사진리스트보기</title>
 </head>
 <body>
-	<main id="main">
+	<main class="main">
+	<div class="idfs">s</div>
 		<%-- <img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
 		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
