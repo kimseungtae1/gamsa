@@ -3,7 +3,7 @@
 .main .view_wrap {
     max-width: 1000px;
     min-height: auto;
-    margin: 100px auto 0px auto;
+    margin: 21px auto 0px auto;
     padding: 0 2.6%;
     overflow: hidden;
     border: 1px solid #e19b3e2e;
@@ -78,7 +78,7 @@ textarea{
     line-height: 40px;
     font-weight: 700;
     color: #fff;
-    background: rgb(254, 183, 39);
+/*     background: rgb(254, 183, 39); */
     text-align: center;
     text-decoration: none;
     float: right;

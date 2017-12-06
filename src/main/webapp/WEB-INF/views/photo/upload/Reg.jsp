@@ -10,7 +10,27 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="${path}/resource/js/ckeditor/ckeditor.js"></script>
+
+<script>
+    var editor;
+    CKEDITOR.on( 'instanceReady', function( ev ) {
+        editor = ev.editor;
+        document.getElementById( 'readOnlyOn' ).style.display = '';
+        editor.on( 'readOnly', function() {
+            document.getElementById( 'readOnlyOn' ).style.display = this.readOnly ? 'none' : '';
+            document.getElementById( 'readOnlyOff' ).style.display = this.readOnly ? '' : 'none';
+        });
+    });
+   
+    function toggleReadOnly( isReadOnly ) {
+        editor.setReadOnly( isReadOnly );
+    }
+</script>
 <script type="text/javascript">
+
+
+
 
 /* window.addEventListener("beforeunload", function(evt){
 	 
@@ -25,19 +45,14 @@
 	});
 	 
 }); */
-
 /* window.addEventListener("beforeunload", function (evt) {
-
 	  evt.returnValue = "진짜 나감?";
-
 	}); */
-
 	
 /* 
 window.onbeforeunload = function(){
 	
 	var xhr = new XMLHttpRequest();
-
 	
 	
 	xhr.onerror = function(e){
@@ -50,9 +65,7 @@ window.onbeforeunload = function(){
 	return "";
 };
  */
-
 $(function () {
-
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	
@@ -73,22 +86,18 @@ $(function () {
          e.preventDefault();
          obj.css('border', '2px solid #5272A0');
     });
-
     obj.on('dragleave', function (e) {
          e.stopPropagation();
          e.preventDefault();
          obj.css('border', '2px dotted #8296C2');
     });
-
     obj.on('dragover', function (e) {
          e.stopPropagation();
          e.preventDefault();
     });
-
     obj.on('drop', function (e) {
          e.preventDefault();
          obj.css('border', '2px dotted #8296C2');
-
          //var files = e.originalEvent.dataTransfer.files;
          files = e.originalEvent.dataTransfer.files;
          
@@ -113,7 +122,6 @@ $(function () {
 			}
 		});
 	});
-
     $(window).on("beforeunload",function (evtt){
     	
     	submitButton.click(function() {
@@ -147,14 +155,11 @@ $(function () {
 		//파일 멀티 업로드
 		/* function F_FileMultiUpload(files, obj) {
 			if (confirm(files.length + "개의 파일을 업로드 하시겠습니까?")) {
-
 				console.log(files[0]);
 				var formData = new FormData();
-
 				for (var i = 0; i < files.length; i++) {
 					formData.append('file', files[i]);
 				}
-
 				$
 						.ajax({
 							url : "${path}/photo/upload?${_csrf.parameterName}=${_csrf.token}",
@@ -168,7 +173,6 @@ $(function () {
 								F_FileMultiUpload_Callback(data.files);
 								console.log('success');
 								alert(data);
-
 								var str = "";
 								
 								if(checkImageType(data)){ 
@@ -185,13 +189,11 @@ $(function () {
 						});
 			}
 		}
-
 		//파일 멀티 업로드 Callback
 		function F_FileMultiUpload_Callback(files) {
 			for (var i = 0; i < files.length; i++)
 				console.log(files[i].file_nm + " - " + files[i].file_size);
 		} */
-
 	});
 </script>
 </head>
@@ -223,7 +225,7 @@ $(function () {
 				
 					<h2 class="font-h2">설명</h2>
 					<div class="detail">
-						<textarea name="explain"></textarea>
+						<textarea class="ckeditor" name="explain"></textarea>
 					<br>
 						<div class="view_img_btn">
 							<ul>
@@ -251,6 +253,15 @@ $(function () {
 			</div>
 				
 		</div>
+
+<script type="text/javascript">
+    CKEDITOR.replace('Contents',{
+            toolbar: 'Full',
+            uiColor: '#9AB8F3',
+        }
+    );
+</script>
+
 
 	</main> 
 </body>
