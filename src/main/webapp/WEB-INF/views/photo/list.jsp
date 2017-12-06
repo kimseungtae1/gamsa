@@ -8,25 +8,21 @@
 <head>
 <meta charset="UTF-8">
 <title>사진리스트보기</title>
+<link rel="stylesheet" href="${path}/resource/css/photo/List.css">
 </head>
 <body>
 	<main class="main">
-	<div class="idfs">s</div>
-		<%-- <img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/>
-		<img class="img-box" src="${path}/resource/images/key1.JPG"/> --%>
-		<c:forEach var="n" items="${list}">
-		<c:set var="TextValue" value="${n.src}"/>	
-		<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
-			<div class="img-card">
-				<a href="${path}/photo/detail/${n.id}">
-					<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}" />
-				</a>
-			</div>
-		</c:forEach>
+		<div class="list-layer">
+			<c:forEach var="n" items="${list}">
+			<c:set var="TextValue" value="${n.src}"/>	
+			<c:set var="reTextValue" value="${fn:replace(TextValue, '\', '/')}" />
+				<div class="img-card">
+					<a href="${path}/photo/detail/${n.id}">
+						<img src="${fn:substringAfter(reTextValue,'wtpwebapps')}"/>
+					</a>
+				</div>
+			</c:forEach>
+		</div>
 			
 		
 		<div class="tag-section">
