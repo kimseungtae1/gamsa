@@ -10,7 +10,28 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="${path}/resource/js/ckeditor/ckeditor.js"></script>
+
+<script>
+    var editor;
+    CKEDITOR.on( 'instanceReady', function( ev ) {
+        editor = ev.editor;
+        document.getElementById( 'readOnlyOn' ).style.display = '';
+        editor.on( 'readOnly', function() {
+            document.getElementById( 'readOnlyOn' ).style.display = this.readOnly ? 'none' : '';
+            document.getElementById( 'readOnlyOff' ).style.display = this.readOnly ? '' : 'none';
+        });
+    });
+   
+    function toggleReadOnly( isReadOnly ) {
+        editor.setReadOnly( isReadOnly );
+    }
+</script>
 <script type="text/javascript">
+
+
+
+
 /* window.addEventListener("beforeunload", function(evt){
 	 
 	$.ajax({
@@ -204,7 +225,7 @@ $(function () {
 				
 					<h2 class="font-h2">설명</h2>
 					<div class="detail">
-						<textarea name="explain"></textarea>
+						<textarea class="ckeditor" name="explain"></textarea>
 					<br>
 						<div class="view_img_btn">
 							<ul>
@@ -232,6 +253,15 @@ $(function () {
 			</div>
 				
 		</div>
+
+<script type="text/javascript">
+    CKEDITOR.replace('Contents',{
+            toolbar: 'Full',
+            uiColor: '#9AB8F3',
+        }
+    );
+</script>
+
 
 	</main> 
 </body>

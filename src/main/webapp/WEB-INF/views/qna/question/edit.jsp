@@ -3,7 +3,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<script src="${ctx}/resource/js/ckeditor/ckeditor.js"></script>
 
+<script>
+    var editor;
+    CKEDITOR.on( 'instanceReady', function( ev ) {
+        editor = ev.editor;
+        document.getElementById( 'readOnlyOn' ).style.display = '';
+        editor.on( 'readOnly', function() {
+            document.getElementById( 'readOnlyOn' ).style.display = this.readOnly ? 'none' : '';
+            document.getElementById( 'readOnlyOff' ).style.display = this.readOnly ? '' : 'none';
+        });
+    });
+   
+    function toggleReadOnly( isReadOnly ) {
+        editor.setReadOnly( isReadOnly );
+    }
+</script>
 	<main class="main">
 <form action="?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		<fieldset>
@@ -16,7 +33,7 @@
 		</table>
 		
 		<div class="page_num">
-		<textarea name="content" rows="20" cols="60">${question.content}</textarea>
+		<textarea class="ckeditor" name="content" rows="20" cols="60">${question.content}</textarea>
 		<div class="reg-button">
 			<a href="../delete/${question.id}">삭제</a>
 
@@ -28,7 +45,19 @@
 
 	</div>
 
-
+<script type="text/javascript">
+    CKEDITOR.replace('Contents',{
+            toolbar: 'Full',
+            uiColor: '#9AB8F3',
+        }
+    );
+</script>
+<script>
+    if(editor.getData() == ""){
+        alert("내용을 입력하세요");
+        return false;
+    }
+</script>
 
 </fieldset>
 </form>
